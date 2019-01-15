@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Button renders 1`] = `
+<Popconfirm
+  arrowPointAtCenter={true}
+  cancelText="Cancel"
+  icon={
+    <Styled(Icon)
+      type="warning"
+    />
+  }
+  okText="Yes"
+  okType="danger"
+  onCancel={[Function]}
+  onConfirm={[Function]}
+  placement="bottom"
+  prefixCls="ant-popover"
+  title="Are you sure"
+  transitionName="zoom-big"
+  trigger="click"
+  visible={false}
+>
+  <Button
+    block={false}
+    className="css-48x2js"
+    disabled={false}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+  >
+    <Icon
+      type="delete"
+    />
+    Delete
+  </Button>
+</Popconfirm>
+`;

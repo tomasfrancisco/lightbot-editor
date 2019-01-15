@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Button renders 1`] = `
+<Button
+  block={false}
+  className="css-dinj2y"
+  ghost={false}
+  loading={false}
+  prefixCls="ant-btn"
+>
+  Button Content
+</Button>
+`;

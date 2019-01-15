@@ -1,0 +1,49 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - test
+  - deploy
+
+# Templates
+.run_build_template:
+  image: node:10.10
+  script:
+    - yarn install
+    - yarn build
+    - echo "Preparing distribution version..."
+  artifacts:
+    paths:
+      - ./build
+
+.run_editor_deploy_template:
+  image: python:latest
+  dependencies:
+    - run_build
+  script:
+    - pip install awscli
+    - aws s3 sync ./build/ s3://app.lightbot.io --delete --debug
+    - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_EDITOR_INSTANCE_ID} --paths "/*"
+
+# Smart jobs
+run_build:
+  stage: test
+  extends: .run_build_template
+  only:
+    - master
+
+run_editor_deploy:
+  stage: deploy
+  extends: .run_editor_deploy_template
+  only:
+    - master
+
+# Manual jobs
+run_manual_build:
+  extends: .run_build_template
+  when: manual
+
+run_manual_editor_deploy:
+  stage: deploy
+  extends: .run_editor_deploy_template
+  when: manual

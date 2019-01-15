@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Form/inputs/TitleInput renders 1`] = `
+<Component
+  form={
+    Object {
+      "getFieldDecorator": [Function],
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldProps": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "isSubmitting": [Function],
+      "resetFields": [Function],
+      "setFields": [Function],
+      "setFieldsInitialValue": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+      "validateFieldsAndScroll": [Function],
+    }
+  }
+  itemKey="itemkey"
+  placeholder="placeholder"
+  value="value"
+/>
+`;

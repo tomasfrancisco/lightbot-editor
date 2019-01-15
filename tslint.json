@@ -1,0 +1,22 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts",
+      "config/**/*.js",
+      "src/config/**/*.js",
+      "coverage/**/*",
+      "config-overrides.js"
+    ]
+  },
+  "rules": {
+    "interface-over-type-literal": false,
+    "interface-name": false,
+    "no-console": false,
+    "no-debugger": false,
+    "trailing-comma": true,
+    "object-literal-sort-keys": false,
+    "only-arrow-functions": false,
+    "jsx-no-multiline-js": false
+  }
+}

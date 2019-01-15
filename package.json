@@ -1,0 +1,107 @@
+{
+  "name": "editor",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "src/@lightbot/types",
+    "src/@lightbot/browser-storage"
+  ],
+  "dependencies": {
+    "antd": "3.8.2",
+    "apollo-boost": "^0.1.13",
+    "apollo-link-context": "^1.0.8",
+    "draft-js": "^0.10.5",
+    "emotion": "^9.2.6",
+    "graphql": "^0.13.2",
+    "history": "^4.7.2",
+    "js-cookie": "^2.2.0",
+    "lodash.clone": "^4.5.0",
+    "lodash.find": "^4.6.0",
+    "lodash.get": "^4.4.2",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.merge": "^4.6.1",
+    "lodash.remove": "^4.7.0",
+    "lodash.update": "^4.10.2",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "path-to-regexp": "^2.4.0",
+    "polished": "^1.9.3",
+    "react": "^16.5.0",
+    "react-apollo": "^2.1.9",
+    "react-color": "^2.14.1",
+    "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.6",
+    "react-image": "^1.5.1",
+    "react-joyride": "^2.0.0-15",
+    "react-nestable": "tomasfrancisco/react-nestable#9537510",
+    "react-router-dom": "^4.3.1",
+    "uuid": "^3.3.2",
+    "webfontloader": "^1.6.28"
+  },
+  "scripts": {
+    "start": "react-app-rewired start --scripts-version react-scripts-ts",
+    "build": "tslint --project . --config tslint.prod.json && react-app-rewired build --scripts-version react-scripts-ts",
+    "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
+    "test:coverage": "yarn test --coverage",
+    "eject": "react-app-rewired eject",
+    "prettier": "prettier --config ../.prettierrc -l 'src/**/**.{js,ts,tsx,json}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/config/setup-tests.ts",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/src/$1"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 3.45,
+        "functions": 0.69,
+        "lines": 0.38,
+        "statements": 0.72
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.13",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/enzyme-to-json": "^1.5.2",
+    "@types/jest": "^23.3.1",
+    "@types/lodash.clone": "^4.5.4",
+    "@types/lodash.find": "^4.6.4",
+    "@types/lodash.get": "^4.4.4",
+    "@types/lodash.isarray": "^4.0.4",
+    "@types/lodash.isempty": "^4.4.4",
+    "@types/lodash.isequal": "^4.5.3",
+    "@types/lodash.merge": "^4.6.4",
+    "@types/lodash.remove": "^4.7.4",
+    "@types/lodash.update": "^4.10.4",
+    "@types/node": "^10.5.4",
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.6",
+    "@types/react-joyride": "^2.0.0",
+    "@types/react-router-dom": "^4.3.0",
+    "@types/react-test-renderer": "^16.0.2",
+    "@types/uuid": "^3.4.3",
+    "@types/webfontloader": "^1.6.29",
+    "enzyme": "^3.5.0",
+    "enzyme-adapter-react-16": "^1.3.1",
+    "enzyme-to-json": "^3.3.4",
+    "husky": "^1.0.0-rc.13",
+    "prettier": "^1.14.2",
+    "pretty-quick": "^1.6.0",
+    "react-app-rewire-less": "^2.1.2",
+    "react-app-rewired": "^1.5.2",
+    "react-scripts-ts": "^2.17.0",
+    "ts-import-plugin": "^1.5.4",
+    "typescript": "3.0.1"
+  }
+}

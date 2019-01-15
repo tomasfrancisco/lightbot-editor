@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Form/inputs/FormColorInput renders 1`] = `
+<FormColorInput
+  colorType="RGB"
+  form={
+    Object {
+      "getFieldDecorator": [Function],
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldProps": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "isSubmitting": [Function],
+      "resetFields": [Function],
+      "setFields": [Function],
+      "setFieldsInitialValue": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+      "validateFieldsAndScroll": [Function],
+    }
+  }
+  initialValue="color"
+  itemKey="color-item"
+  itemKeyOpened="abc"
+  onItemKeySelect={[Function]}
+/>
+`;
