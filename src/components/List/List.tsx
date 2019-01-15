@@ -20,13 +20,7 @@ export class List extends React.Component<ListProps> {
   public render() {
     const { items } = this.props;
 
-    return (
-      <AntdList
-        itemLayout="horizontal"
-        dataSource={items}
-        renderItem={this.renderItem}
-      />
-    );
+    return <AntdList itemLayout="horizontal" dataSource={items} renderItem={this.renderItem} />;
   }
 
   private renderItem = (item: ListItemData, index: number) => {

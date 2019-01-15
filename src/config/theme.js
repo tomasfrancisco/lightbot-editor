@@ -40,5 +40,5 @@ module.exports = {
   "menu-item-active-bg": "#252b2d",
   "item-active-bg": "#fff",
 
-  "background-color-dark": "#252b2d"
+  "background-color-dark": "#252b2d",
 };

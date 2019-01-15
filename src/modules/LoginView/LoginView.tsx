@@ -1,7 +1,4 @@
-import {
-  StorageConstantsEnum,
-  StorageInstance
-} from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { message } from "antd";
 import * as React from "react";
 import { compose, withApollo, WithApolloClient } from "react-apollo";
@@ -17,10 +14,7 @@ type LoginViewState = {
   isAuthenticated: boolean;
 };
 
-class LoginViewDisconnected extends React.PureComponent<
-  LoginViewProps,
-  LoginViewState
-> {
+class LoginViewDisconnected extends React.PureComponent<LoginViewProps, LoginViewState> {
   constructor(props: LoginViewProps) {
     super(props);
 
@@ -39,7 +33,7 @@ class LoginViewDisconnected extends React.PureComponent<
     const { client } = this.props;
     try {
       await client.query({
-        query: ON_AUTH
+        query: ON_AUTH,
       });
 
       this.tryRedirectToDashboard();
@@ -47,7 +41,7 @@ class LoginViewDisconnected extends React.PureComponent<
       message.success("Future is now unlocked! To infinity... and beyond! 🚀");
     } catch (err) {
       this.setState({
-        isAuthenticated: false
+        isAuthenticated: false,
       });
       message.error("Please provide a valid token.");
       StorageInstance.removeItem(StorageConstantsEnum.EDITOR_TOKEN_ID);
@@ -61,9 +55,7 @@ class LoginViewDisconnected extends React.PureComponent<
 
   private tryRedirectToDashboard(props: LoginViewProps = this.props) {
     const { history } = props;
-    const isAuthenticated = !!StorageInstance.getItem(
-      StorageConstantsEnum.EDITOR_TOKEN_ID
-    );
+    const isAuthenticated = !!StorageInstance.getItem(StorageConstantsEnum.EDITOR_TOKEN_ID);
 
     if (isAuthenticated) {
       history.push(Routing.routes[RoutesKeysEnum.DASHBOARD].routeProps.path);
@@ -73,5 +65,5 @@ class LoginViewDisconnected extends React.PureComponent<
 
 export const LoginView = compose(
   withApollo,
-  withRouter
+  withRouter,
 )(LoginViewDisconnected);

@@ -7,7 +7,7 @@ import {
   FormPanel,
   FormPanelHeader,
   renderFormTextAreaInput,
-  renderFormTextInput
+  renderFormTextInput,
 } from "~/components/Form";
 import theme from "~/config/theme.js";
 import { FormEnum } from "~/constants/FormEnum";
@@ -28,7 +28,7 @@ export const renderTeaserAndIconFormPanel = ({
   form,
   agentData,
   onItemKeySelect,
-  itemKeyOpened
+  itemKeyOpened,
 }: RenderTeaserAndIconFormPanelProps) => {
   return (
     <FormPanel
@@ -44,7 +44,7 @@ export const renderTeaserAndIconFormPanel = ({
           value: agentData ? agentData.widgetTeaser : "",
           placeholder: "Enter a teaser",
           errorMessage: "Please insert some value",
-          required: true
+          required: true,
         })}
       </FormItem>
       <FormItem title="Reply placeholder">
@@ -52,7 +52,7 @@ export const renderTeaserAndIconFormPanel = ({
           form,
           itemKey: LayoutConfigurationFormEnum.REPLY_CONFIGURATION_ID,
           value: agentData ? agentData.widgetInputPlaceholder : "",
-          placeholder: "Use default"
+          placeholder: "Use default",
         })}
       </FormItem>
       <FormImageInput
@@ -70,11 +70,9 @@ export const renderTeaserAndIconFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.HOTSPOT_CONFIGURATION_BACKGROUND,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.HOTSPOT_CONFIGURATION_BACKGROUND]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.HOTSPOT_CONFIGURATION_BACKGROUND]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -87,11 +85,9 @@ export const renderTeaserAndIconFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.CLOSE_CONFIGURATION_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.CLOSE_CONFIGURATION_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.CLOSE_CONFIGURATION_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}

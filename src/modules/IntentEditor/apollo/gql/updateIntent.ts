@@ -29,20 +29,16 @@ export enum ActionType {}
 export type UpdateIntentFunction = (
   props: {
     variables: { intent: IntentActionData };
-  }
+  },
 ) => Promise<UpdateIntentResult>;
 
-export const updateIntentInCache = (
-  agentId: string,
-  cache: DataProxy,
-  updatedIntent: Intent
-) => {
+export const updateIntentInCache = (agentId: string, cache: DataProxy, updatedIntent: Intent) => {
   const queryObj = {
     query: FETCH_INTENT_QUERY,
     variables: {
       agentId,
-      intentId: updatedIntent.id
-    }
+      intentId: updatedIntent.id,
+    },
   };
 
   let data;
@@ -56,7 +52,7 @@ export const updateIntentInCache = (
   if (data) {
     cache.writeQuery({
       ...queryObj,
-      data: _update(data, ["intents", 0], () => updatedIntent)
+      data: _update(data, ["intents", 0], () => updatedIntent),
     });
   } else {
     throw Error("Something got wrong with the mutation update");
@@ -70,6 +66,6 @@ export const updateIntent = graphql<{}, {}, {}, {}>(UPDATE_INTENT_QUERY, {
       const updatedIntent = _get(mutationResult, ["data", "updateIntent"]);
 
       updateIntentInCache(agentId, cache, updatedIntent);
-    }
-  })
+    },
+  }),
 });

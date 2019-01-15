@@ -34,7 +34,7 @@ export class LightbotLayoutDisconnected extends React.Component<
     super(props);
 
     this.state = {
-      collapsed: false
+      collapsed: false,
     };
   }
 
@@ -56,21 +56,18 @@ export class LightbotLayoutDisconnected extends React.Component<
           <AppMenu />
         </AppSider>
         <Layout style={{ minHeight: "calc(100vh - 64px)" }}>
-          <AppLayoutContent>
-            {children || "Welcome to Lightbot!"}
-          </AppLayoutContent>
+          <AppLayoutContent>{children || "Welcome to Lightbot!"}</AppLayoutContent>
           <Footer>
             © {year} • Lightbot is a registered trademark of{" "}
-            <img className={imgStyle} src="/logo-icon-full.svg" /> Lightbase
-            B.V. • Version -{" " + process.env.REACT_APP_VERSION}
+            <img className={imgStyle} src="/logo-icon-full.svg" /> Lightbase B.V. • Version -
+            {" " + process.env.REACT_APP_VERSION}
           </Footer>
         </Layout>
       </AppLayout>
     );
   }
 
-  private onCollapse = () =>
-    this.setState({ collapsed: !this.state.collapsed });
+  private onCollapse = () => this.setState({ collapsed: !this.state.collapsed });
 }
 
 export const LightbotLayout = compose(withRouter)(LightbotLayoutDisconnected);

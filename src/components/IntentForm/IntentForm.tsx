@@ -8,24 +8,19 @@ import {
   DeleteAction,
   DeleteActionEnum,
   DeleteButton,
-  IntentDeleteActionEnum
+  IntentDeleteActionEnum,
 } from "~/components/DeleteButton";
-import {
-  FormCollapse,
-  FormPanel,
-  FormPanelHeader,
-  TitleInput
-} from "~/components/Form";
+import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "~/components/Form";
 import {
   IntentOutputsFormGroup,
-  IntentTriggersFormGroup
+  IntentTriggersFormGroup,
 } from "~/components/IntentForm/form-groups";
 import { FormValues } from "~/components/IntentForm/FormValuesType";
 import {
   Section,
   SectionContent,
   SectionHeader,
-  SectionHeaderNavContainer
+  SectionHeaderNavContainer,
 } from "~/components/Section";
 import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
 import { FormEnum } from "~/constants/FormEnum";
@@ -56,12 +51,12 @@ enum FormIndexEnum {
   NAME = "intent_name",
   TYPE = "intent_type",
   TRIGGERS = "intent_triggers",
-  OUTPUTS = "intent_outputs"
+  OUTPUTS = "intent_outputs",
 }
 
 const defaultDeleteAction: DeleteAction = {
   confirmationMessage: "Are you sure?",
-  key: IntentDeleteActionEnum.ONLY_INTENT
+  key: IntentDeleteActionEnum.ONLY_INTENT,
 };
 
 const deleteActions: DeleteAction[] = [
@@ -69,14 +64,13 @@ const deleteActions: DeleteAction[] = [
     confirmationMessage:
       "You're deleting this intent. All follow-up intents are going to be moved to the next top parent. Are you sure?",
     key: IntentDeleteActionEnum.ONLY_INTENT,
-    optionTitle: "Only this intent (default)"
+    optionTitle: "Only this intent (default)",
   },
   {
-    confirmationMessage:
-      "You're deleting this intent and it's follow-up intents. Are you sure?",
+    confirmationMessage: "You're deleting this intent and it's follow-up intents. Are you sure?",
     key: IntentDeleteActionEnum.ALL_INTENTS,
-    optionTitle: "This intent and its follow-up intents"
-  }
+    optionTitle: "This intent and its follow-up intents",
+  },
 ];
 
 type IntentFormProps = FormComponentProps & {
@@ -187,16 +181,14 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
       if (!err) {
         const formValues: FormValues = {
           name: fields.values[FormIndexEnum.NAME],
-          outputs: fields.values[FormIndexEnum.OUTPUTS]
-            ? fields.values[FormIndexEnum.OUTPUTS]
-            : [],
+          outputs: fields.values[FormIndexEnum.OUTPUTS] ? fields.values[FormIndexEnum.OUTPUTS] : [],
           triggers: { ...fields.values[FormIndexEnum.TRIGGERS] },
-          type: fields.values[FormIndexEnum.TYPE]
+          type: fields.values[FormIndexEnum.TYPE],
         };
 
         onSubmit(formValues);
         this.setState({
-          isTouched: false
+          isTouched: false,
         });
       }
     });
@@ -214,7 +206,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
     const { form, intent } = props;
 
     const initialValue = {
-      [FormIndexEnum.TRIGGERS]: intent.triggers.map(trigger => trigger.id)
+      [FormIndexEnum.TRIGGERS]: intent.triggers.map(trigger => trigger.id),
     };
     form.getFieldDecorator(this.formKey, { initialValue });
   }
@@ -223,5 +215,5 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
 export const IntentForm = Form.create<IntentFormProps>({
   onFieldsChange: props => {
     props.onTouch();
-  }
+  },
 })(IntentFormDisconnected);

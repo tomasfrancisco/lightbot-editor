@@ -43,9 +43,7 @@ const HeaderView = styled("div")`
   text-align: center;
 `;
 
-class CreateIntentModalDisconnected extends React.Component<
-  CreateIntentModalProps
-> {
+class CreateIntentModalDisconnected extends React.Component<CreateIntentModalProps> {
   public render() {
     const { isVisible, form } = this.props;
     return (
@@ -86,9 +84,7 @@ class CreateIntentModalDisconnected extends React.Component<
 
   private renderItem = (item, index) => {
     return (
-      <UnknownTriggerItem
-        className={index % 2 === 0 ? "list-item-even" : "list-item-odd"}
-      >
+      <UnknownTriggerItem className={index % 2 === 0 ? "list-item-even" : "list-item-odd"}>
         {item.title}
       </UnknownTriggerItem>
     );
@@ -102,7 +98,7 @@ class CreateIntentModalDisconnected extends React.Component<
     }
 
     return selectedUnknownTriggers.map(unknownTrigger => ({
-      title: unknownTrigger.value
+      title: unknownTrigger.value,
     }));
   }
 
@@ -112,7 +108,7 @@ class CreateIntentModalDisconnected extends React.Component<
       if (!error) {
         this.props.onCreate({
           intentName: _get(fields, ["values", NEW_INTENT_KEY_NAME], ""),
-          triggers: this.triggers
+          triggers: this.triggers,
         });
       }
     });
@@ -124,7 +120,7 @@ class CreateIntentModalDisconnected extends React.Component<
     if (selectedUnknownTriggers) {
       return selectedUnknownTriggers.map(unknownTrigger => ({
         id: unknownTrigger.key,
-        value: [unknownTrigger.value]
+        value: [unknownTrigger.value],
       }));
     }
 

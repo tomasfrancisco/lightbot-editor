@@ -8,7 +8,7 @@ import {
   CreateIntentWithUnknownTriggerFunction,
   createIntentWithUnknownTriggers,
   moveUnknownTriggersToIntent,
-  OnMoveUnknownTriggersFunction
+  OnMoveUnknownTriggersFunction,
 } from "~/modules/ImproveView/apollo/gql";
 import { IntentSelector } from "~/modules/ImproveView/components/IntentSelector";
 import { withRouteParams } from "~/routing";
@@ -17,7 +17,7 @@ import {
   ColumnItem,
   CREATE_INTENT_ID,
   CreateIntent,
-  CreateIntentUnknownTriggerDataInput
+  CreateIntentUnknownTriggerDataInput,
 } from "../utils";
 import { CreateIntentModal } from "./CreateIntentModal";
 
@@ -51,11 +51,7 @@ class UnknownTriggerSaveDisconnected extends React.Component<
   }
 
   public render() {
-    const {
-      selectedUnknownTriggers,
-      availableIntents,
-      intentsLoading
-    } = this.props;
+    const { selectedUnknownTriggers, availableIntents, intentsLoading } = this.props;
     const { isCreatIntentModalVisible } = this.state;
 
     if (intentsLoading) {
@@ -83,11 +79,11 @@ class UnknownTriggerSaveDisconnected extends React.Component<
     const { agentId } = this.props;
     if (intentId === CREATE_INTENT_ID) {
       this.setState({
-        isCreatIntentModalVisible: true
+        isCreatIntentModalVisible: true,
       });
     } else {
       this.props.onMoveUnknownTriggersToIntent({
-        variables: { unknownTriggerIds, intentId, agentId }
+        variables: { unknownTriggerIds, intentId, agentId },
       });
     }
   };
@@ -96,7 +92,7 @@ class UnknownTriggerSaveDisconnected extends React.Component<
     const { agentId, onCreateIntentWithUnknownTriggers } = this.props;
 
     const triggers: CreateIntentUnknownTriggerDataInput[] = createIntentData.triggers.map(
-      trigger => ({ id: trigger.id!, value: trigger.value![0] })
+      trigger => ({ id: trigger.id!, value: trigger.value![0] }),
     );
 
     message
@@ -107,25 +103,23 @@ class UnknownTriggerSaveDisconnected extends React.Component<
             input: {
               agentId,
               intentName: createIntentData.intentName,
-              unknownTriggers: triggers
-            }
-          }
-        })
+              unknownTriggers: triggers,
+            },
+          },
+        }),
       )
       .then(() => {
         message.success(`${createIntentData.intentName} created successfully!`);
         this.onCloseCreateIntentModal();
       })
       .catch(() => {
-        message.error(
-          `An error occurred while creating the ${createIntentData.intentName}.`
-        );
+        message.error(`An error occurred while creating the ${createIntentData.intentName}.`);
       });
   };
 
   private onCloseCreateIntentModal = () => {
     this.setState({
-      isCreatIntentModalVisible: false
+      isCreatIntentModalVisible: false,
     });
   };
 }
@@ -133,5 +127,5 @@ class UnknownTriggerSaveDisconnected extends React.Component<
 export const UnknownTriggerSave = compose(
   withRouteParams(["agentId"]),
   moveUnknownTriggersToIntent,
-  createIntentWithUnknownTriggers
+  createIntentWithUnknownTriggers,
 )(UnknownTriggerSaveDisconnected);

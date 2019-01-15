@@ -20,13 +20,13 @@ export const resolvers = {
         selectedKeyword: {
           ...previousState.selectedKeyword,
           id: keyword.id,
-          name: keyword.name
-        }
+          name: keyword.name,
+        },
       };
 
       cache.writeData({ query, data });
 
       return null;
-    }
-  }
+    },
+  },
 };

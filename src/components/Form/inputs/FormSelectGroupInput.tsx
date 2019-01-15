@@ -20,7 +20,7 @@ type FormSelectGroupInputState = {
 export enum FormSelectGroupEnum {
   FIRST = 0,
   SECOND = 1,
-  THIRD = 2
+  THIRD = 2,
 }
 
 class FormSelectGroupInput extends React.Component<
@@ -31,7 +31,7 @@ class FormSelectGroupInput extends React.Component<
     super(props);
 
     this.state = {
-      hasThird: _get(props, "value", []).length === 3
+      hasThird: _get(props, "value", []).length === 3,
     };
   }
 
@@ -88,11 +88,7 @@ class FormSelectGroupInput extends React.Component<
               {this.renderSearchResults()}
             </Select>
           )) || (
-            <Button
-              type="dashed"
-              style={{ width: "100%" }}
-              onClick={this.onAddThirdClick}
-            >
+            <Button type="dashed" style={{ width: "100%" }} onClick={this.onAddThirdClick}>
               <Icon type="plus" />
             </Button>
           )}
@@ -124,11 +120,7 @@ class FormSelectGroupInput extends React.Component<
       value = new Array(3).fill("");
     }
 
-    const newValue = _get(
-      _find(searchResults, ["key", stepValue]),
-      "value",
-      ""
-    );
+    const newValue = _get(_find(searchResults, ["key", stepValue]), "value", "");
     value[step] = newValue;
 
     if (onChange) {
@@ -153,13 +145,7 @@ export type RenderFormSelectGroupInputProps = FormComponentProps & {
   type: string;
   getValueFromEvent?(e): any;
   getValueProps?(value): any;
-  validator?(
-    rule: any,
-    value: any,
-    callback: any,
-    source?: any,
-    options?: any
-  ): any;
+  validator?(rule: any, value: any, callback: any, source?: any, options?: any): any;
   onChange?(value: string[]): void;
   onFetch?(): void;
 };
@@ -179,7 +165,7 @@ export const renderFormSelectGroupInput = ({
   getValueProps,
   validator,
   min,
-  type
+  type,
 }: RenderFormSelectGroupInputProps) =>
   form &&
   form.getFieldDecorator(itemKey, {
@@ -193,9 +179,9 @@ export const renderFormSelectGroupInput = ({
         min,
         required: true,
         type,
-        validator
-      }
+        validator,
+      },
     ],
     trigger: "onChange",
-    validateTrigger: ["onChange", "onBlur"]
+    validateTrigger: ["onChange", "onBlur"],
   })(<FormSelectGroupInput onFetch={onFetch} searchResults={searchResults} />);

@@ -3,10 +3,7 @@ import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import { FormButton } from "~/components/Form/inputs/FormButtonInput";
 import { FormButtonsGroupButtons } from "~/components/Form/inputs/FormButtonsGroupButton";
-import {
-  emptyStringValidator,
-  whitespaceValidator
-} from "~/components/Form/validators";
+import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
 import { Intent } from "~/models";
 
 type RenderButtonsGroupOutputInputProps = FormComponentProps & {
@@ -22,7 +19,7 @@ export const renderButtonsGroupOutputInput = ({
   formIndex,
   item,
   itemKey,
-  intents
+  intents,
 }: RenderButtonsGroupOutputInputProps) => {
   return (
     form &&
@@ -30,19 +27,19 @@ export const renderButtonsGroupOutputInput = ({
       getValueFromEvent: (jumps: FormButton[]): IntentJumpsOutputType => ({
         ...item,
         value: {
-          jumps
-        }
+          jumps,
+        },
       }),
       // @ts-ignore
       getValueProps: (output: IntentJumpsOutputType) => {
         if (output) {
           return {
-            value: output.value.jumps
+            value: output.value.jumps,
           };
         }
 
         return {
-          value: output
+          value: output,
         };
       },
       initialValue: item,
@@ -53,28 +50,26 @@ export const renderButtonsGroupOutputInput = ({
           type: "object",
           validator: (rule, buttonOutput: IntentJumpsOutputType, cb) => {
             const {
-              value: { jumps }
+              value: { jumps },
             } = buttonOutput;
 
             const isValid =
               jumps
                 .map(button => {
                   const isLabelValid =
-                    !whitespaceValidator(button.label) &&
-                    !emptyStringValidator(button.label);
+                    !whitespaceValidator(button.label) && !emptyStringValidator(button.label);
                   const isButtonValueValue =
-                    !whitespaceValidator(button.intentId) &&
-                    !emptyStringValidator(button.intentId);
+                    !whitespaceValidator(button.intentId) && !emptyStringValidator(button.intentId);
 
                   return isLabelValid && isButtonValueValue;
                 })
                 .filter(Boolean).length === jumps.length;
 
             isValid ? cb() : cb(true);
-          }
-        }
+          },
+        },
       ],
-      validateTrigger: ["onChange", "onBlur"]
+      validateTrigger: ["onChange", "onBlur"],
     })(<FormButtonsGroupButtons intents={intents} />)
   );
 };

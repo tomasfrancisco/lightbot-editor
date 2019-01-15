@@ -36,7 +36,7 @@ export class FormGroup extends React.Component<FormGroupProps> {
   private static defaultProps = {
     onChange: () => {
       return;
-    }
+    },
   };
 
   public render() {
@@ -52,10 +52,7 @@ export class FormGroup extends React.Component<FormGroupProps> {
           handler={
             <NestableWithHandler>
               <HandlerContainer>
-                <Icon
-                  type="bars"
-                  style={{ fontSize: "18px", color: "#d9d9d9" }}
-                />
+                <Icon type="bars" style={{ fontSize: "18px", color: "#d9d9d9" }} />
               </HandlerContainer>
             </NestableWithHandler>
           }
@@ -79,7 +76,7 @@ export class FormGroup extends React.Component<FormGroupProps> {
       return {
         component: child,
         data: componentData, // This needs testing
-        id: componentData.id
+        id: componentData.id,
       };
     });
   }
@@ -88,7 +85,7 @@ export class FormGroup extends React.Component<FormGroupProps> {
     const { isSortable } = this.props;
     const newProps = isSortable
       ? {
-          sortHandler: handler
+          sortHandler: handler,
         }
       : {};
     return React.cloneElement(item.component, newProps);

@@ -20,7 +20,7 @@ export const renderHeaderViewFormPanel = ({
   itemKeyOpened,
   form,
   agentData,
-  onItemKeySelect
+  onItemKeySelect,
 }: RenderHeaderViewFormPanel) => {
   return (
     <FormPanel
@@ -33,20 +33,13 @@ export const renderHeaderViewFormPanel = ({
         title="Gradient color 1"
         placeholder="Use default"
         itemGroup={LayoutConfigurationFormEnum.THEME_CONFIGURATION_ID}
-        itemKey={
-          LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_FIRST_COLOR
-        }
+        itemKey={LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_FIRST_COLOR}
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_FIRST_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[
-            LayoutConfigurationFormEnum
-              .HEADER_CONFIGURATION_GRADIENT_FIRST_COLOR
-          ]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_FIRST_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -55,20 +48,13 @@ export const renderHeaderViewFormPanel = ({
         title="Gradient color 2"
         placeholder="Use default"
         itemGroup={LayoutConfigurationFormEnum.THEME_CONFIGURATION_ID}
-        itemKey={
-          LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_SECOND_COLOR
-        }
+        itemKey={LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_SECOND_COLOR}
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_SECOND_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[
-            LayoutConfigurationFormEnum
-              .HEADER_CONFIGURATION_GRADIENT_SECOND_COLOR
-          ]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.HEADER_CONFIGURATION_GRADIENT_SECOND_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -81,11 +67,9 @@ export const renderHeaderViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.HEADER_CONFIGURATION_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.HEADER_CONFIGURATION_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.HEADER_CONFIGURATION_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}

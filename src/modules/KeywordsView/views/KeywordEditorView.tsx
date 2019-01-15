@@ -12,7 +12,7 @@ import {
   DeleteKeywordFunction,
   fetchKeywordValues,
   updateKeyword,
-  UpdateKeywordFunction
+  UpdateKeywordFunction,
 } from "~/modules/KeywordsView/apollo/gql";
 import { KeywordEditorForm } from "./KeywordEditorForm";
 
@@ -35,13 +35,13 @@ class KeywordEditorViewDisconnected extends React.Component<
 > {
   public static defaultProps = {
     loading: false,
-    values: []
+    values: [],
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      hasDataChanged: false
+      hasDataChanged: false,
     };
   }
 
@@ -49,7 +49,7 @@ class KeywordEditorViewDisconnected extends React.Component<
     // In case intent item has changed or updated
     if (this.props.selectedKeyword !== nextProps.selectedKeyword) {
       this.setState({
-        hasDataChanged: false
+        hasDataChanged: false,
       });
     }
   }
@@ -77,7 +77,7 @@ class KeywordEditorViewDisconnected extends React.Component<
 
   private onDataChange = () => {
     this.setState({
-      hasDataChanged: true
+      hasDataChanged: true,
     });
   };
 
@@ -86,8 +86,8 @@ class KeywordEditorViewDisconnected extends React.Component<
       .loading("Deleting Keyword", 1)
       .promise.then(() =>
         this.props.onDeleteKeyword({
-          variables: { keyword: { id } }
-        })
+          variables: { keyword: { id } },
+        }),
       )
       .then(() => {
         message.success("Deleted successfully!");
@@ -112,7 +112,7 @@ class KeywordEditorViewDisconnected extends React.Component<
       .loading("Creating Keyword", 1)
       .promise.then(() => {
         return this.props.onCreateKeyword({
-          variables: { keyword: { name: data.name } }
+          variables: { keyword: { name: data.name } },
         });
       })
       .then(keywordCreated => {
@@ -120,7 +120,7 @@ class KeywordEditorViewDisconnected extends React.Component<
         if (keywordData) {
           data.id = keywordData.createDictionary.id;
           return this.props.updateKeyword({
-            variables: { updatedKeyword: data }
+            variables: { updatedKeyword: data },
           });
         } else {
           return Promise.reject();
@@ -139,13 +139,13 @@ class KeywordEditorViewDisconnected extends React.Component<
       .loading("Updating Keyword", 1)
       .promise.then(() =>
         this.props.updateKeyword({
-          variables: { updatedKeyword: data }
-        })
+          variables: { updatedKeyword: data },
+        }),
       )
       .then(() => {
         message.success("Updated successfully!");
         this.setState({
-          hasDataChanged: false
+          hasDataChanged: false,
         });
       })
       .catch(() => {
@@ -158,5 +158,5 @@ export const KeywordEditorView = compose(
   fetchKeywordValues,
   updateKeyword,
   createKeyword,
-  deleteKeyword
+  deleteKeyword,
 )(KeywordEditorViewDisconnected);

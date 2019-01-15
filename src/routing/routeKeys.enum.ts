@@ -10,5 +10,5 @@ export enum RoutesKeysEnum {
   SETTINGS = "SETTINGS",
   KEYWORDS = "KEYWORDS",
   IMPROVE = "IMPROVE",
-  TRAP = "TRAP"
+  TRAP = "TRAP",
 }

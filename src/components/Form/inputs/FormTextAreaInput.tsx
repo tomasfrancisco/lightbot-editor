@@ -12,13 +12,7 @@ export type RenderFormTextAreaInputProps = FormComponentProps & {
   type?: string;
   getValueFromEvent?(e): any;
   getValueProps?(value): any;
-  validator?(
-    rule: any,
-    value: any,
-    callback: any,
-    source?: any,
-    options?: any
-  ): any;
+  validator?(rule: any, value: any, callback: any, source?: any, options?: any): any;
 };
 
 const getFieldValidatorKey = (itemKey: string, itemGroup?: string) => {
@@ -40,7 +34,7 @@ export const renderFormTextAreaInput = ({
   errorMessage,
   getValueFromEvent,
   getValueProps,
-  validator
+  validator,
 }: RenderFormTextAreaInputProps) =>
   form &&
   form.getFieldDecorator(getFieldValidatorKey(itemKey, itemGroup), {
@@ -54,13 +48,8 @@ export const renderFormTextAreaInput = ({
         required: required || false,
         type,
         validator,
-        whitespace: true
-      }
+        whitespace: true,
+      },
     ],
-    validateTrigger: ["onChange", "onBlur"]
-  })(
-    <Input.TextArea
-      placeholder={placeholder}
-      autosize={{ minRows: 2, maxRows: 6 }}
-    />
-  );
+    validateTrigger: ["onChange", "onBlur"],
+  })(<Input.TextArea placeholder={placeholder} autosize={{ minRows: 2, maxRows: 6 }} />);

@@ -43,14 +43,9 @@ export const FormItem = ({
     {sortHandler}
     {iconType && <FormItemIcon type={iconType} />}
     <FormItemContainer>
-      {title && (
-        <SubTitleLabel className={titleLabelStyle}>{title}</SubTitleLabel>
-      )}
+      {title && <SubTitleLabel className={titleLabelStyle}>{title}</SubTitleLabel>}
       <Form.Item {...props}>{children}</Form.Item>
     </FormItemContainer>
-    <FormItemDeleteIcon
-      onRemove={onRemove}
-      tooltipTitle={removeTooltipTitle || "Remove"}
-    />
+    <FormItemDeleteIcon onRemove={onRemove} tooltipTitle={removeTooltipTitle || "Remove"} />
   </FormRow>
 );

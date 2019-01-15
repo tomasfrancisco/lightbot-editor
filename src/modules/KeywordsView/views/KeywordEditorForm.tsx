@@ -12,14 +12,14 @@ import {
   FormBatchInput,
   FormItem,
   SearchInput,
-  TitleInput
+  TitleInput,
 } from "~/components/Form";
 import { InputProps, renderInput } from "~/components/Form/Input";
 import {
   Section,
   SectionContent,
   SectionHeader,
-  SectionHeaderNavContainer
+  SectionHeaderNavContainer,
 } from "~/components/Section";
 import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
 import { FormEnum } from "~/constants/FormEnum";
@@ -29,7 +29,7 @@ import {
   getBatchValidationRules,
   getDuplicateKeywordValidator,
   getNotSysEntityValidator,
-  singleWordValidator
+  singleWordValidator,
 } from "~/modules/KeywordsView/utils";
 
 const KEYWORD_NAME_FIELD = "keywordName";
@@ -58,16 +58,13 @@ type State = {
   searchValue: string;
 };
 
-export class KeywordEditorFormDisconnected extends React.Component<
-  KeywordEditorFormProps,
-  State
-> {
+export class KeywordEditorFormDisconnected extends React.Component<KeywordEditorFormProps, State> {
   constructor(props) {
     super(props);
 
     this.state = {
       batchValues: new Array<KeywordValue>(),
-      searchValue: ""
+      searchValue: "",
     };
 
     this.initForm();
@@ -90,8 +87,8 @@ export class KeywordEditorFormDisconnected extends React.Component<
                 rules={[
                   singleWordValidator("Keyword name should have just one word"),
                   getNotSysEntityValidator(
-                    "Keyword name prefix 'sys' is a reserved word and cannot be used"
-                  )
+                    "Keyword name prefix 'sys' is a reserved word and cannot be used",
+                  ),
                 ]}
               />
               <AntdForm.Item className={headerOptionButtonsSpacingStyle}>
@@ -144,7 +141,7 @@ export class KeywordEditorFormDisconnected extends React.Component<
       const initialValue = values.map(value => value.id);
 
       form.getFieldDecorator(FormEnum.KEYWORD_FORM, {
-        initialValue
+        initialValue,
       });
     }
   }
@@ -169,20 +166,14 @@ export class KeywordEditorFormDisconnected extends React.Component<
         itemKey,
         placeholder: "Keyword",
         rules: [getDuplicateKeywordValidator(form)],
-        value: this.getUpdatedValueToItemKey(
-          itemKey,
-          _get(updatedFormValues, "values", {})
-        )
+        value: this.getUpdatedValueToItemKey(itemKey, _get(updatedFormValues, "values", {})),
       };
 
       return this.renderInput(props, onRemoveHandler);
     });
   };
 
-  private getUpdatedValueToItemKey = (
-    itemKey: string,
-    updatedFormValues: {}
-  ) => {
+  private getUpdatedValueToItemKey = (itemKey: string, updatedFormValues: {}) => {
     const { values } = this.props;
     const { batchValues } = this.state;
 
@@ -211,9 +202,7 @@ export class KeywordEditorFormDisconnected extends React.Component<
     if (searchValue !== "") {
       if (!props.value) {
         isInputHidden = true;
-      } else if (
-        !props.value.toLowerCase().includes(searchValue.toLowerCase())
-      ) {
+      } else if (!props.value.toLowerCase().includes(searchValue.toLowerCase())) {
         isInputHidden = true;
       }
     }
@@ -236,17 +225,17 @@ export class KeywordEditorFormDisconnected extends React.Component<
       batchValues.push({
         id: newValue.id,
         keywordId: selectedKeyword.id,
-        value: newValue.value
+        value: newValue.value,
       });
       nextKeys.push(newValue.id);
     }
 
     form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys
+      [FormEnum.KEYWORD_FORM]: nextKeys,
     });
 
     this.setState({
-      batchValues
+      batchValues,
     });
   };
 
@@ -257,7 +246,7 @@ export class KeywordEditorFormDisconnected extends React.Component<
     nextKeys.push(uuid());
 
     form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys
+      [FormEnum.KEYWORD_FORM]: nextKeys,
     });
   };
 
@@ -269,7 +258,7 @@ export class KeywordEditorFormDisconnected extends React.Component<
     nextKeys = nextKeys.filter(key => key !== k);
 
     form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys
+      [FormEnum.KEYWORD_FORM]: nextKeys,
     });
   };
 
@@ -288,23 +277,12 @@ export class KeywordEditorFormDisconnected extends React.Component<
 
       if (err && err[KEYWORD_NAME_FIELD]) {
         message.error(
-          _get(
-            err[KEYWORD_NAME_FIELD],
-            ["errors", 0, "message"],
-            "Something went wrong"
-          )
+          _get(err[KEYWORD_NAME_FIELD], ["errors", 0, "message"], "Something went wrong"),
         );
       }
 
       if (!err) {
-        onDataSave(
-          getDictionaryObjectToUpdate(
-            selectedKeyword,
-            values,
-            name,
-            fieldValues
-          )
-        );
+        onDataSave(getDictionaryObjectToUpdate(selectedKeyword, values, name, fieldValues));
       }
     });
   };
@@ -313,5 +291,5 @@ export class KeywordEditorFormDisconnected extends React.Component<
 export const KeywordEditorForm = AntdForm.create<KeywordEditorFormProps>({
   onValuesChange: props => {
     props.onTouch();
-  }
+  },
 })(KeywordEditorFormDisconnected);

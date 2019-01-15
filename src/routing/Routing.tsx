@@ -14,7 +14,7 @@ export class Routing extends React.Component {
   public static browserHistory = browserHistory;
   public static routes = routes;
   public static utils = {
-    findMatchedRoute
+    findMatchedRoute,
   };
 
   public render() {

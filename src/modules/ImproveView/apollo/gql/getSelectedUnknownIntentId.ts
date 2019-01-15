@@ -12,17 +12,13 @@ export type GetSelectedUnknownIntentIdData = {
   selectedUnknownIntentId: string;
 };
 
-export type GetSelectedUnknownIntentIdResult = QueryResult<
-  GetSelectedUnknownIntentIdData
->;
+export type GetSelectedUnknownIntentIdResult = QueryResult<GetSelectedUnknownIntentIdData>;
 
-export const getSelectedUnknownIntentId = graphql<
-  {},
-  GetSelectedUnknownIntentIdResult,
-  {},
-  {}
->(GET_SELECTED_UNKNOWN_INTENT_ID_QUERY, {
-  props: ({ data }) => ({
-    selectedUnknownIntentId: _get(data, ["selectedUnknownIntentId"])
-  })
-});
+export const getSelectedUnknownIntentId = graphql<{}, GetSelectedUnknownIntentIdResult, {}, {}>(
+  GET_SELECTED_UNKNOWN_INTENT_ID_QUERY,
+  {
+    props: ({ data }) => ({
+      selectedUnknownIntentId: _get(data, ["selectedUnknownIntentId"]),
+    }),
+  },
+);

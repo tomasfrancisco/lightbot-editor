@@ -25,8 +25,6 @@ export const DeployButton = ({ loading, onClick }: DeployButtonProps) => (
     <Button level="success" block={true} loading={loading} onClick={onClick}>
       {loading ? "Deploying..." : "Deploy"}
     </Button>
-    {loading && (
-      <Warning>This action may take a while, please wait patiently!</Warning>
-    )}
+    {loading && <Warning>This action may take a while, please wait patiently!</Warning>}
   </Wrapper>
 );

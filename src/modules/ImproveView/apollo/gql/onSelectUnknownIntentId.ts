@@ -11,13 +11,10 @@ export const ON_SELECT_UNKNOWN_INTENT_ID = gql`
 
 export type OnSelectUnknownIntentIdFunction = (
   {
-    variables: { unknownIntentId }
-  }: { variables: { unknownIntentId: string | null } }
+    variables: { unknownIntentId },
+  }: { variables: { unknownIntentId: string | null } },
 ) => void;
 
-export const onSelectUnknownIntentId = graphql<{}, {}>(
-  ON_SELECT_UNKNOWN_INTENT_ID,
-  {
-    name: "onSelectUnknownIntentId"
-  }
-);
+export const onSelectUnknownIntentId = graphql<{}, {}>(ON_SELECT_UNKNOWN_INTENT_ID, {
+  name: "onSelectUnknownIntentId",
+});

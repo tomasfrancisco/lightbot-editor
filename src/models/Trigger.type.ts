@@ -7,7 +7,7 @@ import { ActionType } from "~/models/enums";
 
 export enum TriggerTypeEnum {
   PLAIN = "PLAIN",
-  COMBINATION = "COMBINATION"
+  COMBINATION = "COMBINATION",
 }
 
 interface ITrigger {

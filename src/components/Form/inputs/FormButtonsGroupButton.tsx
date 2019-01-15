@@ -4,10 +4,7 @@ import * as React from "react";
 import styled from "react-emotion";
 import { Button } from "~/components/Button";
 import { FormItem } from "~/components/Form/components";
-import {
-  FormButton,
-  FormButtonInput
-} from "~/components/Form/inputs/FormButtonInput";
+import { FormButton, FormButtonInput } from "~/components/Form/inputs/FormButtonInput";
 import { FormRow } from "~/components/Form/layout";
 import theme from "~/config/theme.js";
 import { Intent } from "~/models";
@@ -24,9 +21,7 @@ type FormButtonsGroupButtonsProps = {
   onChange?(value: FormButton[]): void;
 };
 
-export class FormButtonsGroupButtons extends React.Component<
-  FormButtonsGroupButtonsProps
-> {
+export class FormButtonsGroupButtons extends React.Component<FormButtonsGroupButtonsProps> {
   public render() {
     const { intents, value } = this.props;
 
@@ -72,10 +67,7 @@ export class FormButtonsGroupButtons extends React.Component<
     const { onChange } = this.props;
 
     const propsValue = _clone(this.props.value) || [];
-    const newValue = [
-      ...propsValue.slice(0, index),
-      ...propsValue.slice(index + 1)
-    ];
+    const newValue = [...propsValue.slice(0, index), ...propsValue.slice(index + 1)];
 
     if (onChange) {
       onChange(newValue);
@@ -89,7 +81,7 @@ export class FormButtonsGroupButtons extends React.Component<
 
     propsValue.push({
       intentId: "",
-      label: ""
+      label: "",
     });
 
     if (onChange) {

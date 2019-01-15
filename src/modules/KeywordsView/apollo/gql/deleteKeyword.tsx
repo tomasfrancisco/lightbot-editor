@@ -3,7 +3,7 @@ import { graphql, QueryResult } from "react-apollo";
 import { Keyword } from "~/models";
 import {
   deleteKeywordFromCache,
-  updateSelectedKeywordCache
+  updateSelectedKeywordCache,
 } from "~/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
 import { KeywordEditorViewProps } from "~/modules/KeywordsView/views";
 
@@ -28,7 +28,7 @@ export interface DeleteKeywordResult extends QueryResult<DeleteKeywordData> {}
 export type DeleteKeywordFunction = (
   props: {
     variables: { keyword: DeleteDictionaryData };
-  }
+  },
 ) => Promise<DeleteKeywordResult>;
 
 export const deleteKeyword = graphql<{}, {}, {}, {}>(DELETE_KEYWORD_QUERY, {
@@ -39,6 +39,6 @@ export const deleteKeyword = graphql<{}, {}, {}, {}>(DELETE_KEYWORD_QUERY, {
         deleteKeywordFromCache(cache, selectedKeyword);
       }
       updateSelectedKeywordCache(cache, null);
-    }
-  })
+    },
+  }),
 });

@@ -3,13 +3,7 @@ import "./FormTextTagInput.css";
 import { Tag as TagAntd } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { GetFieldDecoratorOptions } from "antd/lib/form/Form";
-import {
-  CompositeDecorator,
-  ContentState,
-  DraftHandleValue,
-  Editor,
-  EditorState
-} from "draft-js";
+import { CompositeDecorator, ContentState, DraftHandleValue, Editor, EditorState } from "draft-js";
 import * as React from "react";
 import styled from "react-emotion";
 
@@ -17,9 +11,7 @@ const StyledTag = styled(TagAntd)`
   margin-right: 0px !important;
 `;
 
-const Tag = ({ children, color }) => (
-  <StyledTag color={color}>{children}</StyledTag>
-);
+const Tag = ({ children, color }) => <StyledTag color={color}>{children}</StyledTag>;
 
 export type FormTextTagInputProps = {
   value?: string;
@@ -43,30 +35,30 @@ export class FormTextTagInput extends React.Component<
         strategy: this.keywordStrategy,
         component: Tag,
         props: {
-          color: "green"
-        }
+          color: "green",
+        },
       },
       {
         strategy: this.entityKeywordStrategy,
         component: Tag,
         props: {
-          color: "blue"
-        }
+          color: "blue",
+        },
       },
       {
         strategy: this.notValidKeywordsStrategy,
         component: Tag,
         props: {
-          color: "red"
-        }
-      }
+          color: "red",
+        },
+      },
     ]);
 
     this.state = {
       editorState: EditorState.createWithContent(
         ContentState.createFromText(props.value || ""),
-        compositeDecorator
-      )
+        compositeDecorator,
+      ),
     };
   }
 
@@ -123,9 +115,7 @@ export class FormTextTagInput extends React.Component<
     while ((matchArr = regex.exec(text)) !== null) {
       start = matchArr.index;
       if (includes) {
-        if (
-          validTags.includes(text.substring(start, start + matchArr[0].length))
-        ) {
+        if (validTags.includes(text.substring(start, start + matchArr[0].length))) {
           callback(start, start + matchArr[0].length);
         }
       } else {
@@ -152,13 +142,7 @@ export type RenderFormTextTagInput = FormComponentProps &
     type?: string;
     errorMessage: string;
     getValueProps: any; // TODO: Remove once antd gets updated
-    validator?(
-      rule: any,
-      value: any,
-      callback: any,
-      source?: any,
-      options?: any
-    ): any;
+    validator?(rule: any, value: any, callback: any, source?: any, options?: any): any;
   };
 
 export const renderFormTextTagInput = ({
@@ -171,7 +155,7 @@ export const renderFormTextTagInput = ({
   getValueProps,
   type,
   validator,
-  validTags
+  validTags,
 }: RenderFormTextTagInput) =>
   form &&
   form.getFieldDecorator(getFieldValidatorKey(itemKey, itemGroup), {
@@ -184,8 +168,8 @@ export const renderFormTextTagInput = ({
         message: errorMessage,
         type,
         validator,
-        required: true
-      }
+        required: true,
+      },
     ],
-    validateTrigger: ["onChange", "onBlur"]
+    validateTrigger: ["onChange", "onBlur"],
   })(<FormTextTagInput validTags={validTags} />);

@@ -11,5 +11,5 @@ export enum FormEnum {
   DEPLOY_JUMP_GROUP = "deploy_jump_group",
   DEPLOY_CLOSE_GROUP = "deploy_close_group",
   DEPLOY_HEADER_GROUP = "deploy_header_group",
-  DEPLOY_GENERAL_GROUP = "deploy_general_group"
+  DEPLOY_GENERAL_GROUP = "deploy_general_group",
 }

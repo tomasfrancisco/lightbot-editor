@@ -1,7 +1,4 @@
-import {
-  StorageConstantsEnum,
-  StorageInstance
-} from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { message } from "antd";
 import * as React from "react";
 import { compose, withApollo, WithApolloClient } from "react-apollo";
@@ -34,5 +31,5 @@ class LogoutViewDisconnected extends React.Component<LogoutProps> {
 
 export const LogoutView = compose(
   withApollo,
-  withRouter
+  withRouter,
 )(LogoutViewDisconnected);

@@ -15,13 +15,7 @@ export type AppMenuItemProps = {
   to?: string;
 };
 
-export const renderMenuItem = ({
-  itemKey,
-  icon,
-  label,
-  badgeCount,
-  to
-}: AppMenuItemProps) => (
+export const renderMenuItem = ({ itemKey, icon, label, badgeCount, to }: AppMenuItemProps) => (
   <Menu.Item key={itemKey}>
     <Link to={to || "#"}>
       <Icon type={icon} />

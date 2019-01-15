@@ -21,25 +21,19 @@ const MainIntentOption = styled("div")`
 type IntentSelectorProps = {
   selectedUnknownTriggers?: ColumnItem[];
   intentsList?: Intent[];
-  onSaveClick: (
-    selectedIntentId: string,
-    selectedUnknownTriggerIds: string[]
-  ) => void;
+  onSaveClick: (selectedIntentId: string, selectedUnknownTriggerIds: string[]) => void;
 };
 
 type IntentSelectorState = {
   selectedIntentId?: string;
 };
 
-export class IntentSelector extends React.Component<
-  IntentSelectorProps,
-  IntentSelectorState
-> {
+export class IntentSelector extends React.Component<IntentSelectorProps, IntentSelectorState> {
   constructor(props: IntentSelectorProps) {
     super(props);
 
     this.state = {
-      selectedIntentId: undefined
+      selectedIntentId: undefined,
     };
   }
 
@@ -111,7 +105,7 @@ export class IntentSelector extends React.Component<
 
   private onChangeIntentSelector = selectedIntentId => {
     this.setState({
-      selectedIntentId
+      selectedIntentId,
     });
   };
 
@@ -119,10 +113,7 @@ export class IntentSelector extends React.Component<
     const { selectedUnknownTriggers, onSaveClick } = this.props;
     const { selectedIntentId } = this.state;
     if (selectedUnknownTriggers) {
-      onSaveClick(
-        selectedIntentId!,
-        getUnknownTriggerIds(selectedUnknownTriggers)
-      );
+      onSaveClick(selectedIntentId!, getUnknownTriggerIds(selectedUnknownTriggers));
     }
   };
 }

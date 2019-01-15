@@ -46,7 +46,7 @@ export type UpdateWidgetDataFunction = (
       widgetHotspotIcon: string;
       widgetThemeData: string;
     };
-  }
+  },
 ) => Promise<UpdateWidgetDataResult>;
 
 export const updateWidgetData = graphql<{}, {}, {}, {}>(UPDATE_WIDGET_DATA, {
@@ -54,57 +54,37 @@ export const updateWidgetData = graphql<{}, {}, {}, {}>(UPDATE_WIDGET_DATA, {
   options: ({ agentId }: DeployViewProps) => ({
     update: (cache, data) => {
       updateWidgetDataCache(cache, agentId, data);
-    }
-  })
+    },
+  }),
 });
 
 const updateWidgetDataCache = (cache, agentId, newData) => {
   const fetchAgentDataQuery = {
     query: FETCH_AGENT_DATA_QUERY,
-    variables: { agentId }
+    variables: { agentId },
   };
 
   const widgetInputPlaceholder = _get(
     newData,
     ["data", "updateWidgetData", "widgetInputPlaceholder"],
-    null
+    null,
   );
-  const widgetHotspotIcon = _get(
-    newData,
-    ["data", "updateWidgetData", "widgetHotspotIcon"],
-    null
-  );
-  const widgetTeaser = _get(
-    newData,
-    ["data", "updateWidgetData", "widgetTeaser"],
-    null
-  );
-  const widgetThemeData = _get(
-    newData,
-    ["data", "updateWidgetData", "widgetThemeData"],
-    null
-  );
+  const widgetHotspotIcon = _get(newData, ["data", "updateWidgetData", "widgetHotspotIcon"], null);
+  const widgetTeaser = _get(newData, ["data", "updateWidgetData", "widgetTeaser"], null);
+  const widgetThemeData = _get(newData, ["data", "updateWidgetData", "widgetThemeData"], null);
 
   const agentData = cache.readQuery(fetchAgentDataQuery);
 
   if (agentData) {
     let data = _get(agentData, ["findAgent"], {});
-    data = _update(
-      data,
-      ["data", "widgetInputPlaceholder"],
-      () => widgetInputPlaceholder
-    );
-    data = _update(
-      data,
-      ["data", "widgetHotspotIcon"],
-      () => widgetHotspotIcon
-    );
+    data = _update(data, ["data", "widgetInputPlaceholder"], () => widgetInputPlaceholder);
+    data = _update(data, ["data", "widgetHotspotIcon"], () => widgetHotspotIcon);
     data = _update(data, ["data", "widgetTeaser"], () => widgetTeaser);
     data = _update(data, ["data", "widgetThemeData"], () => widgetThemeData);
 
     cache.writeQuery({
       ...fetchAgentDataQuery,
-      data: { findAgent: data }
+      data: { findAgent: data },
     });
   }
 };

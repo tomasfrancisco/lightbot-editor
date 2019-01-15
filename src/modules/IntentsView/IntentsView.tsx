@@ -14,7 +14,7 @@ import {
   Section,
   SectionContent,
   SectionHeader,
-  SectionHeaderNavContainer
+  SectionHeaderNavContainer,
 } from "~/components/Section";
 import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
 import { Dictionary, Intent } from "~/models";
@@ -24,7 +24,7 @@ import {
   fetchIntents,
   FIND_INTENTS_BY_EXPRESSION_QUERY,
   OnUpdateFollowUpIntentFunction,
-  updateFollowUpIntent
+  updateFollowUpIntent,
 } from "~/modules/IntentsView/apollo/gql";
 import { WelcomeBoarding } from "~/modules/OnBoarding";
 import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
@@ -52,33 +52,22 @@ type IntentsViewState = {
   filteredIntents?: Intent[];
 };
 
-export class IntentsViewDisconnected extends React.Component<
-  IntentsViewProps,
-  IntentsViewState
-> {
+export class IntentsViewDisconnected extends React.Component<IntentsViewProps, IntentsViewState> {
   constructor(props: IntentsViewProps) {
     super(props);
 
     const isCreating =
-      Routing.utils.findMatchedRoute(props.location.pathname)![0] ===
-      RoutesKeysEnum.CREATE_INTENT;
+      Routing.utils.findMatchedRoute(props.location.pathname)![0] === RoutesKeysEnum.CREATE_INTENT;
 
     this.state = {
       isCreating,
       isLoadingSearch: false,
-      filteredIntents: undefined
+      filteredIntents: undefined,
     };
   }
 
   public render() {
-    const {
-      match,
-      intentsLoading,
-      intents,
-      intentId,
-      agentId,
-      dictionaries
-    } = this.props;
+    const { match, intentsLoading, intents, intentId, agentId, dictionaries } = this.props;
     const { isCreating, isLoadingSearch, filteredIntents } = this.state;
 
     if (intentsLoading) {
@@ -86,10 +75,9 @@ export class IntentsViewDisconnected extends React.Component<
     }
 
     const toPath = ({ ...params }) =>
-      pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps
-        .path as string)({
+      pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps.path as string)({
         agentId,
-        ...params
+        ...params,
       });
 
     return (
@@ -100,20 +88,12 @@ export class IntentsViewDisconnected extends React.Component<
             <Section>
               <SectionHeader>
                 <SectionHeaderNavContainer>
-                  <Button
-                    icon="plus"
-                    onClick={this.onCreationOpen}
-                    level="primary"
-                  >
+                  <Button icon="plus" onClick={this.onCreationOpen} level="primary">
                     Add Intent
                   </Button>
                 </SectionHeaderNavContainer>
                 <ApolloConsumer>
-                  {client => (
-                    <SearchInput
-                      onSearchResult={this.searchIntentsList(client)}
-                    />
-                  )}
+                  {client => <SearchInput onSearchResult={this.searchIntentsList(client)} />}
                 </ApolloConsumer>
               </SectionHeader>
               <SectionContent className={noMarginsSectionContentStyle}>
@@ -147,36 +127,34 @@ export class IntentsViewDisconnected extends React.Component<
     );
   }
 
-  private searchIntentsList = (client: ApolloClient<any>) => (
-    searchValue: string
-  ) => {
+  private searchIntentsList = (client: ApolloClient<any>) => (searchValue: string) => {
     const { agentId } = this.props;
     if (searchValue === "") {
       this.setState({
         isLoadingSearch: false,
-        filteredIntents: undefined
+        filteredIntents: undefined,
       });
     } else {
       this.setState({
-        isLoadingSearch: true
+        isLoadingSearch: true,
       });
       client
         .query({
           query: FIND_INTENTS_BY_EXPRESSION_QUERY,
           variables: {
-            input: { intentExpression: searchValue, agentId, isTopLevel: true }
-          }
+            input: { intentExpression: searchValue, agentId, isTopLevel: true },
+          },
         })
         .then(data => {
           this.setState({
             isLoadingSearch: false,
-            filteredIntents: _get(data, ["data", "findIntentsByExpression"])
+            filteredIntents: _get(data, ["data", "findIntentsByExpression"]),
           });
         })
         .catch(error => {
           this.setState({
             isLoadingSearch: false,
-            filteredIntents: undefined
+            filteredIntents: undefined,
           });
         });
     }
@@ -185,10 +163,9 @@ export class IntentsViewDisconnected extends React.Component<
   private onCreationOpen = () => {
     const { history, agentId } = this.props;
 
-    const uri = pathToRegexp.compile(Routing.routes[
-      RoutesKeysEnum.CREATE_INTENT
-    ].routeProps.path as string)({
-      agentId
+    const uri = pathToRegexp.compile(Routing.routes[RoutesKeysEnum.CREATE_INTENT].routeProps
+      .path as string)({
+      agentId,
     });
     history.push(uri);
   };
@@ -204,10 +181,10 @@ export class IntentsViewDisconnected extends React.Component<
             intent: {
               id: intent.id,
               isTopLevel: intent.isTopLevel,
-              parentId: intent.parentId
-            }
-          }
-        })
+              parentId: intent.parentId,
+            },
+          },
+        }),
       )
       .then(() => {
         message.success("Follow-up intents updated successfully!");
@@ -223,5 +200,5 @@ export const IntentsView = compose(
   withRouter,
   fetchIntents,
   fetchDictionaries,
-  updateFollowUpIntent
+  updateFollowUpIntent,
 )(IntentsViewDisconnected);

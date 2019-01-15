@@ -6,18 +6,11 @@ import { css, cx } from "react-emotion";
 import { Button } from "~/components/Button";
 import { FormCollapse } from "~/components/Form/components";
 import { TitleLabel } from "~/components/Labels";
-import {
-  SectionContent,
-  SectionHeader,
-  SectionHeaderNavContainer
-} from "~/components/Section";
+import { SectionContent, SectionHeader, SectionHeaderNavContainer } from "~/components/Section";
 import { FormEnum } from "~/constants/FormEnum";
 import { LayoutConfigurationFormEnum } from "~/constants/LayoutConfigurationEnum";
 import { AgentData } from "~/models/AgentData.type";
-import {
-  formCollapseTopMarginStyle,
-  sectionHeaderCenterStyle
-} from "~/modules/DeployView/style";
+import { formCollapseTopMarginStyle, sectionHeaderCenterStyle } from "~/modules/DeployView/style";
 
 import { renderConfigJumpFormPanel } from "./ConfigJumpFormPanel";
 import { renderGeneralViewFormPanel } from "./GeneralViewFormPanel";
@@ -67,7 +60,7 @@ class LayoutConfigurationFormDisconnected extends React.Component<
     super(props);
 
     this.state = {
-      itemKeyOpened: undefined
+      itemKeyOpened: undefined,
     };
   }
 
@@ -75,22 +68,11 @@ class LayoutConfigurationFormDisconnected extends React.Component<
     const { hasDataChanged, form, agentData } = this.props;
     const { itemKeyOpened } = this.state;
     return (
-      <Form
-        id={LayoutConfigurationFormEnum.FORM_ID}
-        layout="vertical"
-        className={formStyle}
-      >
+      <Form id={LayoutConfigurationFormEnum.FORM_ID} layout="vertical" className={formStyle}>
         <SectionHeader className={sectionHeaderCenterStyle}>
           <SectionHeaderNavContainer className={noBottomSpace}>
-            <TitleLabel className={smallerLineHeight}>
-              Layout Configuration
-            </TitleLabel>
-            <Button
-              icon="plus"
-              type="primary"
-              disabled={!hasDataChanged}
-              onClick={this.onDataSave}
-            >
+            <TitleLabel className={smallerLineHeight}>Layout Configuration</TitleLabel>
+            <Button icon="plus" type="primary" disabled={!hasDataChanged} onClick={this.onDataSave}>
               Save
             </Button>
           </SectionHeaderNavContainer>
@@ -100,7 +82,7 @@ class LayoutConfigurationFormDisconnected extends React.Component<
             className={cx(
               formCollapseTopMarginStyle,
               topSpaceFormContentStyle,
-              bottomSpaceFormContentStyle
+              bottomSpaceFormContentStyle,
             )}
             bordered={false}
             defaultActiveKey={[
@@ -108,32 +90,32 @@ class LayoutConfigurationFormDisconnected extends React.Component<
               FormEnum.DEPLOY_JUMP_GROUP,
               FormEnum.DEPLOY_CLOSE_GROUP,
               FormEnum.DEPLOY_HEADER_GROUP,
-              FormEnum.DEPLOY_GENERAL_GROUP
+              FormEnum.DEPLOY_GENERAL_GROUP,
             ]}
           >
             {renderTeaserAndIconFormPanel({
               form,
               itemKeyOpened,
               agentData,
-              onItemKeySelect: this.onItemKeySelect
+              onItemKeySelect: this.onItemKeySelect,
             })}
             {renderConfigJumpFormPanel({
               form,
               itemKeyOpened,
               agentData,
-              onItemKeySelect: this.onItemKeySelect
+              onItemKeySelect: this.onItemKeySelect,
             })}
             {renderHeaderViewFormPanel({
               form,
               itemKeyOpened,
               agentData,
-              onItemKeySelect: this.onItemKeySelect
+              onItemKeySelect: this.onItemKeySelect,
             })}
             {renderGeneralViewFormPanel({
               form,
               itemKeyOpened,
               agentData,
-              onItemKeySelect: this.onItemKeySelect
+              onItemKeySelect: this.onItemKeySelect,
             })}
           </FormCollapse>
         </SectionContent>
@@ -149,7 +131,7 @@ class LayoutConfigurationFormDisconnected extends React.Component<
       newKey = undefined;
     }
     this.setState({
-      itemKeyOpened: newKey
+      itemKeyOpened: newKey,
     });
   };
 
@@ -160,11 +142,9 @@ class LayoutConfigurationFormDisconnected extends React.Component<
   };
 }
 
-export const LayoutConfigurationForm = Form.create<
-  LayoutConfigurationFormProps
->({
+export const LayoutConfigurationForm = Form.create<LayoutConfigurationFormProps>({
   onValuesChange: props => {
     const { onFieldsChange } = props;
     onFieldsChange();
-  }
+  },
 })(LayoutConfigurationFormDisconnected);

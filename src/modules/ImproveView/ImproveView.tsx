@@ -6,18 +6,11 @@ import {
   Section,
   SectionContent,
   SectionHeader,
-  SectionHeaderNavContainer
+  SectionHeaderNavContainer,
 } from "~/components/Section";
 import { Intent, UnknownTrigger } from "~/models";
-import {
-  deleteUnknownTrigger,
-  fetchUnknownTriggers
-} from "~/modules/ImproveView/apollo/gql";
-import {
-  ColumnItem,
-  columns,
-  generateDataSource
-} from "~/modules/ImproveView/utils";
+import { deleteUnknownTrigger, fetchUnknownTriggers } from "~/modules/ImproveView/apollo/gql";
+import { ColumnItem, columns, generateDataSource } from "~/modules/ImproveView/utils";
 import { LightbotLayout } from "~/modules/LightbotLayout";
 import { withRouteParams } from "~/routing";
 import { flattenIntents } from "~/utils";
@@ -51,40 +44,29 @@ const noBottomSpacingNavHeaderStyle = css`
   margin-bottom: 0;
 `;
 
-export class ImproveViewDisconnected extends React.Component<
-  ImproveViewProps,
-  ImproveViewState
-> {
+export class ImproveViewDisconnected extends React.Component<ImproveViewProps, ImproveViewState> {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedUnknownTriggerItems: []
+      selectedUnknownTriggerItems: [],
     };
   }
 
   public render() {
-    const {
-      agentId,
-      unknownTriggers,
-      loading,
-      intentsLoading,
-      intents
-    } = this.props;
+    const { agentId, unknownTriggers, loading, intentsLoading, intents } = this.props;
     const { selectedUnknownTriggerItems } = this.state;
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
         this.setState({ selectedUnknownTriggerItems: selectedRows });
-      }
+      },
     };
 
     return (
       <LightbotLayout>
         <Section>
           <SectionHeader className={normalizeHeadingLineHeight}>
-            <SectionHeaderNavContainer
-              className={noBottomSpacingNavHeaderStyle}
-            >
+            <SectionHeaderNavContainer className={noBottomSpacingNavHeaderStyle}>
               <DeleteUnknownTriggers
                 agentId={agentId}
                 selectedTriggers={selectedUnknownTriggerItems}
@@ -116,5 +98,5 @@ export const ImproveView = compose(
   withRouteParams(["agentId"]),
   fetchUnknownTriggers,
   fetchIntents,
-  deleteUnknownTrigger
+  deleteUnknownTrigger,
 )(ImproveViewDisconnected);

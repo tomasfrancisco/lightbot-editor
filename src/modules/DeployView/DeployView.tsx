@@ -5,10 +5,7 @@ import * as React from "react";
 import { ApolloConsumer, compose } from "react-apollo";
 import uuid from "uuid/v4";
 import { Button } from "~/components/Button";
-import {
-  CodeHighlighter,
-  CodeHighlighterButton
-} from "~/components/CodeHighlighter";
+import { CodeHighlighter, CodeHighlighterButton } from "~/components/CodeHighlighter";
 import { DeployButton } from "~/components/DeployButton";
 import { Loading } from "~/components/Loading";
 import {
@@ -16,18 +13,12 @@ import {
   sectionContentFitableStyle,
   sectionFillFreeSpaceStyle,
   sectionWithColumnFlexDirection,
-  sectionWithRigthMargin
+  sectionWithRigthMargin,
 } from "~/components/Section";
-import {
-  SectionGrid,
-  SectionGridHorizontalSeparator
-} from "~/components/Section/SectionGrid";
+import { SectionGrid, SectionGridHorizontalSeparator } from "~/components/Section/SectionGrid";
 import { getWidgetScript, removeWidget, Widget } from "~/components/Widget";
 import { AgentData } from "~/models/AgentData.type";
-import {
-  updateWidgetData,
-  UpdateWidgetDataFunction
-} from "~/modules/DeployView/apollo/gql";
+import { updateWidgetData, UpdateWidgetDataFunction } from "~/modules/DeployView/apollo/gql";
 import { fetchAgentData } from "~/modules/DeployView/apollo/gql/fetchAgentData";
 import { LayoutConfigurationForm } from "~/modules/DeployView/components";
 import { valdiateAgentData } from "~/modules/DeployView/utils";
@@ -47,17 +38,14 @@ export type DeployViewState = {
   reloadWidget: boolean;
 };
 
-class DeployViewDisconnected extends React.Component<
-  DeployViewProps,
-  DeployViewState
-> {
+class DeployViewDisconnected extends React.Component<DeployViewProps, DeployViewState> {
   constructor(props) {
     super(props);
 
     this.state = {
       deployLoading: false,
       hasDataChanged: false,
-      reloadWidget: true
+      reloadWidget: true,
     };
   }
 
@@ -79,17 +67,11 @@ class DeployViewDisconnected extends React.Component<
           <Col span={10}>
             <SectionGrid className={sectionWithRigthMargin}>
               <SectionCard
-                className={[
-                  sectionContentFitableStyle,
-                  sectionWithColumnFlexDirection
-                ].join(" ")}
+                className={[sectionContentFitableStyle, sectionWithColumnFlexDirection].join(" ")}
               >
                 <ApolloConsumer>
                   {client => (
-                    <DeployButton
-                      onClick={this.getOnDeployClick(client)}
-                      loading={deployLoading}
-                    />
+                    <DeployButton onClick={this.getOnDeployClick(client)} loading={deployLoading} />
                   )}
                 </ApolloConsumer>
                 <CodeHighlighter agentId={agentId}>
@@ -119,7 +101,7 @@ class DeployViewDisconnected extends React.Component<
     const { agentId } = this.props;
     this.setState({
       deployLoading: true,
-      reloadWidget: false
+      reloadWidget: false,
     });
 
     try {
@@ -127,19 +109,17 @@ class DeployViewDisconnected extends React.Component<
       await client.query({
         query: ON_DEPLOY,
         variables: {
-          agentId
+          agentId,
         },
-        fetchPolicy: "no-cache"
+        fetchPolicy: "no-cache",
       });
       message.success("The agent was deployed successfully!");
     } catch (err) {
-      message.error(
-        "An error ocurred while deploying. Please contact support."
-      );
+      message.error("An error ocurred while deploying. Please contact support.");
     } finally {
       this.setState({
         deployLoading: false,
-        reloadWidget: true
+        reloadWidget: true,
       });
     }
   };
@@ -147,7 +127,7 @@ class DeployViewDisconnected extends React.Component<
   private onFieldsChange = () => {
     this.setState({
       hasDataChanged: true,
-      reloadWidget: false
+      reloadWidget: false,
     });
   };
 
@@ -162,15 +142,15 @@ class DeployViewDisconnected extends React.Component<
             widgetInputPlaceholder: agentData.widgetInputPlaceholder,
             widgetThemeData: JSON.stringify(agentData.widgetThemeData),
             widgetHotspotIcon: agentData.widgetHotspotIcon,
-            widgetTeaser: agentData.widgetTeaser
-          }
+            widgetTeaser: agentData.widgetTeaser,
+          },
         });
       })
       .then(response => {
         message.success("Configuration saved with success");
         this.setState({
           hasDataChanged: false,
-          reloadWidget: true
+          reloadWidget: true,
         });
       })
       .catch(error => {
@@ -194,5 +174,5 @@ class DeployViewDisconnected extends React.Component<
 export const DeployView = compose(
   withRouteParams(["agentId"]),
   fetchAgentData,
-  updateWidgetData
+  updateWidgetData,
 )(DeployViewDisconnected);

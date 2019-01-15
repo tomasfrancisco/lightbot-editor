@@ -9,7 +9,7 @@ import {
   titleInputHeaderStyle,
   titleInputStyle,
   TitleStyledEmptyIcon,
-  TitleStyledIcon
+  TitleStyledIcon,
 } from "~/components/Form/layout";
 
 type TitleInputProps = {
@@ -28,7 +28,7 @@ class FormTitleInput extends React.Component<TitleInputProps, TitleInputState> {
     super(props);
 
     this.state = {
-      isFocused: false
+      isFocused: false,
     };
   }
 
@@ -40,9 +40,9 @@ class FormTitleInput extends React.Component<TitleInputProps, TitleInputState> {
           titleInputStyle,
           titleInputHeaderStyle,
           {
-            [titleErrorStyle]: !this.isTitleValid()
+            [titleErrorStyle]: !this.isTitleValid(),
           },
-          className
+          className,
         )}
         size="large"
         prefix={<TitleStyledIcon type="edit" />}
@@ -60,12 +60,7 @@ class FormTitleInput extends React.Component<TitleInputProps, TitleInputState> {
     if (this.isTitleValid()) {
       return null;
     }
-    return (
-      <TitleStyledEmptyIcon
-        className={emptyIconHeaderStyle}
-        type="close-circle"
-      />
-    );
+    return <TitleStyledEmptyIcon className={emptyIconHeaderStyle} type="close-circle" />;
   }
 
   private isTitleValid = () => {
@@ -108,7 +103,7 @@ const renderIntentTitleInput = ({
   value,
   placeholder,
   rules = [],
-  fieldDecoratorName
+  fieldDecoratorName,
 }: RenderTitleInputProps) =>
   form &&
   form.getFieldDecorator(fieldDecoratorName || `values[${itemKey}]`, {
@@ -118,16 +113,14 @@ const renderIntentTitleInput = ({
         message: "Please provide a title",
         required: true,
         type: "string",
-        whitespace: true
+        whitespace: true,
       },
-      ...rules
+      ...rules,
     ],
     validateFirst: true,
-    validateTrigger: ["onChange", "onBlur"]
+    validateTrigger: ["onChange", "onBlur"],
   })(<FormTitleInput placeholder={placeholder} onChange={onChange} />);
 
 export const TitleInput = (props: RenderTitleInputProps) => (
-  <RowTitle className={props.rowClassName}>
-    {renderIntentTitleInput(props)}
-  </RowTitle>
+  <RowTitle className={props.rowClassName}>{renderIntentTitleInput(props)}</RowTitle>
 );

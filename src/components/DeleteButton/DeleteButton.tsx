@@ -50,10 +50,7 @@ type DeleteButtonState = {
   isConfirmVisible: boolean;
 };
 
-export class DeleteButton extends React.Component<
-  DeleteButtonProps,
-  DeleteButtonState
-> {
+export class DeleteButton extends React.Component<DeleteButtonProps, DeleteButtonState> {
   constructor(props) {
     super(props);
 
@@ -61,7 +58,7 @@ export class DeleteButton extends React.Component<
 
     this.state = {
       isConfirmVisible: false,
-      selectedAction: mainAction
+      selectedAction: mainAction,
     };
   }
 
@@ -88,19 +85,13 @@ export class DeleteButton extends React.Component<
 
   private renderCorrectOption = () => {
     const { dropdownActions } = this.props;
-    return dropdownActions
-      ? this.renderWithDropDown()
-      : this.renderWithoutDropDown();
+    return dropdownActions ? this.renderWithDropDown() : this.renderWithoutDropDown();
   };
 
   private renderWithoutDropDown = () => {
     const { disabled } = this.props;
     return (
-      <AntdButton
-        disabled={disabled}
-        onClick={this.onDefaultClick}
-        className={deleteButtonStyle}
-      >
+      <AntdButton disabled={disabled} onClick={this.onDefaultClick} className={deleteButtonStyle}>
         <Icon type="delete" />
         Delete
       </AntdButton>
@@ -124,9 +115,7 @@ export class DeleteButton extends React.Component<
   };
 
   private renderMenu = () => {
-    return (
-      <Menu onClick={this.onMenuItemClick}>{this.renderMenuOptions()}</Menu>
-    );
+    return <Menu onClick={this.onMenuItemClick}>{this.renderMenuOptions()}</Menu>;
   };
 
   private renderMenuOptions = () => {
@@ -151,7 +140,7 @@ export class DeleteButton extends React.Component<
 
     this.setState({
       isConfirmVisible: true,
-      selectedAction: dropdownActions![index]
+      selectedAction: dropdownActions![index],
     });
   };
 
@@ -159,13 +148,13 @@ export class DeleteButton extends React.Component<
     const { mainAction } = this.props;
     this.setState({
       isConfirmVisible: true,
-      selectedAction: mainAction
+      selectedAction: mainAction,
     });
   };
 
   private onConfirm = () => {
     this.setState({
-      isConfirmVisible: false
+      isConfirmVisible: false,
     });
 
     const { onConfirm } = this.props;
@@ -177,7 +166,7 @@ export class DeleteButton extends React.Component<
 
   private onCancel = () => {
     this.setState({
-      isConfirmVisible: false
+      isConfirmVisible: false,
     });
   };
 }

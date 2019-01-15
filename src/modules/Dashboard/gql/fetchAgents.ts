@@ -30,8 +30,8 @@ export const fetchAgents = graphql<DashboardViewProps, FetchAgentsData, {}, {}>(
       const { data } = props;
       return {
         agents: _get(data, ["agents"]),
-        loading: _get(data, ["loading"])
+        loading: _get(data, ["loading"]),
       };
-    }
-  }
+    },
+  },
 );

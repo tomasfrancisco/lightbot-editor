@@ -14,10 +14,7 @@ export type DashboardViewProps = RouteComponentProps & {
 
 export type DashboardViewState = {};
 
-class DashboardViewDisconnected extends React.Component<
-  DashboardViewProps,
-  DashboardViewState
-> {
+class DashboardViewDisconnected extends React.Component<DashboardViewProps, DashboardViewState> {
   public componentDidMount() {
     this.tryRedirectToDefault();
   }
@@ -34,10 +31,9 @@ class DashboardViewDisconnected extends React.Component<
     const { history, agents } = this.props;
     if (agents && agents.length) {
       history.push(
-        pathToRegexp.compile(Routing.routes[RoutesKeysEnum.DEFAULT].routeProps
-          .path as string)({
-          agentId: agents[0].id
-        })
+        pathToRegexp.compile(Routing.routes[RoutesKeysEnum.DEFAULT].routeProps.path as string)({
+          agentId: agents[0].id,
+        }),
       );
     }
   }
@@ -45,5 +41,5 @@ class DashboardViewDisconnected extends React.Component<
 
 export const DashboardView = compose(
   fetchAgents,
-  withRouter
+  withRouter,
 )(DashboardViewDisconnected);

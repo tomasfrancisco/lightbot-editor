@@ -8,9 +8,7 @@ const { Header } = Layout;
 
 export type SettingsViewProps = {};
 
-export class SettingsViewDisconnected extends React.Component<
-  SettingsViewProps
-> {
+export class SettingsViewDisconnected extends React.Component<SettingsViewProps> {
   public render() {
     return (
       <LightbotLayout>
@@ -19,7 +17,7 @@ export class SettingsViewDisconnected extends React.Component<
             margin: "16px 0",
             padding: 24,
             background: "#fff",
-            minHeight: 360
+            minHeight: 360,
           }}
         >
           <Header
@@ -27,7 +25,7 @@ export class SettingsViewDisconnected extends React.Component<
               alignItems: "center",
               color: "white",
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             Settings

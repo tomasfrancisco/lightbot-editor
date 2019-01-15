@@ -19,14 +19,14 @@ export const fetchKeywordValues = graphql(FETCH_KEYWORD_QUERY, {
   options: ({ selectedKeyword }: KeywordEditorViewProps) => {
     return {
       variables: {
-        keywordId: selectedKeyword!.id
-      }
+        keywordId: selectedKeyword!.id,
+      },
     };
   },
   props: ({ data }) => {
     return {
       loading: _get(data, ["loading"]),
-      values: _get(data, ["dictionary", "values"], [])
+      values: _get(data, ["dictionary", "values"], []),
     };
   },
   skip: ({ selectedKeyword }) => {
@@ -40,5 +40,5 @@ export const fetchKeywordValues = graphql(FETCH_KEYWORD_QUERY, {
       return true;
     }
     return false;
-  }
+  },
 });

@@ -23,22 +23,20 @@ export type FetchAgentData = {
 
 export interface FetchAgentDataResult extends QueryResult<FetchAgentData> {}
 
-export const fetchAgentData = graphql<
-  DeployViewProps,
-  FetchAgentDataResult,
-  {},
-  {}
->(FETCH_AGENT_DATA_QUERY, {
-  options: ({ agentId }) => ({
-    variables: {
-      agentId
-    }
-  }),
-  props: ({ data }) => {
-    return {
-      agentData: _get(data, ["findAgent", "data"], {}),
-      loading: _get(data, ["loading"], undefined)
-    };
+export const fetchAgentData = graphql<DeployViewProps, FetchAgentDataResult, {}, {}>(
+  FETCH_AGENT_DATA_QUERY,
+  {
+    options: ({ agentId }) => ({
+      variables: {
+        agentId,
+      },
+    }),
+    props: ({ data }) => {
+      return {
+        agentData: _get(data, ["findAgent", "data"], {}),
+        loading: _get(data, ["loading"], undefined),
+      };
+    },
+    skip: ({ agentId }) => !agentId,
   },
-  skip: ({ agentId }) => !agentId
-});
+);

@@ -6,7 +6,7 @@ import * as React from "react";
 export enum IntentTypeEnum {
   DEFAULT = "DEFAULT",
   FALLBACK = "FALLBACK",
-  WELCOME = "WELCOME"
+  WELCOME = "WELCOME",
 }
 
 type IntentTypeProps = {
@@ -43,27 +43,19 @@ export type RenderIntentTypeProps = FormComponentProps & {
  * This component should be called as a function and not as a JSX component
  * Otherwise, the form is not going to recognize this field and not throw erros
  */
-export const renderIntentType = ({
-  itemKey,
-  form,
-  value
-}: RenderIntentTypeProps) =>
+export const renderIntentType = ({ itemKey, form, value }: RenderIntentTypeProps) =>
   form &&
   form.getFieldDecorator(`values[${itemKey}]`, {
     initialValue: value,
     rules: [
       {
-        enum: [
-          IntentTypeEnum.DEFAULT,
-          IntentTypeEnum.FALLBACK,
-          IntentTypeEnum.WELCOME
-        ],
+        enum: [IntentTypeEnum.DEFAULT, IntentTypeEnum.FALLBACK, IntentTypeEnum.WELCOME],
         required: true,
-        type: "enum"
-      }
+        type: "enum",
+      },
     ],
     trigger: "onChange",
-    validateTrigger: "onChange"
+    validateTrigger: "onChange",
   })(<IntentType />);
 
 type IntentTypeFormFieldProps = RenderIntentTypeProps;

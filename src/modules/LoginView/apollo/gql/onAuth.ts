@@ -20,7 +20,4 @@ export interface OnAuthResult extends QueryResult<OnAuthData> {}
 
 export class OnAuthQuery extends Query<OnAuthData> {}
 
-export const onAuth = graphql<LoginViewProps, OnAuthResult, {}, {}>(
-  ON_AUTH,
-  {}
-);
+export const onAuth = graphql<LoginViewProps, OnAuthResult, {}, {}>(ON_AUTH, {});

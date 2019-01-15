@@ -1,3 +1,3 @@
 export enum ElementClassesEnum {
-  KEYWORD = "keyword"
+  KEYWORD = "keyword",
 }

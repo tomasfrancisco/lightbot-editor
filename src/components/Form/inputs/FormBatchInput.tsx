@@ -24,15 +24,12 @@ type FormBatchInputState = {
   isBatchFieldOpened: boolean;
 };
 
-export class FormBatchInput extends React.Component<
-  FormBatchInputProps,
-  FormBatchInputState
-> {
+export class FormBatchInput extends React.Component<FormBatchInputProps, FormBatchInputState> {
   constructor(props) {
     super(props);
 
     this.state = {
-      isBatchFieldOpened: false
+      isBatchFieldOpened: false,
     };
   }
 
@@ -64,15 +61,11 @@ export class FormBatchInput extends React.Component<
           {form.getFieldDecorator(BATCH_FIELD_ID, {
             rules,
             validateFirst: true,
-            validateTrigger: []
+            validateTrigger: [],
           })(<TextArea placeholder="Insert here your keywords list" />)}
         </FormItem>
         <FormItem>
-          <Button
-            onClick={this.addBatchKeywordsToList}
-            level="secondary"
-            block={true}
-          >
+          <Button onClick={this.addBatchKeywordsToList} level="secondary" block={true}>
             <Icon type="plus" />
             Add list of keywords
           </Button>
@@ -92,7 +85,7 @@ export class FormBatchInput extends React.Component<
     form.validateFields(
       [BATCH_FIELD_ID],
       {
-        first: true
+        first: true,
       },
       (errors, values) => {
         if (!errors || errors.length === 0) {
@@ -104,24 +97,24 @@ export class FormBatchInput extends React.Component<
           form.resetFields([BATCH_FIELD_ID]);
 
           this.setState({
-            isBatchFieldOpened: false
+            isBatchFieldOpened: false,
           });
 
           onAddBatchFields(cleanedKeywords);
         }
-      }
+      },
     );
   };
 
   private onAddBatch = () => {
     this.setState({
-      isBatchFieldOpened: true
+      isBatchFieldOpened: true,
     });
   };
 
   private onCloseBatch = () => {
     this.setState({
-      isBatchFieldOpened: false
+      isBatchFieldOpened: false,
     });
   };
 }

@@ -1,3 +1,3 @@
 export const defaults = {
-  selectedUnknownIntentId: null
+  selectedUnknownIntentId: null,
 };

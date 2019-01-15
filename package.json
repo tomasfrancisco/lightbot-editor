@@ -46,7 +46,7 @@
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
     "test:coverage": "yarn test --coverage",
     "eject": "react-app-rewired eject",
-    "prettier": "prettier --config ../.prettierrc -l 'src/**/**.{js,ts,tsx,json}'"
+    "prettier": "prettier --config .prettierrc -l 'src/**/**.{js,ts,tsx,json}'"
   },
   "husky": {
     "hooks": {

@@ -8,20 +8,14 @@ export const valdiateAgentData = (form: WrappedFormUtils) => {
       if (err) {
         reject(err);
       } else {
-        const widgetInputPlaceholder = fields[
-          LayoutConfigurationFormEnum.REPLY_CONFIGURATION_ID
-        ]
+        const widgetInputPlaceholder = fields[LayoutConfigurationFormEnum.REPLY_CONFIGURATION_ID]
           ? fields[LayoutConfigurationFormEnum.REPLY_CONFIGURATION_ID]
           : "";
-        const widgetTeaser =
-          fields[LayoutConfigurationFormEnum.TEASER_CONFIGURATION_ID];
-        const widgetHotspotIcon = fields[
-          LayoutConfigurationFormEnum.HOTSPOT_ICON_CONFIGURATION_ID
-        ]
+        const widgetTeaser = fields[LayoutConfigurationFormEnum.TEASER_CONFIGURATION_ID];
+        const widgetHotspotIcon = fields[LayoutConfigurationFormEnum.HOTSPOT_ICON_CONFIGURATION_ID]
           ? fields[LayoutConfigurationFormEnum.HOTSPOT_ICON_CONFIGURATION_ID]
           : "";
-        const fieldsWidgetThemeData =
-          fields[LayoutConfigurationFormEnum.THEME_CONFIGURATION_ID];
+        const fieldsWidgetThemeData = fields[LayoutConfigurationFormEnum.THEME_CONFIGURATION_ID];
 
         const widgetThemeData = {};
 
@@ -35,7 +29,7 @@ export const valdiateAgentData = (form: WrappedFormUtils) => {
           widgetInputPlaceholder,
           widgetTeaser,
           widgetHotspotIcon,
-          widgetThemeData
+          widgetThemeData,
         });
       }
     });

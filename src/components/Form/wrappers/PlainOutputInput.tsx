@@ -1,10 +1,7 @@
 import { IntentPlainOutputType } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
 import { renderFormTextInput } from "~/components/Form/inputs/FormTextInput";
-import {
-  emptyStringValidator,
-  whitespaceValidator
-} from "~/components/Form/validators";
+import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
 
 type RenderPlainOutputInputProps = FormComponentProps & {
   formIndex: string;
@@ -16,37 +13,36 @@ export const renderPlainOutputInput = ({
   form,
   formIndex,
   item,
-  itemKey
+  itemKey,
 }: RenderPlainOutputInputProps) => {
   return renderFormTextInput({
     errorMessage: "Please, type a bot expression or delete this field.",
     form,
     getValueFromEvent: ({ target: { value } }): IntentPlainOutputType => ({
       ...item,
-      value: { label: value }
+      value: { label: value },
     }),
     getValueProps: (output: IntentPlainOutputType) => {
       if (output) {
         return {
-          value: output.value.label
+          value: output.value.label,
         };
       }
 
       return {
-        value: output
+        value: output,
       };
     },
     itemKey: `values[${formIndex}][${itemKey}]`,
     type: "object",
     validator: (rule, output: IntentPlainOutputType, cb) => {
       const {
-        value: { label }
+        value: { label },
       } = output;
-      const isLabelValid =
-        !whitespaceValidator(label) && !emptyStringValidator(label);
+      const isLabelValid = !whitespaceValidator(label) && !emptyStringValidator(label);
 
       isLabelValid ? cb() : cb(true);
     },
-    value: item
+    value: item,
   });
 };

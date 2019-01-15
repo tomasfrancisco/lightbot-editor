@@ -10,23 +10,15 @@ import { IntentDeleteActionEnum } from "~/components/DeleteButton";
 import { IntentForm } from "~/components/IntentForm";
 import { FormValues } from "~/components/IntentForm/FormValuesType";
 import { Loading } from "~/components/Loading";
-import {
-  Dictionary,
-  Intent,
-  IntentActionData,
-  TriggerActionData
-} from "~/models";
+import { Dictionary, Intent, IntentActionData, TriggerActionData } from "~/models";
 import {
   createIntent,
   CreateIntentFunction,
   fetchIntent,
   updateIntent,
-  UpdateIntentFunction
+  UpdateIntentFunction,
 } from "~/modules/IntentEditor/apollo/gql";
-import {
-  deleteIntent,
-  DeleteIntentFunction
-} from "~/modules/IntentEditor/apollo/gql/deleteIntent";
+import { deleteIntent, DeleteIntentFunction } from "~/modules/IntentEditor/apollo/gql/deleteIntent";
 import { transformToTriggersActionData } from "~/modules/IntentEditor/utils/transformers";
 import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
 
@@ -48,16 +40,13 @@ type IntentEditorState = {
   isTouched: boolean;
 };
 
-class IntentEditorDisconnected extends React.Component<
-  IntentEditorProps,
-  IntentEditorState
-> {
+class IntentEditorDisconnected extends React.Component<IntentEditorProps, IntentEditorState> {
   constructor(props) {
     super(props);
 
     this.state = {
       intent: this.getIntent(props),
-      isTouched: false
+      isTouched: false,
     };
   }
 
@@ -66,7 +55,7 @@ class IntentEditorDisconnected extends React.Component<
     // from null/undefined to truthy (it means was fetched)
     if (!this.props.intent && nextProps.intent) {
       this.setState({
-        intent: this.getIntent(nextProps)
+        intent: this.getIntent(nextProps),
       });
     }
 
@@ -74,7 +63,7 @@ class IntentEditorDisconnected extends React.Component<
     if (this.props.intent !== nextProps.intent) {
       this.setState({
         intent: this.getIntent(nextProps),
-        isTouched: false
+        isTouched: false,
       });
     }
   }
@@ -107,7 +96,7 @@ class IntentEditorDisconnected extends React.Component<
 
   private onTouch = () => {
     this.setState({
-      isTouched: true
+      isTouched: true,
     });
   };
 
@@ -123,7 +112,7 @@ class IntentEditorDisconnected extends React.Component<
         name: "",
         outputs: [],
         parentId: null,
-        triggers: []
+        triggers: [],
       };
 
       return newIntent;
@@ -133,14 +122,7 @@ class IntentEditorDisconnected extends React.Component<
   }
 
   private onIntentFormSubmit = (formValues: FormValues) => {
-    const {
-      isCreating,
-      agentId,
-      intentId,
-      onCreateIntent,
-      onUpdateIntent,
-      history
-    } = this.props;
+    const { isCreating, agentId, intentId, onCreateIntent, onUpdateIntent, history } = this.props;
     const { intent } = this.state;
 
     if (!intent) {
@@ -150,16 +132,14 @@ class IntentEditorDisconnected extends React.Component<
     const triggers: TriggerActionData[] = transformToTriggersActionData(
       isCreating,
       intent.triggers,
-      formValues.triggers
+      formValues.triggers,
     );
 
     // Extracts ids from the display output object
-    const outputs: IntentOutputType[] = Object.keys(formValues.outputs).map(
-      outputKey => {
-        const { id, ...output } = formValues.outputs[outputKey];
-        return output;
-      }
-    );
+    const outputs: IntentOutputType[] = Object.keys(formValues.outputs).map(outputKey => {
+      const { id, ...output } = formValues.outputs[outputKey];
+      return output;
+    });
 
     const newIntent: IntentActionData = {
       agentId: isCreating ? agentId : undefined,
@@ -167,7 +147,7 @@ class IntentEditorDisconnected extends React.Component<
       name: formValues.name !== intent.name ? formValues.name : undefined,
       outputs,
       parentId: isCreating ? intent.parentId : undefined,
-      triggers
+      triggers,
     };
 
     const persist = isCreating ? onCreateIntent : onUpdateIntent;
@@ -177,41 +157,34 @@ class IntentEditorDisconnected extends React.Component<
         .promise.then(() =>
           persist({
             variables: {
-              intent: newIntent
-            }
-          })
+              intent: newIntent,
+            },
+          }),
         )
         .then(({ data }) => {
-          message.success(
-            `Intent ${isCreating ? "created" : "updated"} successfully!`
-          );
+          message.success(`Intent ${isCreating ? "created" : "updated"} successfully!`);
 
           // Move URL to newly created intent
           const newIntentId = _get(data, ["createIntent", "id"]);
           if (newIntentId) {
             history.push(
-              pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS]
-                .routeProps.path as string)({
+              pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps
+                .path as string)({
                 agentId,
-                intentId: newIntentId
-              })
+                intentId: newIntentId,
+              }),
             );
           }
         })
         .catch(() => {
           message.error(
-            `An error occurred while ${
-              isCreating ? "creating" : "updating"
-            } the intent.`
+            `An error occurred while ${isCreating ? "creating" : "updating"} the intent.`,
           );
         });
     }
   };
 
-  private onIntentDelete = (
-    intentId: string,
-    action: IntentDeleteActionEnum
-  ) => {
+  private onIntentDelete = (intentId: string, action: IntentDeleteActionEnum) => {
     const { onDeleteIntent, history, agentId } = this.props;
 
     if (onDeleteIntent) {
@@ -221,19 +194,18 @@ class IntentEditorDisconnected extends React.Component<
           onDeleteIntent({
             variables: {
               intentId,
-              withChildren: action === IntentDeleteActionEnum.ALL_INTENTS
-            }
-          })
+              withChildren: action === IntentDeleteActionEnum.ALL_INTENTS,
+            },
+          }),
         )
         .then(() => {
           message.success(`Intent deleted successfully!`);
 
           // Move URL to intents list
           history.push(
-            pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS]
-              .routeProps.path as string)({
-              agentId
-            })
+            pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps.path as string)({
+              agentId,
+            }),
           );
         })
         .catch(() => {
@@ -249,5 +221,5 @@ export const IntentEditor = compose(
   createIntent,
   updateIntent,
   deleteIntent,
-  fetchIntent
+  fetchIntent,
 )(IntentEditorDisconnected);

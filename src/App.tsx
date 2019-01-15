@@ -7,8 +7,8 @@ import { Routing } from "./routing/Routing";
 
 WebFont.load({
   google: {
-    families: ["Assistant"]
-  }
+    families: ["Assistant"],
+  },
 });
 
 export class App extends React.Component {

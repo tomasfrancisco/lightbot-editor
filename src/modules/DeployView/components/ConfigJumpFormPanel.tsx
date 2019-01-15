@@ -20,7 +20,7 @@ export const renderConfigJumpFormPanel = ({
   itemKeyOpened,
   form,
   agentData,
-  onItemKeySelect
+  onItemKeySelect,
 }: RenderConfigJumpFormPanel) => {
   return (
     <FormPanel
@@ -37,11 +37,9 @@ export const renderConfigJumpFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.JUMP_CONFIGURATION_BACKGROUND,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.JUMP_CONFIGURATION_BACKGROUND]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.JUMP_CONFIGURATION_BACKGROUND]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -54,11 +52,9 @@ export const renderConfigJumpFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.JUMP_CONFIGURATION_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.JUMP_CONFIGURATION_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.JUMP_CONFIGURATION_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}

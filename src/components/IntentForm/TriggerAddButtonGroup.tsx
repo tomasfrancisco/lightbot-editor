@@ -9,10 +9,7 @@ type TriggerAddButtonProps = {
   onKeywordsClick(): void;
 };
 
-export const TriggerAddButtonGroup = ({
-  onTextClick,
-  onKeywordsClick
-}: TriggerAddButtonProps) => (
+export const TriggerAddButtonGroup = ({ onTextClick, onKeywordsClick }: TriggerAddButtonProps) => (
   <FormItemContainer>
     <FormRow>
       <FormCol span={12}>

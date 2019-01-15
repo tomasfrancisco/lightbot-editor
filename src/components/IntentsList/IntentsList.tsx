@@ -23,10 +23,7 @@ type IntentsListState = {
   items: Intent[];
 };
 
-export class IntentsList extends React.Component<
-  IntentListProps,
-  IntentsListState
-> {
+export class IntentsList extends React.Component<IntentListProps, IntentsListState> {
   public render() {
     const { intents } = this.props;
 
@@ -45,7 +42,7 @@ export class IntentsList extends React.Component<
   private renderItem = ({
     item,
     index,
-    collapseIcon
+    collapseIcon,
   }: {
     item: Intent;
     index: number;
@@ -92,7 +89,7 @@ export class IntentsList extends React.Component<
       notification.open({
         description: "Intent sorting is not supported.",
         duration: 5,
-        message: "Not supported."
+        message: "Not supported.",
       });
     }
   };

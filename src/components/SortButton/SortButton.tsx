@@ -17,7 +17,7 @@ const StyledIconAction = styled("a")`
 
 export enum SortButtonDirectionEnum {
   UP = "UP",
-  DOWN = "DOWN"
+  DOWN = "DOWN",
 }
 
 type SortButtonProps = {
@@ -29,16 +29,12 @@ export class SortButton extends React.Component<SortButtonProps> {
     return (
       <Wrapper>
         <Tooltip title="Move up">
-          <StyledIconAction
-            onClick={this.getOnClickHandler(SortButtonDirectionEnum.UP)}
-          >
+          <StyledIconAction onClick={this.getOnClickHandler(SortButtonDirectionEnum.UP)}>
             <Icon type="arrow-up" />
           </StyledIconAction>
         </Tooltip>
         <Tooltip title="Move down">
-          <StyledIconAction
-            onClick={this.getOnClickHandler(SortButtonDirectionEnum.DOWN)}
-          >
+          <StyledIconAction onClick={this.getOnClickHandler(SortButtonDirectionEnum.DOWN)}>
             <Icon type="arrow-down" />
           </StyledIconAction>
         </Tooltip>

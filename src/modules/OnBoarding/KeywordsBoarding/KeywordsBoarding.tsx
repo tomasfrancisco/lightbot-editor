@@ -1,16 +1,10 @@
-import {
-  StorageConstantsEnum,
-  StorageInstance
-} from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import * as React from "react";
 import { compose } from "react-apollo";
 import Joyride, { Props as JoyrideProps } from "react-joyride";
 import { ACTIONS, EVENTS } from "react-joyride/es/constants";
 import { KeywordValue } from "~/models";
-import {
-  fetchKeywordValues,
-  getSelectedKeyword
-} from "~/modules/KeywordsView/apollo/gql";
+import { fetchKeywordValues, getSelectedKeyword } from "~/modules/KeywordsView/apollo/gql";
 
 import { defaultProps } from "./joyrideConfig";
 
@@ -33,9 +27,8 @@ export class KeywordsBoardingDisconnected extends React.Component<
 
     this.state = {
       skipped:
-        StorageInstance.getItem(StorageConstantsEnum.KEYWORDS_BOARDING_SKIP) ===
-          "true" || false,
-      joyrideProps: defaultProps
+        StorageInstance.getItem(StorageConstantsEnum.KEYWORDS_BOARDING_SKIP) === "true" || false,
+      joyrideProps: defaultProps,
     };
   }
 
@@ -45,8 +38,8 @@ export class KeywordsBoardingDisconnected extends React.Component<
     this.setState({
       joyrideProps: {
         ...joyrideProps,
-        run: !skipped
-      }
+        run: !skipped,
+      },
     });
   }
 
@@ -62,8 +55,8 @@ export class KeywordsBoardingDisconnected extends React.Component<
           this.setState({
             joyrideProps: {
               ...joyrideProps,
-              stepIndex: currentStepIndex + 1
-            }
+              stepIndex: currentStepIndex + 1,
+            },
           });
         }, 0);
       }
@@ -85,35 +78,32 @@ export class KeywordsBoardingDisconnected extends React.Component<
       this.setState({
         joyrideProps: {
           ...joyrideProps,
-          run: false
-        }
+          run: false,
+        },
       });
-      StorageInstance.setItem(
-        StorageConstantsEnum.KEYWORDS_BOARDING_SKIP,
-        "true"
-      );
+      StorageInstance.setItem(StorageConstantsEnum.KEYWORDS_BOARDING_SKIP, "true");
     } else if (type === EVENTS.STEP_AFTER && index === 0) {
       this.setState({
         joyrideProps: {
           ...joyrideProps,
           run: true,
-          stepIndex: index + (action === ACTIONS.PREV ? -1 : 1)
-        }
+          stepIndex: index + (action === ACTIONS.PREV ? -1 : 1),
+        },
       });
     } else if (type === EVENTS.STEP_AFTER || type === EVENTS.TARGET_NOT_FOUND) {
       // Update state to advance the tour
       this.setState({
         joyrideProps: {
           ...joyrideProps,
-          stepIndex: index + (action === ACTIONS.PREV ? -1 : 1)
-        }
+          stepIndex: index + (action === ACTIONS.PREV ? -1 : 1),
+        },
       });
     } else if (type === EVENTS.TOOLTIP_CLOSE) {
       this.setState({
         joyrideProps: {
           ...joyrideProps,
-          stepIndex: index + 1
-        }
+          stepIndex: index + 1,
+        },
       });
     }
   };
@@ -121,5 +111,5 @@ export class KeywordsBoardingDisconnected extends React.Component<
 
 export const KeywordsBoarding = compose(
   getSelectedKeyword,
-  fetchKeywordValues
+  fetchKeywordValues,
 )(KeywordsBoardingDisconnected);

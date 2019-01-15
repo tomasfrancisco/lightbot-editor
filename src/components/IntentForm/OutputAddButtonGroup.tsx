@@ -13,7 +13,7 @@ type OutputSubmitButtonProps = {
 export const OutputAddButtonGroup = ({
   onTextClick,
   onLinkClick,
-  onButtonClick
+  onButtonClick,
 }: OutputSubmitButtonProps) => (
   <FormItemContainer>
     <FormRow>

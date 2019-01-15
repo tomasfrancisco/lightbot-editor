@@ -10,10 +10,10 @@ export const ON_SELECT_KEYWORD_MUTATION = gql`
 
 export type OnSelectKeywordFunction = (
   {
-    variables: { keyword }
-  }: { variables: { keyword: Keyword } }
+    variables: { keyword },
+  }: { variables: { keyword: Keyword } },
 ) => void;
 
 export const onSelectKeyword = graphql<{}, {}>(ON_SELECT_KEYWORD_MUTATION, {
-  name: "onSelectKeyword"
+  name: "onSelectKeyword",
 });

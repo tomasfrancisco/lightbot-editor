@@ -8,8 +8,7 @@ export const logoutLink = onError(({ graphQLErrors, forward, operation }) => {
     let shouldRedirect = false;
     graphQLErrors.forEach(graphQLError => {
       if (graphQLError.extensions!.code === ErrorCode.INVALID_AUTH) {
-        browserHistory.push(Routing.routes[RoutesKeysEnum.LOGOUT].routeProps
-          .path as string);
+        browserHistory.push(Routing.routes[RoutesKeysEnum.LOGOUT].routeProps.path as string);
         shouldRedirect = true;
       }
     });

@@ -1,13 +1,10 @@
 import { IntentLinkOutputType } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
-import {
-  FormLink,
-  renderFormLinkInput
-} from "~/components/Form/inputs/FormLinkInput";
+import { FormLink, renderFormLinkInput } from "~/components/Form/inputs/FormLinkInput";
 import {
   emptyStringValidator,
   urlValidator,
-  whitespaceValidator
+  whitespaceValidator,
 } from "~/components/Form/validators";
 
 type RenderLinkOutputInputProps = FormComponentProps & {
@@ -22,7 +19,7 @@ export const renderLinkOutputInput = ({
   form,
   formIndex,
   item,
-  itemKey
+  itemKey,
 }: RenderLinkOutputInputProps) => {
   return renderFormLinkInput({
     errorMessage: errorMessage || "Please, provide a label and a valid URL.",
@@ -30,36 +27,35 @@ export const renderLinkOutputInput = ({
     getValueFromEvent: (link: FormLink): IntentLinkOutputType => ({
       ...item,
       value: {
-        ...link
-      }
+        ...link,
+      },
     }),
     getValueProps: (linkOutput: IntentLinkOutputType) => {
       if (linkOutput) {
         return {
           value: {
             label: linkOutput.value.label,
-            link: linkOutput.value.link
-          }
+            link: linkOutput.value.link,
+          },
         };
       }
 
       return {
-        value: {}
+        value: {},
       };
     },
     itemKey: `values[${formIndex}][${itemKey}]`,
     type: "object",
     validator: (rule, linkOutput: IntentLinkOutputType, cb) => {
       const {
-        value: { link, label }
+        value: { link, label },
       } = linkOutput;
 
-      const isLabelValid =
-        !whitespaceValidator(label) && !emptyStringValidator(label);
+      const isLabelValid = !whitespaceValidator(label) && !emptyStringValidator(label);
       const isLinkValid = urlValidator(link);
 
       isLabelValid && isLinkValid ? cb() : cb(true);
     },
-    value: item
+    value: item,
   });
 };

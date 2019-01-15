@@ -14,7 +14,7 @@ describe("components/Form/components/FormGroup", () => {
             <FormItem>#1</FormItem>
             <FormItem>#2</FormItem>
             <FormItem>#3</FormItem>
-          </FormGroup>
+          </FormGroup>,
         );
       };
 
@@ -32,7 +32,7 @@ describe("components/Form/components/FormGroup", () => {
             <FormItem>#1</FormItem>
             <FormItem>#2</FormItem>
             <FormItem>#3</FormItem>
-          </FormGroup>
+          </FormGroup>,
         );
       });
 
@@ -45,7 +45,7 @@ describe("components/Form/components/FormGroup", () => {
           component
             .find(FormItem)
             .at(1)
-            .props()
+            .props(),
         ).toHaveProperty("sortHandler");
       });
     });
@@ -59,7 +59,7 @@ describe("components/Form/components/FormGroup", () => {
             <FormItem>#1</FormItem>
             <FormItem>#2</FormItem>
             <FormItem>#3</FormItem>
-          </FormGroup>
+          </FormGroup>,
         );
       });
 
@@ -72,7 +72,7 @@ describe("components/Form/components/FormGroup", () => {
           component
             .find(FormItem)
             .at(1)
-            .props()
+            .props(),
         ).not.toHaveProperty("renderSortHandler");
       });
     });

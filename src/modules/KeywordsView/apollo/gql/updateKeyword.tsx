@@ -4,7 +4,7 @@ import { graphql, QueryResult } from "react-apollo";
 import { BatchDictionaryData, KeywordValue } from "~/models";
 import {
   updateKeywordCache,
-  updateSelectedKeywordCache
+  updateSelectedKeywordCache,
 } from "~/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
 
 export const UPDATE_QUERY = gql`
@@ -29,7 +29,7 @@ export interface UpdateKeywordResult extends QueryResult<UpdateKeywordData> {}
 export type UpdateKeywordFunction = (
   props: {
     variables: { updatedKeyword: BatchDictionaryData };
-  }
+  },
 ) => Promise<UpdateKeywordResult>;
 
 export const updateKeyword = graphql<{}, {}, {}, {}>(UPDATE_QUERY, {
@@ -45,6 +45,6 @@ export const updateKeyword = graphql<{}, {}, {}, {}>(UPDATE_QUERY, {
       } else {
         throw Error("Something got wrong with the mutation update");
       }
-    }
-  })
+    },
+  }),
 });

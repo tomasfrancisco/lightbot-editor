@@ -38,11 +38,7 @@ export class ListItem extends React.Component<ListItemProps> {
     const { item } = this.props;
 
     return (
-      <StyledListItem
-        key={item.id}
-        className={this.itemClassName}
-        onClick={this.onClick}
-      >
+      <StyledListItem key={item.id} className={this.itemClassName} onClick={this.onClick}>
         {item.title}
       </StyledListItem>
     );

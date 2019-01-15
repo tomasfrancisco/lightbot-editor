@@ -17,5 +17,5 @@ export enum LayoutConfigurationFormEnum {
   GENERIC_BOT_SAYS_TEXT_COLOR = "botSaysTextColor",
   GENERIC_BOT_SAYS_BACKGROUND_COLOR = "botSaysBackgroundColor",
   GENERIC_MAIN_TEXT_COLOR = "mainTextColor",
-  GENERIC_MESSAGE_SEND_BTN_COLOR = "messageSendBtnColor"
+  GENERIC_MESSAGE_SEND_BTN_COLOR = "messageSendBtnColor",
 }

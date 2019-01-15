@@ -23,9 +23,7 @@ describe("components/Form/inputs/FormTextTagInput", () => {
     const validTags = ["$Hello", "$world"];
     const value = "$Hello $NotValidWord and plain text.";
 
-    component = shallow(
-      <FormTextTagInput validTags={validTags} value={value} />
-    );
+    component = shallow(<FormTextTagInput validTags={validTags} value={value} />);
   });
 
   test("renders", () => {

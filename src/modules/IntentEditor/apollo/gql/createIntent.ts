@@ -28,27 +28,27 @@ export class CreateIntentQuery extends Query<CreateIntentData> {}
 export type CreateIntentFunction = (
   props: {
     variables: { intent: IntentActionData };
-  }
+  },
 ) => Promise<CreateIntentResult>;
 
 export const updateIntents = ({ cache, agentId, createdIntent }) => {
   const fetchIntentsQuery = {
     query: FETCH_INTENTS_QUERY,
     variables: {
-      agentId
-    }
+      agentId,
+    },
   };
 
   let intentsData = cache.readQuery(fetchIntentsQuery);
 
   intentsData = {
     ...intentsData,
-    intents: [..._get(intentsData, "intents", []), createdIntent]
+    intents: [..._get(intentsData, "intents", []), createdIntent],
   };
 
   cache.writeQuery({
     ...fetchIntentsQuery,
-    data: intentsData
+    data: intentsData,
   });
 };
 
@@ -63,13 +63,13 @@ export const updateIntentCache = ({ cache, agentId, createdIntent }) => {
     query: FETCH_INTENT_QUERY,
     variables: {
       agentId,
-      intentId: createdIntentId
-    }
+      intentId: createdIntentId,
+    },
   };
 
   cache.writeQuery({
     ...fetchIntentQuery,
-    data: _update({}, ["intents", 0], () => createdIntent)
+    data: _update({}, ["intents", 0], () => createdIntent),
   });
 };
 
@@ -81,6 +81,6 @@ export const createIntent = graphql<{}, {}, {}, {}>(CREATE_INTENT_QUERY, {
 
       updateIntentCache({ cache, agentId, createdIntent });
       updateIntents({ cache, agentId, createdIntent });
-    }
-  })
+    },
+  }),
 });

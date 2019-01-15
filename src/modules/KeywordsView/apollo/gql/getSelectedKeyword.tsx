@@ -14,7 +14,7 @@ export const GET_SELECTED_KEYWORD_QUERY = gql`
 export const getSelectedKeyword = graphql(GET_SELECTED_KEYWORD_QUERY, {
   props: ({ data }) => {
     return {
-      selectedKeyword: _get(data, ["selectedKeyword"])
+      selectedKeyword: _get(data, ["selectedKeyword"]),
     };
-  }
+  },
 });

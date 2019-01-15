@@ -4,5 +4,5 @@ export const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3001/editor"
-      : `https://api.lightbot.io/editor`
+      : `https://api.lightbot.io/editor`,
 });

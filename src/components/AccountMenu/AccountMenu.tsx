@@ -1,7 +1,4 @@
-import {
-  StorageConstantsEnum,
-  StorageInstance
-} from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { Icon, message } from "antd";
 import * as React from "react";
 import { Redirect } from "react-router";
@@ -13,17 +10,12 @@ export type AccountMenuState = {
   isAuthenticated: boolean;
 };
 
-export class AccountMenu extends React.Component<
-  AccountMenuProps,
-  AccountMenuState
-> {
+export class AccountMenu extends React.Component<AccountMenuProps, AccountMenuState> {
   constructor(props) {
     super(props);
 
     this.state = {
-      isAuthenticated: !!StorageInstance.getItem(
-        StorageConstantsEnum.EDITOR_TOKEN_ID
-      )
+      isAuthenticated: !!StorageInstance.getItem(StorageConstantsEnum.EDITOR_TOKEN_ID),
     };
   }
 

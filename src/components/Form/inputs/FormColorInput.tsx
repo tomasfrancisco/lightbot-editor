@@ -2,21 +2,15 @@ import { Icon, Input } from "antd";
 import Form, { FormComponentProps, ValidationRule } from "antd/lib/form";
 import * as React from "react";
 import { SketchPicker } from "react-color";
-import {
-  ColorPickerBackgroundView,
-  ColorPickerContainer
-} from "~/components/ColorPicker/layout";
-import {
-  generateRgbaString,
-  generateRgbString
-} from "~/components/ColorPicker/utils";
+import { ColorPickerBackgroundView, ColorPickerContainer } from "~/components/ColorPicker/layout";
+import { generateRgbaString, generateRgbString } from "~/components/ColorPicker/utils";
 import { FormItem } from "~/components/Form/components/FormItem";
 import {
   closeButtonStyle,
   CloseContainer,
   ColorRow,
   ColorSelector,
-  inputStyle
+  inputStyle,
 } from "~/components/Form/layout";
 import { colorValidator } from "~/components/Form/validators";
 import { ColorType } from "~/models";
@@ -39,28 +33,17 @@ export type FormColorInputState = {
   currentSelectedColor?: string;
 };
 
-export class FormColorInput extends React.Component<
-  FormColorInputProps,
-  FormColorInputState
-> {
+export class FormColorInput extends React.Component<FormColorInputProps, FormColorInputState> {
   constructor(props: FormColorInputProps) {
     super(props);
 
     this.state = {
-      currentSelectedColor: props.initialValue || props.defaultValue
+      currentSelectedColor: props.initialValue || props.defaultValue,
     };
   }
 
   public render() {
-    const {
-      title,
-      form,
-      initialValue,
-      rules,
-      placeholder,
-      colorType,
-      required
-    } = this.props;
+    const { title, form, initialValue, rules, placeholder, colorType, required } = this.props;
     const { currentSelectedColor } = this.state;
     const remainRules = rules ? rules : [];
 
@@ -76,19 +59,19 @@ export class FormColorInput extends React.Component<
                   {
                     message: "Please select some color.",
                     required: required ? true : false,
-                    whitespace: true
+                    whitespace: true,
                   },
                   colorValidator("Please insert the correct format", colorType),
-                  ...remainRules
+                  ...remainRules,
                 ],
                 validateFirst: true,
-                validateTrigger: ["onChange", "onBlur"]
+                validateTrigger: ["onChange", "onBlur"],
               })(
                 <Input
                   className={inputStyle}
                   placeholder={placeholder}
                   onChange={this.onInputFieldChange}
-                />
+                />,
               )}
               <ColorSelector
                 style={{ backgroundColor: currentSelectedColor }}
@@ -158,7 +141,7 @@ export class FormColorInput extends React.Component<
     form.setFieldsValue({ [this.fieldDecoratorId]: newColor });
 
     this.setState({
-      currentSelectedColor: newColor
+      currentSelectedColor: newColor,
     });
   };
 
@@ -172,7 +155,7 @@ export class FormColorInput extends React.Component<
     }
 
     this.setState({
-      currentSelectedColor: newValue
+      currentSelectedColor: newValue,
     });
   };
 

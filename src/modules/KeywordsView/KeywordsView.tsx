@@ -8,12 +8,9 @@ import {
   fetchKeywords,
   getSelectedKeyword,
   onSelectKeyword,
-  OnSelectKeywordFunction
+  OnSelectKeywordFunction,
 } from "~/modules/KeywordsView/apollo/gql";
-import {
-  KeywordEditorView,
-  KeywordsSelectorView
-} from "~/modules/KeywordsView/views";
+import { KeywordEditorView, KeywordsSelectorView } from "~/modules/KeywordsView/views";
 import { KeywordsBoarding } from "~/modules/OnBoarding/KeywordsBoarding";
 
 import { LightbotLayout } from "../LightbotLayout";
@@ -66,7 +63,7 @@ class KeywordsViewDisconnected extends React.Component<KeywordsViewProps> {
   public onAddKeyword = () => {
     const keyword: Keyword = {
       id: FormEnum.CREATING_ID,
-      name: ""
+      name: "",
     };
     this.props.onSelectKeyword({ variables: { keyword } });
   };
@@ -75,5 +72,5 @@ class KeywordsViewDisconnected extends React.Component<KeywordsViewProps> {
 export const KeywordsView = compose(
   getSelectedKeyword,
   fetchKeywords,
-  onSelectKeyword
+  onSelectKeyword,
 )(KeywordsViewDisconnected);

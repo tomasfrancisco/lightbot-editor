@@ -17,7 +17,7 @@ describe("components/Form/inputs/FormColorInput", () => {
         colorType={ColorType.RGB}
         itemKeyOpened="abc"
         onItemKeySelect={onItemkeySelect}
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });

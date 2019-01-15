@@ -80,26 +80,20 @@ export class IntentItem extends React.Component<IntentItemProps> {
           id={intent.isWelcome ? ElementIdsEnum.WELCOME_INTENT : undefined}
           className={cx(
             index % 2 === 0 ? "list-item-even" : "list-item-odd",
-            intent.parentId ? "list-item-child" : "list-item-parent"
+            intent.parentId ? "list-item-child" : "list-item-parent",
           )}
         >
           {collapseIcon}
           <StyledIcon
-            type={
-              !intent.children!.length
-                ? intent.isTopLevel
-                  ? "arrow-left"
-                  : "enter"
-                : ""
-            }
+            type={!intent.children!.length ? (intent.isTopLevel ? "arrow-left" : "enter") : ""}
           />
           <div
             className={cx(
               "title",
               {
-                ["is-top-level"]: intent.isTopLevel
+                ["is-top-level"]: intent.isTopLevel,
               },
-              this.selectedClass
+              this.selectedClass,
             )}
             onClick={onClick}
           >
@@ -131,7 +125,7 @@ export class IntentItem extends React.Component<IntentItemProps> {
         <StyledTag key="welcome" color={theme["info-color"]}>
           Welcome
         </StyledTag>
-      ) : null
+      ) : null,
     ];
   }
 }

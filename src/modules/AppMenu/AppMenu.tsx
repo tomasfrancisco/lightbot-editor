@@ -28,7 +28,7 @@ const agentTitleStyle = css`
 
 enum SubMenuEnum {
   COMPANY = "COMPANY",
-  AGENT = "AGENT"
+  AGENT = "AGENT",
 }
 
 export type AppMenuProps = RouteComponentProps & {
@@ -65,59 +65,56 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
             itemKey: RoutesKeysEnum.KEYWORDS,
             label: "Keywords",
             icon: "tags-o",
-            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.KEYWORDS]
-              .routeProps.path as string)({
-              agentId
-            })
+            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.KEYWORDS].routeProps
+              .path as string)({
+              agentId,
+            }),
           })}
           {renderMenuItem({
             itemKey: RoutesKeysEnum.SETTINGS,
             label: "Settings",
             icon: "setting",
-            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.SETTINGS]
-              .routeProps.path as string)({
-              agentId
-            })
+            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.SETTINGS].routeProps
+              .path as string)({
+              agentId,
+            }),
           })}
         </Menu.SubMenu>
-        <Menu.SubMenu
-          key={SubMenuEnum.AGENT}
-          title={this.renderAgentSubMenuTitle}
-        >
+        <Menu.SubMenu key={SubMenuEnum.AGENT} title={this.renderAgentSubMenuTitle}>
           {renderMenuItem({
             itemKey: RoutesKeysEnum.INTENTS,
             label: "Build intents",
             icon: "message",
-            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS]
-              .routeProps.path as string)({
-              agentId
-            })
+            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps
+              .path as string)({
+              agentId,
+            }),
           })}
           {renderMenuItem({
             itemKey: RoutesKeysEnum.DEPLOY,
             label: "Deploy",
             icon: "to-top",
-            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.DEPLOY]
-              .routeProps.path as string)({
-              agentId
-            })
+            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.DEPLOY].routeProps
+              .path as string)({
+              agentId,
+            }),
           })}
           {renderMenuItem({
             itemKey: RoutesKeysEnum.IMPROVE,
             label: "Improve",
             icon: "book",
             badgeCount: _get(selectedAgent, "unknownTriggersCount"),
-            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.IMPROVE]
-              .routeProps.path as string)({
-              agentId
-            })
+            to: pathToRegexp.compile(Routing.routes[RoutesKeysEnum.IMPROVE].routeProps
+              .path as string)({
+              agentId,
+            }),
           })}
         </Menu.SubMenu>
         {renderMenuItem({
           itemKey: RoutesKeysEnum.LOGOUT,
           label: "Logout",
           icon: "logout",
-          to: Routing.routes[RoutesKeysEnum.LOGOUT].routeProps.path
+          to: Routing.routes[RoutesKeysEnum.LOGOUT].routeProps.path,
         })}
       </Menu>
     );
@@ -136,11 +133,7 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
           <span>Agent</span>
         </span>
         <span onClick={this.preventPropagation}>
-          <Select
-            value={agentId}
-            className={agentSelectorStyle}
-            onChange={this.onAgentSelect}
-          >
+          <Select value={agentId} className={agentSelectorStyle} onChange={this.onAgentSelect}>
             {this.renderAgentsOptions()}
           </Select>
         </span>
@@ -169,8 +162,7 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
 
   private onAgentSelect = agentId => {
     const { history, location } = this.props;
-    const matchedPath = Routing.utils.findMatchedRoute(location.pathname)![1]
-      .routeProps.path;
+    const matchedPath = Routing.utils.findMatchedRoute(location.pathname)![1].routeProps.path;
 
     if (matchedPath) {
       const uri = pathToRegexp.compile(matchedPath)({ agentId });
@@ -182,5 +174,5 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
 export const AppMenu = compose(
   withRouteParams(["agentId"]),
   withRouter,
-  fetchAgents
+  fetchAgents,
 )(AppMenuDisconnected);

@@ -29,24 +29,24 @@ export const routes: LightbotRoutesProps = {
     routeProps: {
       exact: true,
       path: "/",
-      component: HomeView
-    }
+      component: HomeView,
+    },
   },
   [RoutesKeysEnum.LOGIN]: {
     protected: false,
     routeProps: {
       exact: true,
       path: "/login",
-      component: LoginView
-    }
+      component: LoginView,
+    },
   },
   [RoutesKeysEnum.LOGOUT]: {
     protected: false,
     routeProps: {
       exact: true,
       path: "/logout",
-      component: LogoutView
-    }
+      component: LogoutView,
+    },
   },
 
   // Authenticated routes
@@ -54,31 +54,31 @@ export const routes: LightbotRoutesProps = {
     protected: true,
     routeProps: {
       path: "/dashboard",
-      component: DashboardView
-    }
+      component: DashboardView,
+    },
   },
   [RoutesKeysEnum.KEYWORDS]: {
     protected: true,
     routeProps: {
       exact: true,
       path: "/agent/:agentId?/keywords",
-      component: KeywordsView
-    }
+      component: KeywordsView,
+    },
   },
   [RoutesKeysEnum.SETTINGS]: {
     protected: true,
     routeProps: {
       exact: true,
       path: "/agent/:agentId?/settings",
-      component: SettingsView
-    }
+      component: SettingsView,
+    },
   },
   [RoutesKeysEnum.CREATE_INTENT]: {
     protected: true,
     routeProps: {
       path: "/agent/:agentId?/create-intent",
-      component: IntentsView
-    }
+      component: IntentsView,
+    },
   },
   /**
    * DEFAULT ROUTE
@@ -88,15 +88,15 @@ export const routes: LightbotRoutesProps = {
     protected: true,
     routeProps: {
       path: "/agent/:agentId?/intents/:intentId?",
-      component: IntentsView
-    }
+      component: IntentsView,
+    },
   },
   [RoutesKeysEnum.DEFAULT]: {
     protected: true,
     routeProps: {
       path: "/agent/:agentId?/intents/:intentId?",
-      component: IntentsView
-    }
+      component: IntentsView,
+    },
   },
   /**
    * // DEFAULT ROUTE
@@ -105,22 +105,22 @@ export const routes: LightbotRoutesProps = {
     protected: true,
     routeProps: {
       path: "/agent/:agentId?/deploy",
-      component: DeployView
-    }
+      component: DeployView,
+    },
   },
   [RoutesKeysEnum.IMPROVE]: {
     protected: true,
     routeProps: {
       path: "/agent/:agentId?/improve",
-      component: ImproveView
-    }
+      component: ImproveView,
+    },
   },
 
   // 404
   [RoutesKeysEnum.TRAP]: {
     protected: false,
     routeProps: {
-      component: TrapView
-    }
-  }
+      component: TrapView,
+    },
+  },
 };

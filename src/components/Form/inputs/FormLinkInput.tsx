@@ -47,7 +47,7 @@ class FormLinkInput extends React.Component<FormLinkInputProps> {
 
     const propsValue = _clone(this.props.value) || {
       label: "",
-      link: ""
+      link: "",
     };
 
     propsValue[linkProp] = value;
@@ -65,13 +65,7 @@ export type RenderFormLinkInputProps = FormComponentProps & {
   type?: string;
   getValueFromEvent?(e): any;
   getValueProps?(value): any;
-  validator?(
-    rule: any,
-    value: any,
-    callback: any,
-    source?: any,
-    options?: any
-  ): any;
+  validator?(rule: any, value: any, callback: any, source?: any, options?: any): any;
 };
 
 export const renderFormLinkInput = ({
@@ -82,7 +76,7 @@ export const renderFormLinkInput = ({
   validator,
   getValueFromEvent,
   getValueProps,
-  type
+  type,
 }: RenderFormLinkInputProps) =>
   form &&
   form.getFieldDecorator(itemKey, {
@@ -95,8 +89,8 @@ export const renderFormLinkInput = ({
         message: errorMessage || "Provide a label and a valid URL.",
         required: true,
         type,
-        validator
-      }
+        validator,
+      },
     ],
-    validateTrigger: ["onChange", "onBlur"]
+    validateTrigger: ["onChange", "onBlur"],
   })(<FormLinkInput />);

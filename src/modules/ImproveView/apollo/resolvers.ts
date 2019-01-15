@@ -2,11 +2,7 @@ import gql from "graphql-tag";
 
 export const resolvers = {
   Mutation: {
-    onSelectUnknownIntentId: (
-      _,
-      { unknownIntentId }: { unknownIntentId: string },
-      { cache }
-    ) => {
+    onSelectUnknownIntentId: (_, { unknownIntentId }: { unknownIntentId: string }, { cache }) => {
       const query = gql`
         query GetSelectedUnknownIntentId {
           selectedUnknownIntentId @client
@@ -17,12 +13,12 @@ export const resolvers = {
 
       const data = {
         ...previousState,
-        selectedUnknownIntentId: unknownIntentId
+        selectedUnknownIntentId: unknownIntentId,
       };
 
       cache.writeData({ query, data });
 
       return null;
-    }
-  }
+    },
+  },
 };

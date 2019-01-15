@@ -3,7 +3,7 @@ import { compose } from "react-apollo";
 import { DeleteButton, mainDeleteAction } from "~/components/DeleteButton";
 import {
   deleteUnknownTrigger,
-  DeleteUnknownTriggerFunction
+  DeleteUnknownTriggerFunction,
 } from "~/modules/ImproveView/apollo/gql";
 import { withRouteParams } from "~/routing";
 
@@ -15,9 +15,7 @@ export type DeleteUnknownTriggersProps = {
   onDeleteUnknownTrigger: DeleteUnknownTriggerFunction;
 };
 
-class DeleteUnknownTriggersDisconnected extends React.Component<
-  DeleteUnknownTriggersProps
-> {
+class DeleteUnknownTriggersDisconnected extends React.Component<DeleteUnknownTriggersProps> {
   public render() {
     const { selectedTriggers } = this.props;
 
@@ -37,13 +35,13 @@ class DeleteUnknownTriggersDisconnected extends React.Component<
       variables: {
         triggersToDelete: {
           agentId,
-          unknownTriggerIds: getUnknownTriggerIds(selectedTriggers)
-        }
-      }
+          unknownTriggerIds: getUnknownTriggerIds(selectedTriggers),
+        },
+      },
     });
   };
 }
 
 export const DeleteUnknownTriggers = compose(deleteUnknownTrigger)(
-  DeleteUnknownTriggersDisconnected
+  DeleteUnknownTriggersDisconnected,
 );

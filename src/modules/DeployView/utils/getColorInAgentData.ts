@@ -2,7 +2,7 @@ import { AgentData } from "~/models/AgentData.type";
 
 export const getColorInAgentData = (
   property: string,
-  agentData?: AgentData
+  agentData?: AgentData,
 ): string | undefined => {
   // In case widgetThemeData exists, it should need parsing
   if (agentData && typeof agentData.widgetThemeData === "string") {

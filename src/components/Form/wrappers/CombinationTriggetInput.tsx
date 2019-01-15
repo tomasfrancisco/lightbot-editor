@@ -12,24 +12,24 @@ export const renderCombinationTriggerInput = ({
   form,
   formIndex,
   item,
-  searchResults
+  searchResults,
 }: RenderCombinationTriggerInputProps) =>
   renderFormSelectGroupInput({
     errorMessage: "Select from 2 to 3 keywords or delete this field.",
     form,
     getValueFromEvent: (value): CombinationTrigger => ({
       ...item,
-      value
+      value,
     }),
     getValueProps: (trigger: CombinationTrigger) => {
       if (trigger) {
         return {
-          value: trigger.value
+          value: trigger.value,
         };
       }
 
       return {
-        value: trigger
+        value: trigger,
       };
     },
     itemKey: `values[${formIndex}][${item.id}]`,
@@ -38,9 +38,7 @@ export const renderCombinationTriggerInput = ({
     type: "object",
     validator: (rule, trigger: CombinationTrigger, cb) => {
       const { value } = trigger;
-      return value && value.filter(Boolean).length >= rule.min
-        ? cb()
-        : cb(true);
+      return value && value.filter(Boolean).length >= rule.min ? cb() : cb(true);
     },
-    value: item
+    value: item,
   });

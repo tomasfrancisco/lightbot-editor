@@ -20,7 +20,7 @@ export const renderGeneralViewFormPanel = ({
   itemKeyOpened,
   form,
   agentData,
-  onItemKeySelect
+  onItemKeySelect,
 }: RenderGeneralViewFormPanel) => {
   return (
     <FormPanel
@@ -37,7 +37,7 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_LINK_COLOR,
-          agentData
+          agentData,
         )}
         defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_LINK_COLOR]}
         itemKeyOpened={itemKeyOpened}
@@ -52,11 +52,9 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_USER_SAYS_TEXT_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.GENERIC_USER_SAYS_TEXT_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_USER_SAYS_TEXT_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -69,11 +67,9 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_USER_SAYS_BACKGROUND_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.GENERIC_USER_SAYS_BACKGROUND_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_USER_SAYS_BACKGROUND_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -86,11 +82,9 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_TEXT_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_TEXT_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_TEXT_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -103,11 +97,9 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_BACKGROUND_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_BACKGROUND_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_BOT_SAYS_BACKGROUND_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}
@@ -120,11 +112,9 @@ export const renderGeneralViewFormPanel = ({
         form={form}
         initialValue={getColorInAgentData(
           LayoutConfigurationFormEnum.GENERIC_MESSAGE_SEND_BTN_COLOR,
-          agentData
+          agentData,
         )}
-        defaultValue={
-          theme[LayoutConfigurationFormEnum.GENERIC_MESSAGE_SEND_BTN_COLOR]
-        }
+        defaultValue={theme[LayoutConfigurationFormEnum.GENERIC_MESSAGE_SEND_BTN_COLOR]}
         itemKeyOpened={itemKeyOpened}
         colorType={ColorType.HEX}
         onItemKeySelect={onItemKeySelect}

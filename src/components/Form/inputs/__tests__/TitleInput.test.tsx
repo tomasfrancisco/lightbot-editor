@@ -10,9 +10,7 @@ describe("components/Form/inputs/TitleInput", () => {
       /**/
     };
     const Wrapper = AntdForm.create()(TitleInput);
-    const tree = shallow(
-      <Wrapper placeholder="placeholder" itemKey="itemkey" value="value" />
-    );
+    const tree = shallow(<Wrapper placeholder="placeholder" itemKey="itemkey" value="value" />);
     expect(tree).toMatchSnapshot();
   });
 });

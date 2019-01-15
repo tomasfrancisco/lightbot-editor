@@ -16,7 +16,7 @@ export const emptyFieldValidator: ValidationRule = {
       return;
     }
     cb();
-  }
+  },
 };
 
 export const singleWordValidator = (message: string): ValidationRule => {
@@ -40,7 +40,7 @@ export const singleWordValidator = (message: string): ValidationRule => {
       }
 
       cb();
-    }
+    },
   };
 };
 
@@ -52,7 +52,7 @@ export const singleWordValidator = (message: string): ValidationRule => {
  */
 export const getDuplicateKeywordValidator = (
   form: WrappedFormUtils,
-  isBatchValidator = false
+  isBatchValidator = false,
 ): ValidationRule => {
   return {
     message: "Please don't insert repeated keywords",
@@ -81,7 +81,7 @@ export const getDuplicateKeywordValidator = (
       }
 
       cb();
-    }
+    },
   };
 };
 
@@ -92,13 +92,11 @@ export const getExistingValues = (form: WrappedFormUtils): string[] => {
   return existingKeys.map(key => existingValues[key]);
 };
 
-export const getBatchValidationRules = (
-  form: WrappedFormUtils
-): ValidationRule[] => {
+export const getBatchValidationRules = (form: WrappedFormUtils): ValidationRule[] => {
   return [
     emptyFieldValidator,
     singleWordValidator("Please insert just one word per line"),
-    getDuplicateKeywordValidator(form, true)
+    getDuplicateKeywordValidator(form, true),
   ];
 };
 
@@ -114,6 +112,6 @@ export const getNotSysEntityValidator = (message: string): ValidationRule => {
       }
 
       cb();
-    }
+    },
   };
 };

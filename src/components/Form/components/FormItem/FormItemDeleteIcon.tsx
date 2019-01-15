@@ -21,10 +21,7 @@ type FormItemDeleteIconProps = {
   onRemove?(): void;
 };
 
-export const FormItemDeleteIcon = ({
-  onRemove,
-  tooltipTitle
-}: FormItemDeleteIconProps) =>
+export const FormItemDeleteIcon = ({ onRemove, tooltipTitle }: FormItemDeleteIconProps) =>
   onRemove ? (
     <Tooltip title={tooltipTitle}>
       <StyledIcon type="minus-circle-o" onClick={onRemove} />

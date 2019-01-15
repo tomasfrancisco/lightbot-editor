@@ -6,5 +6,5 @@ export enum ElementIdsEnum {
   INTENT_EDITOR_OUTPUTS = "intent-editor-outputs",
   WELCOME_INTENT = "welcome-intent",
   KEYWORD_LIST = "keyword-list",
-  KEYWORD_EDITOR = "keyword-editor"
+  KEYWORD_EDITOR = "keyword-editor",
 }

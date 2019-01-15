@@ -16,7 +16,7 @@ export class FormDisconnected extends React.Component<FormProps> {
     this.formKey = "auth";
 
     const {
-      form: { getFieldDecorator }
+      form: { getFieldDecorator },
     } = props;
 
     getFieldDecorator(this.formKey, { initialValue: [] });
@@ -25,9 +25,7 @@ export class FormDisconnected extends React.Component<FormProps> {
   public render() {
     return (
       <AntdForm layout="vertical" onSubmit={this.onSubmit}>
-        <AntdForm.Item required={false}>
-          {this.renderTokenFormInput()}
-        </AntdForm.Item>
+        <AntdForm.Item required={false}>{this.renderTokenFormInput()}</AntdForm.Item>
         <AntdForm.Item>
           <Button type="primary" htmlType="submit" block={true}>
             Unlock Editor
@@ -39,23 +37,23 @@ export class FormDisconnected extends React.Component<FormProps> {
 
   public renderTokenFormInput() {
     const {
-      form: { getFieldDecorator }
+      form: { getFieldDecorator },
     } = this.props;
     return getFieldDecorator("values.token", {
       rules: [
         {
           message: "Please provide an access token.",
           required: true,
-          whitespace: true
-        }
+          whitespace: true,
+        },
       ],
-      validateTrigger: ["onChange", "onBlur"]
+      validateTrigger: ["onChange", "onBlur"],
     })(
       <Input
         prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
         placeholder="Access token"
         style={{ width: "250px" }}
-      />
+      />,
     );
   }
 

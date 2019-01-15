@@ -14,10 +14,7 @@ const regexRGBAColor = /([R][G][B][A][(]\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]
  * @param {ColorType} colorType Type of color to know what to compare
  * @return {ValidationRule} Validation object that contains the rules to not allow incorrect color formats
  */
-export const colorValidator = (
-  message: string,
-  colorType: ColorType
-): ValidationRule => {
+export const colorValidator = (message: string, colorType: ColorType): ValidationRule => {
   return {
     message,
     validator: (rule, value, cb) => {
@@ -39,6 +36,6 @@ export const colorValidator = (
       } else {
         cb(false);
       }
-    }
+    },
   };
 };

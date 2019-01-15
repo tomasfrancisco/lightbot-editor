@@ -16,20 +16,14 @@ export type FindIntentsByExpressionData = {
   intents: Intent[];
 };
 
-export interface FindIntentsByExpressionResult
-  extends QueryResult<FindIntentsByExpressionData> {}
+export interface FindIntentsByExpressionResult extends QueryResult<FindIntentsByExpressionData> {}
 
-export class FindIntentsByExpressionQuery extends Query<
-  FindIntentsByExpressionData
-> {}
+export class FindIntentsByExpressionQuery extends Query<FindIntentsByExpressionData> {}
 
 export type OnFindIntentsByExpressionFunction = (
-  props: { variables: { input: IntentExpression } }
+  props: { variables: { input: IntentExpression } },
 ) => Promise<FindIntentsByExpressionResult>;
 
-export const findIntentsByExpression = graphql<{}, {}, {}, {}>(
-  FIND_INTENTS_BY_EXPRESSION_QUERY,
-  {
-    name: "onFindIntentsByExpression"
-  }
-);
+export const findIntentsByExpression = graphql<{}, {}, {}, {}>(FIND_INTENTS_BY_EXPRESSION_QUERY, {
+  name: "onFindIntentsByExpression",
+});

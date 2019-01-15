@@ -1,7 +1,4 @@
-import {
-  StorageConstantsEnum,
-  StorageInstance
-} from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { setContext } from "apollo-link-context";
 
 export const authLink = setContext((_, { headers }) => {
@@ -11,7 +8,7 @@ export const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token || ""
-    }
+      authorization: token || "",
+    },
   };
 });

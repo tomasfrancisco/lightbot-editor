@@ -3,17 +3,14 @@ import {
   IntentLinkOutputType,
   IntentOutputType,
   IntentOutputTypeEnum,
-  IntentPlainOutputType
+  IntentPlainOutputType,
 } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import { css } from "react-emotion";
 import uuid from "uuid/v4";
 import { FormGroup, FormItem } from "~/components/Form";
-import {
-  renderLinkOutputInput,
-  renderPlainOutputInput
-} from "~/components/Form/wrappers";
+import { renderLinkOutputInput, renderPlainOutputInput } from "~/components/Form/wrappers";
 import { renderButtonsGroupOutputInput } from "~/components/Form/wrappers/ButtonOutputInput";
 import { IntentOutputDisplayType } from "~/components/IntentForm/form-groups/IntentOutputsFormGroup/types/IntentOutputsDisplay.type";
 import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
@@ -45,7 +42,7 @@ export class IntentOutputsFormGroup extends React.Component<
     super(props);
 
     this.state = {
-      outputs: props.outputs.map(output => ({ id: uuid(), ...output }))
+      outputs: props.outputs.map(output => ({ id: uuid(), ...output })),
     };
   }
 
@@ -57,11 +54,7 @@ export class IntentOutputsFormGroup extends React.Component<
     const outputItems = this.getOutputItems();
     return (
       <>
-        <FormGroup
-          isSortable={true}
-          data={outputItems.data}
-          onChange={this.onOutputItemsSort}
-        >
+        <FormGroup isSortable={true} data={outputItems.data} onChange={this.onOutputItemsSort}>
           {outputItems.components}
         </FormGroup>
         <OutputAddButtonGroup
@@ -94,9 +87,9 @@ export class IntentOutputsFormGroup extends React.Component<
                   form,
                   formIndex: FormIndexEnum.OUTPUTS,
                   itemKey: item.id,
-                  item: item as IntentPlainOutputType
+                  item: item as IntentPlainOutputType,
                 })}
-              </FormItem>
+              </FormItem>,
             );
             accumulator.data.push(item);
             break;
@@ -112,9 +105,9 @@ export class IntentOutputsFormGroup extends React.Component<
                   form,
                   formIndex: FormIndexEnum.OUTPUTS,
                   itemKey: item.id,
-                  item: item as IntentLinkOutputType
+                  item: item as IntentLinkOutputType,
                 })}
-              </FormItem>
+              </FormItem>,
             );
             accumulator.data.push(item);
             break;
@@ -131,9 +124,9 @@ export class IntentOutputsFormGroup extends React.Component<
                   formIndex: FormIndexEnum.OUTPUTS,
                   itemKey: item.id,
                   item: item as IntentJumpsOutputType,
-                  intents
+                  intents,
                 })}
-              </FormItem>
+              </FormItem>,
             );
             accumulator.data.push(item);
             break;
@@ -141,13 +134,11 @@ export class IntentOutputsFormGroup extends React.Component<
 
         return accumulator;
       },
-      { components: [], data: [] }
+      { components: [], data: [] },
     );
   }
 
-  private getNewOutputItem(
-    type: IntentOutputTypeEnum
-  ): IntentOutputDisplayType {
+  private getNewOutputItem(type: IntentOutputTypeEnum): IntentOutputDisplayType {
     const id = uuid();
     switch (type) {
       case IntentOutputTypeEnum.JUMPS:
@@ -155,10 +146,10 @@ export class IntentOutputsFormGroup extends React.Component<
           id,
           ...({
             value: {
-              jumps: []
+              jumps: [],
             },
-            type: IntentOutputTypeEnum.JUMPS
-          } as IntentJumpsOutputType)
+            type: IntentOutputTypeEnum.JUMPS,
+          } as IntentJumpsOutputType),
         };
       case IntentOutputTypeEnum.LINK:
         return {
@@ -166,20 +157,20 @@ export class IntentOutputsFormGroup extends React.Component<
           ...({
             value: {
               label: "",
-              link: ""
+              link: "",
             },
-            type: IntentOutputTypeEnum.LINK
-          } as IntentLinkOutputType)
+            type: IntentOutputTypeEnum.LINK,
+          } as IntentLinkOutputType),
         };
       case IntentOutputTypeEnum.PLAIN:
         return {
           id,
           ...({
             value: {
-              label: ""
+              label: "",
             },
-            type: IntentOutputTypeEnum.PLAIN
-          } as IntentPlainOutputType)
+            type: IntentOutputTypeEnum.PLAIN,
+          } as IntentPlainOutputType),
         };
       default:
         throw new Error(`Unknown output type ${type}`);
@@ -189,9 +180,9 @@ export class IntentOutputsFormGroup extends React.Component<
   private onOutputItemsSort = outputItems => {
     this.setState(
       {
-        outputs: reactNestableDumbIssueFixer(outputItems)
+        outputs: reactNestableDumbIssueFixer(outputItems),
       },
-      this.throwOnTouchToParent
+      this.throwOnTouchToParent,
     );
   };
 
@@ -200,9 +191,9 @@ export class IntentOutputsFormGroup extends React.Component<
 
     this.setState(
       {
-        outputs: outputs.concat(this.getNewOutputItem(type))
+        outputs: outputs.concat(this.getNewOutputItem(type)),
       },
-      this.throwOnTouchToParent
+      this.throwOnTouchToParent,
     );
   };
 
@@ -211,9 +202,9 @@ export class IntentOutputsFormGroup extends React.Component<
 
     this.setState(
       {
-        outputs: outputs.filter(output => output.id !== itemId)
+        outputs: outputs.filter(output => output.id !== itemId),
       },
-      this.throwOnTouchToParent
+      this.throwOnTouchToParent,
     );
   };
 
@@ -230,11 +221,11 @@ export class IntentOutputsFormGroup extends React.Component<
 
     if (formOutputs) {
       const updatedOutputs = outputs.map(output => ({
-        ...formOutputs[output.id]
+        ...formOutputs[output.id],
       }));
 
       this.setState({
-        outputs: updatedOutputs
+        outputs: updatedOutputs,
       });
     }
   }

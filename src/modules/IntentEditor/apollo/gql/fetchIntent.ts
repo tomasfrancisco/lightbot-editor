@@ -21,20 +21,16 @@ export interface FetchIntentResult extends QueryResult<FetchIntentData> {}
 
 export class FetchIntentQuery extends Query<FetchIntentData> {}
 
-export const fetchIntent = graphql<IntentEditorProps, {}, {}, {}>(
-  FETCH_INTENT_QUERY,
-  {
-    options: ({ agentId, intentId }) => ({
-      variables: {
-        agentId,
-        intentId
-      }
-    }),
-    props: ({ data }) => ({
-      intent: _get(data, ["intents", 0]),
-      loading: _get(data, ["loading"])
-    }),
-    skip: ({ agentId, intentId, isCreating }) =>
-      isCreating || (!agentId && !intentId)
-  }
-);
+export const fetchIntent = graphql<IntentEditorProps, {}, {}, {}>(FETCH_INTENT_QUERY, {
+  options: ({ agentId, intentId }) => ({
+    variables: {
+      agentId,
+      intentId,
+    },
+  }),
+  props: ({ data }) => ({
+    intent: _get(data, ["intents", 0]),
+    loading: _get(data, ["loading"]),
+  }),
+  skip: ({ agentId, intentId, isCreating }) => isCreating || (!agentId && !intentId),
+});

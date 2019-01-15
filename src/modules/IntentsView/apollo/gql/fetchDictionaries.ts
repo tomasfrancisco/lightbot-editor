@@ -16,17 +16,13 @@ export type FetchDictionariesData = {
   dictionaries: Dictionary[];
 };
 
-export interface FetchDictionariesResult
-  extends QueryResult<FetchDictionariesData> {}
+export interface FetchDictionariesResult extends QueryResult<FetchDictionariesData> {}
 
 export class FetchDictionariesQuery extends Query<FetchDictionariesData> {}
 
-export const fetchDictionaries = graphql<{}, {}, {}, {}>(
-  FETCH_DICTIONARIES_QUERY,
-  {
-    props: ({ data }) => ({
-      dictionaries: _get(data, ["dictionaries"]),
-      loading: _get(data, ["loading"])
-    })
-  }
-);
+export const fetchDictionaries = graphql<{}, {}, {}, {}>(FETCH_DICTIONARIES_QUERY, {
+  props: ({ data }) => ({
+    dictionaries: _get(data, ["dictionaries"]),
+    loading: _get(data, ["loading"]),
+  }),
+});

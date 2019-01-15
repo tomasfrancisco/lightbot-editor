@@ -29,15 +29,15 @@ export enum ActionType {}
 export type DeleteIntentFunction = (
   props: {
     variables: { intentId: string; withChildren: boolean };
-  }
+  },
 ) => void;
 
 const updateIntents = ({ cache, intentId, agentId }) => {
   const queryObj = {
     query: FETCH_INTENTS_QUERY,
     variables: {
-      agentId
-    }
+      agentId,
+    },
   };
 
   const data = cache.readQuery(queryObj);
@@ -45,13 +45,13 @@ const updateIntents = ({ cache, intentId, agentId }) => {
   if (data) {
     const filteredData = _remove(
       _get(data, ["intents"], []),
-      i => _get(i, ["id"], "") !== intentId
+      i => _get(i, ["id"], "") !== intentId,
     );
     const updatedData = _update(data, ["intents"], () => filteredData);
 
     cache.writeQuery({
       ...queryObj,
-      data: updatedData
+      data: updatedData,
     });
   }
 };
@@ -63,10 +63,10 @@ export const deleteIntent = graphql<{}, {}, {}, {}>(DELETE_INTENT_QUERY, {
       updateIntents({
         cache,
         agentId,
-        intentId
+        intentId,
       });
 
       return null;
-    }
-  })
+    },
+  }),
 });

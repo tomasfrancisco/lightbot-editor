@@ -26,7 +26,7 @@ const hexToRgba = (hex: string): RGBAColor | undefined => {
         r: `${parseInt(getColor(hex)[1], 16)}`,
         g: `${parseInt(getColor(hex)[2], 16)}`,
         b: `${parseInt(getColor(hex)[3], 16)}`,
-        a: "1"
+        a: "1",
       }
     : undefined;
 };
@@ -35,7 +35,7 @@ const hexToRgb = (hex: string): RGBColor | undefined => {
     ? {
         r: `${parseInt(getColor(hex)[1], 16)}`,
         g: `${parseInt(getColor(hex)[2], 16)}`,
-        b: `${parseInt(getColor(hex)[3], 16)}`
+        b: `${parseInt(getColor(hex)[3], 16)}`,
       }
     : undefined;
 };

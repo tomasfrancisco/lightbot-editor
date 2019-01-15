@@ -22,25 +22,17 @@ export type DeleteUnknownTriggerData = {
   unknownTrigger: UnknownTrigger;
 };
 
-export interface DeleteUnknownTriggerResult
-  extends QueryResult<DeleteUnknownTriggerData> {}
+export interface DeleteUnknownTriggerResult extends QueryResult<DeleteUnknownTriggerData> {}
 
 export type DeleteUnknownTriggerFunction = (
-  props: { variables: { triggersToDelete: DeleteUnknownTriggers } }
+  props: { variables: { triggersToDelete: DeleteUnknownTriggers } },
 ) => Promise<DeleteUnknownTriggerResult>;
 
-export const deleteUnknownTrigger = graphql<{}, {}, {}, {}>(
-  DELETE_UNKNOWN_TRIGGER_QUERY,
-  {
-    name: "onDeleteUnknownTrigger",
-    options: ({ selectedTriggers, agentId }: DeleteUnknownTriggersProps) => ({
-      update: cache => {
-        deleteUnknownTriggerFromCache(
-          cache,
-          getUnknownTriggerIds(selectedTriggers),
-          agentId
-        );
-      }
-    })
-  }
-);
+export const deleteUnknownTrigger = graphql<{}, {}, {}, {}>(DELETE_UNKNOWN_TRIGGER_QUERY, {
+  name: "onDeleteUnknownTrigger",
+  options: ({ selectedTriggers, agentId }: DeleteUnknownTriggersProps) => ({
+    update: cache => {
+      deleteUnknownTriggerFromCache(cache, getUnknownTriggerIds(selectedTriggers), agentId);
+    },
+  }),
+});

@@ -8,7 +8,7 @@ import {
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
-  sectionWithRigthMargin
+  sectionWithRigthMargin,
 } from "~/components/Section";
 import { Keyword } from "~/models";
 
@@ -41,7 +41,7 @@ export class KeywordsSelectorView extends React.Component<
     super(props);
 
     this.state = {
-      searchValue: ""
+      searchValue: "",
     };
   }
   public render() {
@@ -79,7 +79,7 @@ export class KeywordsSelectorView extends React.Component<
 
     if (keywords) {
       return keywords.filter(keyword =>
-        keyword.name.toLowerCase().includes(searchValue.toLowerCase())
+        keyword.name.toLowerCase().includes(searchValue.toLowerCase()),
       );
     }
 
@@ -94,7 +94,7 @@ export class KeywordsSelectorView extends React.Component<
     return this.getFilteredKeywordsList().map(keyword => {
       return {
         id: keyword.id,
-        title: keyword.name
+        title: keyword.name,
       };
     });
   }

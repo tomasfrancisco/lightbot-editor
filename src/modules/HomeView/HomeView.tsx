@@ -14,8 +14,6 @@ const Wrapper = styled("div")`
 export const HomeView = () => (
   <Wrapper>
     <h1>Welcome to Lightbot</h1>
-    <Link to={Routing.routes[RoutesKeysEnum.LOGIN].routeProps.path as string}>
-      Login
-    </Link>
+    <Link to={Routing.routes[RoutesKeysEnum.LOGIN].routeProps.path as string}>Login</Link>
   </Wrapper>
 );

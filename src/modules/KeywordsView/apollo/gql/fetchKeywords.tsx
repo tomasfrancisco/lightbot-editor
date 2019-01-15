@@ -15,7 +15,7 @@ export const fetchKeywords = graphql<{}, {}, {}, {}>(FETCH_KEYWORDS_QUERY, {
   props: ({ data }) => {
     return {
       keywords: _get(data, ["dictionaries"], []),
-      loading: _get(data, ["loading"])
+      loading: _get(data, ["loading"]),
     };
-  }
+  },
 });

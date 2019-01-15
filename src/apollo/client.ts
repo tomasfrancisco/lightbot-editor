@@ -9,8 +9,5 @@ import { logoutLink } from "./logoutLink";
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
   connectToDevTools: process.env.NODE_ENV === "development",
-  link: ApolloLink.from([
-    stateLink,
-    authLink.concat(logoutLink.concat(httpLink))
-  ])
+  link: ApolloLink.from([stateLink, authLink.concat(logoutLink.concat(httpLink))]),
 });

@@ -27,8 +27,7 @@ export type MoveUnknownTriggersData = {
   updatedIntent: Intent;
 };
 
-export interface MoveUnknownTriggersResult
-  extends QueryResult<MoveUnknownTriggersData> {}
+export interface MoveUnknownTriggersResult extends QueryResult<MoveUnknownTriggersData> {}
 
 export type OnMoveUnknownTriggersFunction = (
   props: {
@@ -37,29 +36,23 @@ export type OnMoveUnknownTriggersFunction = (
       unknownTriggerIds: string[];
       intentId: string;
     };
-  }
+  },
 ) => Promise<MoveUnknownTriggersResult>;
 
 export const moveUnknownTriggersToIntent = graphql<{}, {}, {}, {}>(
   MOVE_UNKNOWN_TRIGGERS_TO_INTENT_QUERY,
   {
     name: "onMoveUnknownTriggersToIntent",
-    options: ({
-      selectedUnknownTriggers,
-      agentId
-    }: UnknownTriggerSaveProps) => ({
+    options: ({ selectedUnknownTriggers, agentId }: UnknownTriggerSaveProps) => ({
       update: (cache, mutationResult) => {
-        const updatedIntent: Intent = _get(mutationResult, [
-          "data",
-          "moveUnknownTriggersToIntent"
-        ]);
+        const updatedIntent: Intent = _get(mutationResult, ["data", "moveUnknownTriggersToIntent"]);
         deleteUnknownTriggerFromCache(
           cache,
           getUnknownTriggerIds(selectedUnknownTriggers || []),
-          agentId
+          agentId,
         );
         updateIntentInCache(agentId, cache, updatedIntent);
-      }
-    })
-  }
+      },
+    }),
+  },
 );

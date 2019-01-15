@@ -3,7 +3,7 @@ import _get from "lodash.get";
 import { graphql, QueryResult } from "react-apollo";
 import {
   updateKeywordsList,
-  updateSelectedKeywordCache
+  updateSelectedKeywordCache,
 } from "~/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
 
 export type CreateDictionaryData = {
@@ -39,7 +39,7 @@ export interface CreateKeywordResult extends QueryResult<CreateKeywordData> {}
 export type CreateKeywordFunction = (
   props: {
     variables: { keyword: CreateDictionaryData };
-  }
+  },
 ) => Promise<CreateKeywordResult>;
 
 export const createKeyword = graphql<{}, {}, {}, {}>(MUTATION_QUERY, {
@@ -51,6 +51,6 @@ export const createKeyword = graphql<{}, {}, {}, {}>(MUTATION_QUERY, {
       updateKeywordsList(cache, updatedKeyword);
 
       updateSelectedKeywordCache(cache, updatedKeyword);
-    }
-  })
+    },
+  }),
 });

@@ -19,13 +19,7 @@ export type InputProps = FormComponentProps & {
  * This component should be called as a function and not as a JSX component
  * Otherwise, the form is not going to recognize this field and not throw erros
  */
-export const renderInput = ({
-  itemKey,
-  form,
-  value,
-  placeholder,
-  rules = []
-}: InputProps) =>
+export const renderInput = ({ itemKey, form, value, placeholder, rules = [] }: InputProps) =>
   form &&
   form.getFieldDecorator(`values[${itemKey}]`, {
     initialValue: value,
@@ -33,10 +27,10 @@ export const renderInput = ({
       {
         message: "Please input a user expression or delete this field.",
         required: true,
-        whitespace: true
+        whitespace: true,
       },
-      ...rules
+      ...rules,
     ],
     validateFirst: true,
-    validateTrigger: ["onChange", "onBlur"]
+    validateTrigger: ["onChange", "onBlur"],
   })(<Input placeholder={placeholder} className={inputStyle} />);

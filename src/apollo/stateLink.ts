@@ -7,5 +7,5 @@ const inMemoryCache = new InMemoryCache();
 export const stateLink = withClientState({
   cache: inMemoryCache,
   defaults,
-  resolvers
+  resolvers,
 });

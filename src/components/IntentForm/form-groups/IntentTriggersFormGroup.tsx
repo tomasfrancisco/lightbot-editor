@@ -2,19 +2,10 @@ import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import uuid from "uuid/v4";
 import { FormGroup, FormItem } from "~/components/Form";
-import {
-  renderCombinationTriggerInput,
-  renderPlainTriggerInput
-} from "~/components/Form/wrappers";
+import { renderCombinationTriggerInput, renderPlainTriggerInput } from "~/components/Form/wrappers";
 import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
 import { TriggerAddButtonGroup } from "~/components/IntentForm/TriggerAddButtonGroup";
-import {
-  CombinationTrigger,
-  Dictionary,
-  PlainTrigger,
-  Trigger,
-  TriggerTypeEnum
-} from "~/models";
+import { CombinationTrigger, Dictionary, PlainTrigger, Trigger, TriggerTypeEnum } from "~/models";
 
 type TriggerItemsType = {
   components: React.ReactNode[];
@@ -27,9 +18,7 @@ type IntentTriggersFormGroupProps = FormComponentProps & {
   onTouch?(): void;
 };
 
-export class IntentTriggersFormGroup extends React.Component<
-  IntentTriggersFormGroupProps
-> {
+export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormGroupProps> {
   public render() {
     const triggerItems = this.getTriggerItems();
     return (
@@ -49,7 +38,7 @@ export class IntentTriggersFormGroup extends React.Component<
 
     const searchResults = (dictionaries || []).map(dictionary => ({
       key: dictionary.id,
-      value: `$${dictionary.name}`
+      value: `$${dictionary.name}`,
     }));
 
     return keys[FormIndexEnum.TRIGGERS].reduce(
@@ -61,7 +50,7 @@ export class IntentTriggersFormGroup extends React.Component<
           type: itemKey.includes(TriggerTypeEnum.PLAIN)
             ? TriggerTypeEnum.PLAIN
             : TriggerTypeEnum.COMBINATION,
-          value: itemKey.includes(TriggerTypeEnum.PLAIN) ? [""] : []
+          value: itemKey.includes(TriggerTypeEnum.PLAIN) ? [""] : [],
         };
 
         const onRemoveHandler = this.getOnRemoveHandler(itemKey);
@@ -79,9 +68,9 @@ export class IntentTriggersFormGroup extends React.Component<
                   form,
                   formIndex: FormIndexEnum.TRIGGERS,
                   item: item as PlainTrigger,
-                  validTags: searchResults.map(i => i.value)
+                  validTags: searchResults.map(i => i.value),
                 })}
-              </FormItem>
+              </FormItem>,
             );
             break;
           case TriggerTypeEnum.COMBINATION:
@@ -96,15 +85,15 @@ export class IntentTriggersFormGroup extends React.Component<
                   form,
                   formIndex: FormIndexEnum.TRIGGERS,
                   item: item as CombinationTrigger,
-                  searchResults
+                  searchResults,
                 })}
-              </FormItem>
+              </FormItem>,
             );
             break;
         }
         return accumulator;
       },
-      { components: [] }
+      { components: [] },
     );
   }
 
@@ -115,7 +104,7 @@ export class IntentTriggersFormGroup extends React.Component<
     nextKeys[FormIndexEnum.TRIGGERS].push(`${type}-${uuid()}`);
 
     form.setFieldsValue({
-      [formKey]: nextKeys
+      [formKey]: nextKeys,
     });
 
     if (onTouch) {
@@ -127,12 +116,10 @@ export class IntentTriggersFormGroup extends React.Component<
     const { form, formKey, onTouch } = this.props;
 
     const nextKeys = form.getFieldValue(formKey);
-    nextKeys[FormIndexEnum.TRIGGERS] = nextKeys[FormIndexEnum.TRIGGERS].filter(
-      key => key !== k
-    );
+    nextKeys[FormIndexEnum.TRIGGERS] = nextKeys[FormIndexEnum.TRIGGERS].filter(key => key !== k);
 
     form.setFieldsValue({
-      [formKey]: nextKeys
+      [formKey]: nextKeys,
     });
 
     if (onTouch) {

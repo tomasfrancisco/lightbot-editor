@@ -28,10 +28,7 @@ export class Widget extends React.Component<WidgetProps> {
   }
 }
 
-export const removeWidget = (
-  isToReplace: boolean,
-  script?: HTMLScriptElement
-) => {
+export const removeWidget = (isToReplace: boolean, script?: HTMLScriptElement) => {
   const widgetElement = document.getElementById("lightbot");
   const element = document.getElementById("lightbot-widget");
   if (element) {
