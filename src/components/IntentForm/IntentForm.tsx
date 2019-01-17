@@ -134,8 +134,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
               defaultActiveKey={[FormIndexEnum.TRIGGERS, FormIndexEnum.OUTPUTS]}
             >
               <FormPanel
-                // @ts-ignore
-                id={ElementIdsEnum.INTENT_EDITOR_TRIGGERS}
+                {...{ id: ElementIdsEnum.INTENT_EDITOR_TRIGGERS }}
                 key={FormIndexEnum.TRIGGERS}
                 header={<FormPanelHeader>User says</FormPanelHeader>}
               >
@@ -144,11 +143,11 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
                   formKey={this.formKey}
                   triggers={intent.triggers}
                   dictionaries={dictionaries}
+                  onTouch={this.props.onTouch}
                 />
               </FormPanel>
               <FormPanel
-                // @ts-ignore
-                id={ElementIdsEnum.INTENT_EDITOR_OUTPUTS}
+                {...{ id: ElementIdsEnum.INTENT_EDITOR_OUTPUTS }}
                 key={FormIndexEnum.OUTPUTS}
                 header={<FormPanelHeader>Bot says</FormPanelHeader>}
               >
@@ -203,17 +202,13 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
   };
 
   private initForm(props: IntentFormProps) {
-    const { form, intent } = props;
-
-    const initialValue = {
-      [FormIndexEnum.TRIGGERS]: intent.triggers.map(trigger => trigger.id),
-    };
-    form.getFieldDecorator(this.formKey, { initialValue });
+    const { form } = props;
+    form.getFieldDecorator(this.formKey);
   }
 }
 
 export const IntentForm = Form.create<IntentFormProps>({
-  onFieldsChange: props => {
+  onValuesChange: props => {
     props.onTouch();
   },
 })(IntentFormDisconnected);

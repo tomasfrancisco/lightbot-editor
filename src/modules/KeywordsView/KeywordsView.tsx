@@ -47,9 +47,8 @@ class KeywordsViewDisconnected extends React.Component<KeywordsViewProps> {
             )}
           </Col>
           <Col span={14}>
-            {selectedKeyword && selectedKeyword.id && (
-              <KeywordEditorView selectedKeyword={selectedKeyword} />
-            )}
+            {selectedKeyword &&
+              selectedKeyword.id && <KeywordEditorView selectedKeyword={selectedKeyword} />}
           </Col>
         </Row>
       </LightbotLayout>

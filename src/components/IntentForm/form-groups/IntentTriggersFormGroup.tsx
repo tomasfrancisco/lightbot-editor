@@ -18,7 +18,26 @@ type IntentTriggersFormGroupProps = FormComponentProps & {
   onTouch?(): void;
 };
 
-export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormGroupProps> {
+type IntentTriggersFormGroupState = {
+  triggers: Trigger[];
+};
+
+export class IntentTriggersFormGroup extends React.Component<
+  IntentTriggersFormGroupProps,
+  IntentTriggersFormGroupState
+> {
+  constructor(props: IntentTriggersFormGroupProps) {
+    super(props);
+
+    this.state = {
+      triggers: props.triggers,
+    };
+  }
+
+  public componentWillReceiveProps(nextProps) {
+    this.updateTriggersState(nextProps);
+  }
+
   public render() {
     const triggerItems = this.getTriggerItems();
     return (
@@ -33,7 +52,8 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
   }
 
   private getTriggerItems(): TriggerItemsType {
-    const { form, triggers, dictionaries, formKey } = this.props;
+    const { form, dictionaries, formKey } = this.props;
+    const { triggers } = this.state;
     const keys = form.getFieldValue(formKey);
 
     const searchResults = (dictionaries || []).map(dictionary => ({
@@ -41,25 +61,15 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
       value: `$${dictionary.name}`,
     }));
 
-    return keys[FormIndexEnum.TRIGGERS].reduce(
-      (accumulator, itemKey) => {
-        const existingItem = triggers.find(t => t.id === itemKey);
+    return triggers.reduce<TriggerItemsType>(
+      (accumulator, trigger) => {
+        const onRemoveHandler = this.getOnRemoveHandler(trigger.id);
 
-        const item = existingItem || {
-          id: itemKey,
-          type: itemKey.includes(TriggerTypeEnum.PLAIN)
-            ? TriggerTypeEnum.PLAIN
-            : TriggerTypeEnum.COMBINATION,
-          value: itemKey.includes(TriggerTypeEnum.PLAIN) ? [""] : [],
-        };
-
-        const onRemoveHandler = this.getOnRemoveHandler(itemKey);
-
-        switch (item.type) {
+        switch (trigger.type) {
           case TriggerTypeEnum.PLAIN:
             accumulator.components.push(
               <FormItem
-                key={item.id}
+                key={trigger.id}
                 onRemove={onRemoveHandler}
                 removeTooltipTitle={"Remove"}
                 iconType="message"
@@ -67,7 +77,7 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
                 {renderPlainTriggerInput({
                   form,
                   formIndex: FormIndexEnum.TRIGGERS,
-                  item: item as PlainTrigger,
+                  item: trigger as PlainTrigger,
                   validTags: searchResults.map(i => i.value),
                 })}
               </FormItem>,
@@ -76,7 +86,7 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
           case TriggerTypeEnum.COMBINATION:
             accumulator.components.push(
               <FormItem
-                key={item.id}
+                key={trigger.id}
                 onRemove={onRemoveHandler}
                 removeTooltipTitle={"Remove"}
                 iconType="tags-o"
@@ -84,7 +94,7 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
                 {renderCombinationTriggerInput({
                   form,
                   formIndex: FormIndexEnum.TRIGGERS,
-                  item: item as CombinationTrigger,
+                  item: trigger as CombinationTrigger,
                   searchResults,
                 })}
               </FormItem>,
@@ -98,29 +108,61 @@ export class IntentTriggersFormGroup extends React.Component<IntentTriggersFormG
   }
 
   private getOnAddHandler = (type: TriggerTypeEnum) => () => {
-    const { form, formKey, onTouch } = this.props;
+    const { triggers } = this.state;
 
-    const nextKeys = form.getFieldValue(formKey);
-    nextKeys[FormIndexEnum.TRIGGERS].push(`${type}-${uuid()}`);
-
-    form.setFieldsValue({
-      [formKey]: nextKeys,
-    });
-
-    if (onTouch) {
-      onTouch();
-    }
+    this.setState(
+      {
+        triggers: triggers.concat({
+          id: uuid(),
+          type,
+          value: type === TriggerTypeEnum.PLAIN ? [""] : [],
+        }),
+      },
+      this.throwOnTouchToParent,
+    );
   };
 
-  private getOnRemoveHandler = k => () => {
-    const { form, formKey, onTouch } = this.props;
+  private getOnRemoveHandler = (itemId: string) => () => {
+    const { triggers } = this.state;
 
-    const nextKeys = form.getFieldValue(formKey);
-    nextKeys[FormIndexEnum.TRIGGERS] = nextKeys[FormIndexEnum.TRIGGERS].filter(key => key !== k);
+    this.setState(
+      {
+        triggers: triggers.filter(trigger => trigger.id !== itemId),
+      },
+      this.throwOnTouchToParent,
+    );
+  };
 
-    form.setFieldsValue({
-      [formKey]: nextKeys,
-    });
+  private getTriggersState(form) {
+    const values = form.getFieldValue("values");
+    const formTriggers: { [triggerId: string]: Trigger } = values[FormIndexEnum.TRIGGERS];
+
+    return formTriggers;
+  }
+
+  private updateTriggersState(nextProps: IntentTriggersFormGroupProps) {
+    const { triggers } = this.state;
+    const formTriggers = this.getTriggersState(nextProps.form);
+
+    if (formTriggers) {
+      const updatedTriggers: Trigger[] = triggers.reduce<Trigger[]>((accumulator, trigger) => {
+        const foundFormTrigger = formTriggers[trigger.id];
+
+        if (foundFormTrigger) {
+          accumulator.push(foundFormTrigger);
+        }
+
+        return accumulator;
+      }, []);
+
+      this.setState({
+        triggers: updatedTriggers,
+      });
+    }
+  }
+
+  private throwOnTouchToParent = () => {
+    const { onTouch } = this.props;
 
     if (onTouch) {
       onTouch();
