@@ -54,7 +54,7 @@ export type KeywordEditorFormProps = FormComponentProps & {
 };
 
 type State = {
-  batchValues: KeywordValue[];
+  values: KeywordValue[];
   searchValue: string;
 };
 
@@ -63,7 +63,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
     super(props);
 
     this.state = {
-      batchValues: new Array<KeywordValue>(),
+      values: props.values,
       searchValue: "",
     };
 
@@ -136,62 +136,27 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
   };
 
   private initForm() {
-    const { form, values } = this.props;
-    if (values) {
-      const initialValue = values.map(value => value.id);
-
-      form.getFieldDecorator(FormEnum.KEYWORD_FORM, {
-        initialValue,
-      });
-    }
+    const { form } = this.props;
+    form.getFieldDecorator(FormEnum.KEYWORD_FORM);
   }
 
   private renderItems = () => {
-    const { form, values } = this.props;
-    const { batchValues } = this.state;
-    const keys = form.getFieldValue(FormEnum.KEYWORD_FORM);
-    const updatedFormValues = form.getFieldsValue();
+    const { form } = this.props;
+    const { values } = this.state;
 
-    return keys.map(itemKey => {
-      let item = values.find(t => t.id === itemKey);
-
-      if (!item) {
-        item = batchValues.find(t => t.id === itemKey);
-      }
-
-      const onRemoveHandler = this.getOnRemove(itemKey);
+    return values.map(keyword => {
+      const onRemoveHandler = this.getOnRemove(keyword.id);
 
       const props = {
         form,
-        itemKey,
+        itemKey: keyword.id,
         placeholder: "Keyword",
         rules: [getDuplicateKeywordValidator(form)],
-        value: this.getUpdatedValueToItemKey(itemKey, _get(updatedFormValues, "values", {})),
+        value: keyword.value,
       };
 
       return this.renderInput(props, onRemoveHandler);
     });
-  };
-
-  private getUpdatedValueToItemKey = (itemKey: string, updatedFormValues: {}) => {
-    const { values } = this.props;
-    const { batchValues } = this.state;
-
-    if (updatedFormValues[itemKey]) {
-      return updatedFormValues[itemKey];
-    }
-
-    let item = values.find(t => t.id === itemKey);
-    if (item) {
-      return item.value;
-    }
-
-    item = batchValues.find(t => t.id === itemKey);
-    if (item) {
-      return item.value;
-    }
-
-    return "";
   };
 
   private renderInput = (props: InputProps, onRemoveHandler: () => void) => {
@@ -217,12 +182,12 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
 
   private onAddBatchFields = (newValues: BatchInput[]) => {
     const { form, selectedKeyword } = this.props;
-    const { batchValues } = this.state;
+    const { values } = this.state;
 
     const nextKeys = form.getFieldValue(FormEnum.KEYWORD_FORM);
 
     for (const newValue of newValues) {
-      batchValues.push({
+      values.push({
         id: newValue.id,
         keywordId: selectedKeyword.id,
         value: newValue.value,
@@ -230,12 +195,8 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
       nextKeys.push(newValue.id);
     }
 
-    form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys,
-    });
-
     this.setState({
-      batchValues,
+      values,
     });
   };
 
