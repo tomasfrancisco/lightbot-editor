@@ -17,7 +17,7 @@ export type InputProps = FormComponentProps & {
 
 /**
  * This component should be called as a function and not as a JSX component
- * Otherwise, the form is not going to recognize this field and not throw erros
+ * Otherwise, the form is not going to recognize this field and not throw errors
  */
 export const renderInput = ({ itemKey, form, value, placeholder, rules = [] }: InputProps) =>
   form &&

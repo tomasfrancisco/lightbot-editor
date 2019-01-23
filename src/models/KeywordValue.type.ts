@@ -5,6 +5,5 @@
 
 export type KeywordValue = {
   id: string;
-  keywordId: string;
   value: string;
 };

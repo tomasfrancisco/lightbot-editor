@@ -54,8 +54,8 @@ export type KeywordEditorFormProps = FormComponentProps & {
 };
 
 type State = {
-  values: KeywordValue[];
-  searchValue: string;
+  keywordValues: ReadonlyArray<KeywordValue>;
+  readonly searchValue: string;
 };
 
 export class KeywordEditorFormDisconnected extends React.Component<KeywordEditorFormProps, State> {
@@ -63,7 +63,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
     super(props);
 
     this.state = {
-      values: props.values,
+      keywordValues: [...props.values],
       searchValue: "",
     };
 
@@ -74,8 +74,8 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
     const { selectedKeyword, form, isTouched } = this.props;
 
     return (
-      <Form layout="vertical">
-        <Section id={ElementIdsEnum.KEYWORD_EDITOR}>
+      <Form id={ElementIdsEnum.KEYWORD_EDITOR} layout="vertical">
+        <Section>
           <SectionHeader alignment={"left"}>
             <SectionHeaderNavContainer>
               <TitleInput
@@ -115,7 +115,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
           <SectionContent className={topSpaceSectionContentStyle}>
             {this.renderItems()}
             <FormItem>
-              <Button onClick={this.getOnAdd} level="secondary" block={true}>
+              <Button onClick={this.onAdd} level="secondary" block={true}>
                 <Icon type="plus" />
                 Add Keyword
               </Button>
@@ -142,9 +142,9 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
 
   private renderItems = () => {
     const { form } = this.props;
-    const { values } = this.state;
+    const { keywordValues } = this.state;
 
-    return values.map(keyword => {
+    return keywordValues.map(keyword => {
       const onRemoveHandler = this.getOnRemove(keyword.id);
 
       const props = {
@@ -181,45 +181,37 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
   };
 
   private onAddBatchFields = (newValues: BatchInput[]) => {
-    const { form, selectedKeyword } = this.props;
-    const { values } = this.state;
+    const { keywordValues } = this.state;
 
-    const nextKeys = form.getFieldValue(FormEnum.KEYWORD_FORM);
-
+    const keywordValuesFromBatch: BatchInput[] = [];
     for (const newValue of newValues) {
-      values.push({
+      keywordValuesFromBatch.push({
         id: newValue.id,
-        keywordId: selectedKeyword.id,
         value: newValue.value,
       });
-      nextKeys.push(newValue.id);
     }
 
     this.setState({
-      values,
+      keywordValues: keywordValues.concat(keywordValuesFromBatch),
     });
   };
 
-  private getOnAdd = () => {
-    const { form } = this.props;
+  private onAdd = () => {
+    const { keywordValues } = this.state;
 
-    const nextKeys = form.getFieldValue(FormEnum.KEYWORD_FORM);
-    nextKeys.push(uuid());
-
-    form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys,
+    this.setState({
+      keywordValues: keywordValues.concat({
+        id: uuid(),
+        value: "",
+      }),
     });
   };
 
-  private getOnRemove = k => () => {
-    const { form } = this.props;
+  private getOnRemove = (keyId: string) => () => {
+    const { keywordValues } = this.state;
 
-    let nextKeys = form.getFieldValue(FormEnum.KEYWORD_FORM);
-
-    nextKeys = nextKeys.filter(key => key !== k);
-
-    form.setFieldsValue({
-      [FormEnum.KEYWORD_FORM]: nextKeys,
+    this.setState({
+      keywordValues: keywordValues.filter(value => value.id !== keyId),
     });
   };
 
