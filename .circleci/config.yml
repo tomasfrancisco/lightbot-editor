@@ -1,0 +1,18 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:10.10
+
+
+version: 2
+jobs:
+  build_editor:
+    <<: *defaults
+    steps:
+      - yarn install
+      - yarn build
+  test_editor:
+    <<: *defaults
+    steps:
+      - yarn install
+      - yarn prettier
+      - yarn test:coverage
