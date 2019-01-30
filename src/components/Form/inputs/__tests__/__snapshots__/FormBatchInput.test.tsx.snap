@@ -25,5 +25,6 @@ exports[`components/Form/inputs/FormBatchInput renders 1`] = `
       "validateFieldsAndScroll": [Function],
     }
   }
+  onAddBatchFields={[Function]}
 />
 `;
