@@ -1,5 +1,5 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { Icon, message } from "antd";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 import * as React from "react";
 import { Redirect } from "react-router";
 

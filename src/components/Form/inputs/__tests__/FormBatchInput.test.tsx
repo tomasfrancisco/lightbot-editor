@@ -1,7 +1,7 @@
 import { Form as AntdForm } from "antd";
 import { shallow } from "enzyme";
 import * as React from "react";
-import { FormBatchInput } from "~/components/Form/inputs";
+import { FormBatchInput } from "src/components/Form/inputs";
 
 describe("components/Form/inputs/FormBatchInput", () => {
   test("renders", () => {

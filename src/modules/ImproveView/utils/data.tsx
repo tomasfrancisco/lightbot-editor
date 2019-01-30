@@ -1,5 +1,5 @@
-import { UnknownTrigger } from "~/models";
-import { ColumnData, ColumnItem, getFormattedDate } from "~/modules/ImproveView/utils";
+import { UnknownTrigger } from "src/models";
+import { ColumnData, ColumnItem, getFormattedDate } from "src/modules/ImproveView/utils";
 
 export const CREATE_INTENT_ID = "0";
 export const NEW_INTENT_KEY_NAME = "newIntentName";

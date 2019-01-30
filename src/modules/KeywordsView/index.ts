@@ -1,1 +1,1 @@
-export * from "~/modules/KeywordsView/KeywordsView";
+export * from "src/modules/KeywordsView/KeywordsView";

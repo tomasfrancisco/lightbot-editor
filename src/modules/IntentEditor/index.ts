@@ -1,1 +1,1 @@
-export * from "~/modules/IntentEditor/IntentEditor";
+export * from "src/modules/IntentEditor/IntentEditor";

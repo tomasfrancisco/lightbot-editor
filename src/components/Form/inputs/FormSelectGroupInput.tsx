@@ -4,11 +4,11 @@ import _clone from "lodash.clone";
 import _find from "lodash.find";
 import _get from "lodash.get";
 import * as React from "react";
-import { FormCol, FormRow } from "~/components/Form/layout";
+import { FormCol, FormRow } from "src/components/Form/layout";
 
 type FormSelectGroupInputProps = {
   value?: string[];
-  searchResults: Array<{ key: string; value: string }>;
+  searchResults: Array<{ key: number; value: string }>;
   onChange?(value: string[]): void;
   onFetch?(): void;
 };
@@ -17,11 +17,7 @@ type FormSelectGroupInputState = {
   hasThird: boolean;
 };
 
-export enum FormSelectGroupEnum {
-  FIRST = 0,
-  SECOND = 1,
-  THIRD = 2,
-}
+export type FormSelectGroupIndex = "0" | "1" | "2";
 
 class FormSelectGroupInput extends React.Component<
   FormSelectGroupInputProps,
@@ -47,28 +43,28 @@ class FormSelectGroupInput extends React.Component<
       <FormRow>
         <FormCol span={8}>
           <Select
-            onChange={this.getOnChangeHandler(FormSelectGroupEnum.FIRST)}
+            onChange={this.getOnChangeHandler("0")}
             showSearch={true}
             placeholder="Keyword"
             optionFilterProp="children"
-            value={value[FormSelectGroupEnum.FIRST]}
+            value={value[0]}
             allowClear={true}
             filterOption={true}
-            onFocus={this.getOnFocusHandler(FormSelectGroupEnum.FIRST)}
+            onFocus={this.getOnFocusHandler("0")}
           >
             {this.renderSearchResults()}
           </Select>
         </FormCol>
         <FormCol span={8}>
           <Select
-            onChange={this.getOnChangeHandler(FormSelectGroupEnum.SECOND)}
+            onChange={this.getOnChangeHandler("1")}
             showSearch={true}
             placeholder="Keyword"
             optionFilterProp="children"
-            value={value[FormSelectGroupEnum.SECOND]}
+            value={value[1]}
             allowClear={true}
             filterOption={true}
-            onFocus={this.getOnFocusHandler(FormSelectGroupEnum.SECOND)}
+            onFocus={this.getOnFocusHandler("1")}
           >
             {this.renderSearchResults()}
           </Select>
@@ -76,14 +72,14 @@ class FormSelectGroupInput extends React.Component<
         <FormCol span={8}>
           {(hasThird && (
             <Select
-              onChange={this.getOnChangeHandler(FormSelectGroupEnum.THIRD)}
+              onChange={this.getOnChangeHandler("2")}
               showSearch={true}
               placeholder="Keyword"
               optionFilterProp="children"
-              value={value[FormSelectGroupEnum.THIRD]}
+              value={value[2]}
               allowClear={true}
               filterOption={true}
-              onFocus={this.getOnFocusHandler(FormSelectGroupEnum.THIRD)}
+              onFocus={this.getOnFocusHandler("2")}
             >
               {this.renderSearchResults()}
             </Select>
@@ -109,7 +105,7 @@ class FormSelectGroupInput extends React.Component<
 
   private onAddThirdClick = () => this.setState({ hasThird: true });
 
-  private getOnChangeHandler = (step: FormSelectGroupEnum) => stepValue => {
+  private getOnChangeHandler = (step: FormSelectGroupIndex) => stepValue => {
     const { onChange, searchResults } = this.props;
     if (!onChange) {
       return;
@@ -128,7 +124,7 @@ class FormSelectGroupInput extends React.Component<
     }
   };
 
-  private getOnFocusHandler = (step: FormSelectGroupEnum) => () => {
+  private getOnFocusHandler = (step: FormSelectGroupIndex) => () => {
     const { onFetch } = this.props;
     if (onFetch) {
       onFetch();
@@ -140,7 +136,7 @@ export type RenderFormSelectGroupInputProps = FormComponentProps & {
   value: any;
   itemKey: string;
   errorMessage?: string;
-  searchResults: Array<{ key: string; value: string }>;
+  searchResults: Array<{ key: number; value: string }>;
   min: number;
   type: string;
   getValueFromEvent?(e): any;

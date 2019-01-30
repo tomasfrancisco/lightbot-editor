@@ -1,5 +1,5 @@
 import styled, { css } from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 export const inputStyle = css`
   width: 165px;

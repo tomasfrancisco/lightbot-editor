@@ -1,8 +1,8 @@
 import { Icon } from "antd";
 import * as React from "react";
-import { Button } from "~/components/Button";
-import { FormItemContainer } from "~/components/Form";
-import { FormCol, FormRow } from "~/components/Form/layout";
+import { Button } from "src/components/Button";
+import { FormItemContainer } from "src/components/Form";
+import { FormCol, FormRow } from "src/components/Form/layout";
 
 type TriggerAddButtonProps = {
   onTextClick(): void;

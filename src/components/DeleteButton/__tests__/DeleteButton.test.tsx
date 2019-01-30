@@ -1,10 +1,10 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { DefaultDeleteActionEnum, DeleteAction, DeleteButton } from "~/components/DeleteButton";
+import { DeleteAction, DeleteButton } from "src/components/DeleteButton";
 
 const deleteAction: DeleteAction = {
   confirmationMessage: "Are you sure",
-  key: DefaultDeleteActionEnum.DEFAULT_DELETE,
+  key: "DEFAULT_DELETE",
 };
 
 const deleteConfirmation = (selectedAction: DeleteAction) => {

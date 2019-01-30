@@ -2,8 +2,8 @@ import { Input, Select } from "antd";
 import { css } from "emotion";
 import _clone from "lodash.clone";
 import * as React from "react";
-import { FormCol, FormRow } from "~/components/Form/layout";
-import { Intent } from "~/models";
+import { FormCol, FormRow } from "src/components/Form/layout";
+import { Intent } from "src/models";
 
 const selectStyle = css`
   width: 300px;
@@ -12,7 +12,7 @@ const selectStyle = css`
 
 export type FormButton = {
   label: string;
-  intentId: string;
+  intentId: number;
 };
 
 type FormButtonInputProps = {
@@ -41,7 +41,7 @@ export class FormButtonInput extends React.Component<FormButtonInputProps> {
         <FormCol span={12}>
           <Select
             placeholder="Jump to intent"
-            defaultValue={value.intentId !== "" ? value.intentId : undefined}
+            defaultValue={value.intentId !== -1 ? value.intentId : undefined}
             onChange={this.onChangeIntentSelector("intentId")}
             allowClear={false}
             className={selectStyle}

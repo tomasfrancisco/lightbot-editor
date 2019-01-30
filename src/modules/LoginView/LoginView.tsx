@@ -1,9 +1,9 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { message } from "antd";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 import * as React from "react";
 import { compose, withApollo, WithApolloClient } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { RoutesKeysEnum, Routing } from "~/routing";
+import { RoutesKeysEnum, Routing } from "src/routing";
 
 import { ON_AUTH } from "./apollo/gql/onAuth";
 import { Form, Wrapper } from "./components";

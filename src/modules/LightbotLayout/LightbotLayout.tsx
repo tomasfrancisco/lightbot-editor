@@ -3,12 +3,12 @@ import * as React from "react";
 import { compose } from "react-apollo";
 import { css } from "react-emotion";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { AppLayout, AppLayoutContent } from "~/components/AppLayout";
-import { Footer } from "~/components/Footer";
-import { Logo } from "~/components/Logo";
-import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
-import { Agent } from "~/models";
-import { AppMenu } from "~/modules/AppMenu";
+import { AppLayout, AppLayoutContent } from "src/components/AppLayout";
+import { Footer } from "src/components/Footer";
+import { Logo } from "src/components/Logo";
+import { ElementIdsType } from "src/constants/ElementIdsType";
+import { Agent } from "src/models";
+import { AppMenu } from "src/modules/AppMenu";
 
 import { AppSider } from "./components";
 
@@ -41,11 +41,11 @@ export class LightbotLayoutDisconnected extends React.Component<
   public render() {
     const { children } = this.props;
     const year = new Date().getFullYear();
-
+    const sideMenuId: ElementIdsType = "side-menu";
     return (
       <AppLayout>
         <AppSider
-          id={ElementIdsEnum.SIDE_MENU}
+          id={sideMenuId}
           width={"256px"}
           collapsible={true}
           collapsed={this.state.collapsed}

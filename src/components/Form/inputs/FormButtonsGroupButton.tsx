@@ -2,12 +2,12 @@ import { Icon } from "antd";
 import _clone from "lodash.clone";
 import * as React from "react";
 import styled from "react-emotion";
-import { Button } from "~/components/Button";
-import { FormItem } from "~/components/Form/components";
-import { FormButton, FormButtonInput } from "~/components/Form/inputs/FormButtonInput";
-import { FormRow } from "~/components/Form/layout";
-import theme from "~/config/theme.js";
-import { Intent } from "~/models";
+import { Button } from "src/components/Button";
+import { FormItem } from "src/components/Form/components";
+import { FormButton, FormButtonInput } from "src/components/Form/inputs/FormButtonInput";
+import { FormRow } from "src/components/Form/layout";
+import theme from "src/config/theme.json";
+import { Intent } from "src/models";
 
 const Wrapper = styled("div")`
   border: 1px dashed ${theme["default-border-color"]};
@@ -80,7 +80,7 @@ export class FormButtonsGroupButtons extends React.Component<FormButtonsGroupBut
     const propsValue = _clone(this.props.value) || [];
 
     propsValue.push({
-      intentId: "",
+      intentId: -1,
       label: "",
     });
 

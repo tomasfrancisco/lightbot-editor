@@ -1,16 +1,16 @@
 import * as React from "react";
 import { css } from "react-emotion";
-import { Button } from "~/components/Button";
-import { SearchInput } from "~/components/Form/inputs";
-import { List, ListItemData } from "~/components/List";
+import { Button } from "src/components/Button";
+import { SearchInput } from "src/components/Form/inputs";
+import { List, ListItemData } from "src/components/List";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
   sectionWithRigthMargin,
-} from "~/components/Section";
-import { Keyword } from "~/models";
+} from "src/components/Section";
+import { Keyword } from "src/models";
 
 const noMarginsSectionContentStyle = css`
   padding: 140px 0 0 0;
@@ -47,7 +47,7 @@ export class KeywordsSelectorView extends React.Component<
   public render() {
     const { selectedKeyword, onAddKeyword } = this.props;
 
-    const selectedRowKeys: string[] = [];
+    const selectedRowKeys: number[] = [];
     if (selectedKeyword) {
       selectedRowKeys.push(selectedKeyword.id);
     }
@@ -99,7 +99,7 @@ export class KeywordsSelectorView extends React.Component<
     });
   }
 
-  private onKeywordSelectChange = (newSelecedKeywordId: string) => {
+  private onKeywordSelectChange = (newSelecedKeywordId: number) => {
     const { onSelectKeyword, keywords } = this.props;
     if (keywords) {
       const selectedKeyword = keywords.find(keyword => {

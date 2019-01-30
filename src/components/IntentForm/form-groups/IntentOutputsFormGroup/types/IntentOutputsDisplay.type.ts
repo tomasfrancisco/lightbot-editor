@@ -1,5 +1,5 @@
-import { IntentOutputType } from "@lightbot/types";
+import { IntentOutputType } from "~/types";
 
 export type IntentOutputDisplayType = IntentOutputType & {
-  id: string;
+  id: number;
 };

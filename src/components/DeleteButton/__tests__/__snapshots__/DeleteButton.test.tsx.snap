@@ -14,7 +14,6 @@ exports[`components/Button renders 1`] = `
   onCancel={[Function]}
   onConfirm={[Function]}
   placement="bottom"
-  prefixCls="ant-popover"
   title="Are you sure"
   transitionName="zoom-big"
   trigger="click"
@@ -27,7 +26,6 @@ exports[`components/Button renders 1`] = `
     ghost={false}
     loading={false}
     onClick={[Function]}
-    prefixCls="ant-btn"
   >
     <Icon
       type="delete"

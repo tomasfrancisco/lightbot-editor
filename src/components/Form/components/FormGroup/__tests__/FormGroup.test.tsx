@@ -1,7 +1,7 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
 import Nestable from "react-nestable";
-import { FormGroup, FormItem } from "~/components/Form/components";
+import { FormGroup, FormItem } from "src/components/Form/components";
 
 const data = [{ id: 1 }, { id: 2 }, { id: 3 }];
 

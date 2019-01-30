@@ -1,8 +1,8 @@
 import { Button as AntdButton, Dropdown, Icon, Menu, Popconfirm } from "antd";
 import * as React from "react";
 import styled, { css } from "react-emotion";
-import { DeleteActionEnum } from "~/components/DeleteButton";
-import theme from "~/config/theme.js";
+import { DeleteActionType } from "src/components/DeleteButton";
+import theme from "src/config/theme.json";
 
 const WarningIcon = styled(Icon)`
   color: ${theme["error-color"]} !important;
@@ -33,7 +33,7 @@ const deleteDropdownButtonStyle = css`
 `;
 
 export type DeleteAction = {
-  key: DeleteActionEnum;
+  key: DeleteActionType;
   optionTitle?: string;
   confirmationMessage: string;
 };

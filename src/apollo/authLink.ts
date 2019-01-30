@@ -1,5 +1,5 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
 import { setContext } from "apollo-link-context";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 
 export const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists

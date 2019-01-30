@@ -8,10 +8,16 @@ export function withRouteParams(params: string[]) {
       public render() {
         const { match, history, location, ...props } = this.props;
         const paramProps = params.reduce((result, param) => {
-          result[param] = _get(this.props.match.params, param);
+          // TODO: Currently all route params are used as numbers, but we get them as strings from the parser
+          result[param] = Number(_get(this.props.match.params, param, "NaN"));
+
+          if (isNaN(result[param])) {
+            result[param] = _get(this.props.match.params, param);
+          }
+
           return result;
         }, {});
-        return <Component {...props} {...paramProps} />;
+        return <Component {...props as P} {...paramProps} />;
       }
     }
 

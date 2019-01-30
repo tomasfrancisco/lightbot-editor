@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent } from "~/models";
-import { IntentsViewProps } from "~/modules/IntentsView";
+import { Intent } from "src/models";
+import { IntentsViewProps } from "src/modules/IntentsView";
 
 import { intentsProps } from "./intentsProps";
 

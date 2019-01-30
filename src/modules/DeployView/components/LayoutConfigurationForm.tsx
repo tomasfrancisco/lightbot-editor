@@ -3,14 +3,14 @@ import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import * as React from "react";
 import { css, cx } from "react-emotion";
-import { Button } from "~/components/Button";
-import { FormCollapse } from "~/components/Form/components";
-import { TitleLabel } from "~/components/Labels";
-import { SectionContent, SectionHeader, SectionHeaderNavContainer } from "~/components/Section";
-import { FormEnum } from "~/constants/FormEnum";
-import { LayoutConfigurationFormEnum } from "~/constants/LayoutConfigurationEnum";
-import { AgentData } from "~/models/AgentData.type";
-import { formCollapseTopMarginStyle, sectionHeaderCenterStyle } from "~/modules/DeployView/style";
+import { Button } from "src/components/Button";
+import { FormCollapse } from "src/components/Form/components";
+import { TitleLabel } from "src/components/Labels";
+import { SectionContent, SectionHeader, SectionHeaderNavContainer } from "src/components/Section";
+import { FormId } from "src/constants/FormId";
+import { LayoutConfigurationFormEnum } from "src/constants/LayoutConfigurationEnum";
+import { AgentData } from "src/models/AgentData.type";
+import { formCollapseTopMarginStyle, sectionHeaderCenterStyle } from "src/modules/DeployView/style";
 
 import { renderConfigJumpFormPanel } from "./ConfigJumpFormPanel";
 import { renderGeneralViewFormPanel } from "./GeneralViewFormPanel";
@@ -67,6 +67,14 @@ class LayoutConfigurationFormDisconnected extends React.Component<
   public render() {
     const { hasDataChanged, form, agentData } = this.props;
     const { itemKeyOpened } = this.state;
+
+    const defaultActiveKeys: FormId[] = [
+      "deploy_teaser_icon_group",
+      "deploy_jump_group",
+      "deploy_close_group",
+      "deploy_header_group",
+      "deploy_general_group",
+    ];
     return (
       <Form id={LayoutConfigurationFormEnum.FORM_ID} layout="vertical" className={formStyle}>
         <SectionHeader className={sectionHeaderCenterStyle}>
@@ -85,13 +93,7 @@ class LayoutConfigurationFormDisconnected extends React.Component<
               bottomSpaceFormContentStyle,
             )}
             bordered={false}
-            defaultActiveKey={[
-              FormEnum.DEPLOY_TEASER_ICON_GROUP,
-              FormEnum.DEPLOY_JUMP_GROUP,
-              FormEnum.DEPLOY_CLOSE_GROUP,
-              FormEnum.DEPLOY_HEADER_GROUP,
-              FormEnum.DEPLOY_GENERAL_GROUP,
-            ]}
+            defaultActiveKey={defaultActiveKeys}
           >
             {renderTeaserAndIconFormPanel({
               form,

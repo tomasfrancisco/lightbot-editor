@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { css } from "react-emotion";
-import { ListItemData } from "~/components/List/List";
-import theme from "~/config/theme.js";
+import { ListItemData } from "src/components/List/List";
+import theme from "src/config/theme.json";
 
 const StyledListItem = styled("div")`
   font-size: 14px;

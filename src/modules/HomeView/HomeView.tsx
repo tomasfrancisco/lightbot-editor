@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 import { Link } from "react-router-dom";
-import { RoutesKeysEnum, Routing } from "~/routing";
+import { RoutesKeysEnum, Routing } from "src/routing";
 
 const Wrapper = styled("div")`
   min-height: 100vh;

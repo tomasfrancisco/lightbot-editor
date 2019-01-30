@@ -1,11 +1,11 @@
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import uuid from "uuid/v4";
 import { FormGroup, FormItem } from "~/components/Form";
 import { renderCombinationTriggerInput, renderPlainTriggerInput } from "~/components/Form/wrappers";
 import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
 import { TriggerAddButtonGroup } from "~/components/IntentForm/TriggerAddButtonGroup";
 import { CombinationTrigger, Dictionary, PlainTrigger, Trigger, TriggerTypeEnum } from "~/models";
+import { getUniqueNumberForSession } from "~/utils";
 
 type TriggerItemsType = {
   components: React.ReactNode[];
@@ -76,7 +76,7 @@ export class IntentTriggersFormGroup extends React.Component<
               >
                 {renderPlainTriggerInput({
                   form,
-                  formIndex: FormIndexEnum.TRIGGERS,
+                  formIndex: "intent_triggers",
                   item: trigger as PlainTrigger,
                   validTags: searchResults.map(i => i.value),
                 })}
@@ -93,7 +93,7 @@ export class IntentTriggersFormGroup extends React.Component<
               >
                 {renderCombinationTriggerInput({
                   form,
-                  formIndex: FormIndexEnum.TRIGGERS,
+                  formIndex: "intent_triggers",
                   item: trigger as CombinationTrigger,
                   searchResults,
                 })}
@@ -113,7 +113,7 @@ export class IntentTriggersFormGroup extends React.Component<
     this.setState(
       {
         triggers: triggers.concat({
-          id: uuid(),
+          id: getUniqueNumberForSession(),
           type,
           value: type === TriggerTypeEnum.PLAIN ? [""] : [],
         }),
@@ -122,7 +122,7 @@ export class IntentTriggersFormGroup extends React.Component<
     );
   };
 
-  private getOnRemoveHandler = (itemId: string) => () => {
+  private getOnRemoveHandler = (itemId: number) => () => {
     const { triggers } = this.state;
 
     this.setState(
@@ -135,7 +135,8 @@ export class IntentTriggersFormGroup extends React.Component<
 
   private getTriggersState(form) {
     const values = form.getFieldValue("values");
-    const formTriggers: { [triggerId: string]: Trigger } = values[FormIndexEnum.TRIGGERS];
+    const formIndex: IntentFormIndexType = "intent_triggers";
+    const formTriggers: { [triggerId: string]: Trigger } = values[formIndex];
 
     return formTriggers;
   }

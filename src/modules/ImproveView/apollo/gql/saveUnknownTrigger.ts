@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, QueryResult } from "react-apollo";
-import { Intent, Trigger } from "~/models";
+import { Intent } from "~/models";
 import { UnknownTriggerSaveProps } from "~/modules/ImproveView/components";
 import { updateIntentInCache } from "~/modules/IntentEditor/apollo/gql";
 import { getIntentProps } from "~/modules/IntentEditor/apollo/gql/intentProps";
@@ -12,8 +12,8 @@ import { deleteUnknownTriggerFromCache } from "./unknownTriggersCacheUpdate";
 const MOVE_UNKNOWN_TRIGGERS_TO_INTENT_QUERY = gql`
   mutation MoveUnknownTriggersToIntent(
     $agentId: String!
-    $unknownTriggerIds: [String]!
-    $intentId: String!
+    $unknownTriggerIds: [Int!]!
+    $intentId: Int!
   ) {
     moveUnknownTriggersToIntent(
       input: { unknownTriggerIds: $unknownTriggerIds, intentId: $intentId, agentId: $agentId }
@@ -33,17 +33,17 @@ export type OnMoveUnknownTriggersFunction = (
   props: {
     variables: {
       agentId: string;
-      unknownTriggerIds: string[];
-      intentId: string;
+      unknownTriggerIds: number[];
+      intentId: number;
     };
   },
 ) => Promise<MoveUnknownTriggersResult>;
 
-export const moveUnknownTriggersToIntent = graphql<{}, {}, {}, {}>(
+export const moveUnknownTriggersToIntent = graphql<UnknownTriggerSaveProps, {}, {}, {}>(
   MOVE_UNKNOWN_TRIGGERS_TO_INTENT_QUERY,
   {
     name: "onMoveUnknownTriggersToIntent",
-    options: ({ selectedUnknownTriggers, agentId }: UnknownTriggerSaveProps) => ({
+    options: ({ selectedUnknownTriggers, agentId }) => ({
       update: (cache, mutationResult) => {
         const updatedIntent: Intent = _get(mutationResult, ["data", "moveUnknownTriggersToIntent"]);
         deleteUnknownTriggerFromCache(

@@ -4,7 +4,6 @@ import ApolloClient from "apollo-client";
 import * as React from "react";
 import { ApolloConsumer, compose } from "react-apollo";
 import uuid from "uuid/v4";
-import { Button } from "~/components/Button";
 import { CodeHighlighter, CodeHighlighterButton } from "~/components/CodeHighlighter";
 import { DeployButton } from "~/components/DeployButton";
 import { Loading } from "~/components/Loading";
@@ -14,17 +13,17 @@ import {
   sectionFillFreeSpaceStyle,
   sectionWithColumnFlexDirection,
   sectionWithRigthMargin,
-} from "~/components/Section";
-import { SectionGrid, SectionGridHorizontalSeparator } from "~/components/Section/SectionGrid";
-import { getWidgetScript, removeWidget, Widget } from "~/components/Widget";
-import { AgentData } from "~/models/AgentData.type";
-import { updateWidgetData, UpdateWidgetDataFunction } from "~/modules/DeployView/apollo/gql";
-import { fetchAgentData } from "~/modules/DeployView/apollo/gql/fetchAgentData";
-import { LayoutConfigurationForm } from "~/modules/DeployView/components";
-import { valdiateAgentData } from "~/modules/DeployView/utils";
-import { LightbotLayout } from "~/modules/LightbotLayout";
-import { ON_DEPLOY } from "~/modules/LightbotLayout/apollo/gql";
-import { withRouteParams } from "~/routing";
+} from "src/components/Section";
+import { SectionGrid, SectionGridHorizontalSeparator } from "src/components/Section/SectionGrid";
+import { getWidgetScript, removeWidget, Widget } from "src/components/Widget";
+import { AgentData } from "src/models/AgentData.type";
+import { updateWidgetData, UpdateWidgetDataFunction } from "src/modules/DeployView/apollo/gql";
+import { fetchAgentData } from "src/modules/DeployView/apollo/gql/fetchAgentData";
+import { LayoutConfigurationForm } from "src/modules/DeployView/components";
+import { valdiateAgentData } from "src/modules/DeployView/utils";
+import { LightbotLayout } from "src/modules/LightbotLayout";
+import { ON_DEPLOY } from "src/modules/LightbotLayout/apollo/gql";
+import { withRouteParams } from "src/routing";
 
 export type DeployViewProps = {
   loading?: boolean;
@@ -139,10 +138,10 @@ class DeployViewDisconnected extends React.Component<DeployViewProps, DeployView
         return this.props.onUpdateWidgetData({
           variables: {
             agentId,
-            widgetInputPlaceholder: agentData.widgetInputPlaceholder,
+            widgetInputPlaceholder: agentData.widgetInputPlaceholder as string,
             widgetThemeData: JSON.stringify(agentData.widgetThemeData),
-            widgetHotspotIcon: agentData.widgetHotspotIcon,
-            widgetTeaser: agentData.widgetTeaser,
+            widgetHotspotIcon: agentData.widgetHotspotIcon as string,
+            widgetTeaser: agentData.widgetTeaser as string,
           },
         });
       })

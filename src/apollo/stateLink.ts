@@ -1,7 +1,7 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { withClientState } from "apollo-link-state";
-import { defaults } from "~/apollo/defaults";
-import { resolvers } from "~/apollo/resolvers";
+import { defaults } from "src/apollo/defaults";
+import { resolvers } from "src/apollo/resolvers";
 
 const inMemoryCache = new InMemoryCache();
 export const stateLink = withClientState({

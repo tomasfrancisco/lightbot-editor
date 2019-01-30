@@ -1,6 +1,6 @@
 import { WrappedFormUtils } from "antd/lib/form/Form";
-import { LayoutConfigurationFormEnum } from "~/constants/LayoutConfigurationEnum";
-import { AgentData } from "~/models/AgentData.type";
+import { LayoutConfigurationFormEnum } from "src/constants/LayoutConfigurationEnum";
+import { AgentData } from "src/models/AgentData.type";
 
 export const valdiateAgentData = (form: WrappedFormUtils) => {
   return new Promise(function(resolve: (value: AgentData) => any, reject) {

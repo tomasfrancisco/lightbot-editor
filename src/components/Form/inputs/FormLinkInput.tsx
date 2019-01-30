@@ -3,7 +3,7 @@ import { FormComponentProps } from "antd/lib/form";
 import _clone from "lodash.clone";
 import _get from "lodash.get";
 import * as React from "react";
-import { FormCol, FormRow } from "~/components/Form/layout";
+import { FormCol, FormRow } from "src/components/Form/layout";
 
 export type FormLink = {
   label: string;

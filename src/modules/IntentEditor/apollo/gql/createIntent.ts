@@ -2,10 +2,10 @@ import gql from "graphql-tag";
 import _get from "lodash.get";
 import _update from "lodash.update";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent, IntentActionData } from "~/models";
-import { FETCH_INTENT_QUERY } from "~/modules/IntentEditor/apollo/gql/fetchIntent";
-import { IntentEditorProps } from "~/modules/IntentEditor/IntentEditor";
-import { FETCH_INTENTS_QUERY } from "~/modules/IntentsView/apollo/gql";
+import { Intent, IntentActionData } from "src/models";
+import { FETCH_INTENT_QUERY } from "src/modules/IntentEditor/apollo/gql/fetchIntent";
+import { IntentEditorProps } from "src/modules/IntentEditor/IntentEditor";
+import { FETCH_INTENTS_QUERY } from "src/modules/IntentsView/apollo/gql";
 
 import { getIntentProps } from "./intentProps";
 
@@ -73,9 +73,9 @@ export const updateIntentCache = ({ cache, agentId, createdIntent }) => {
   });
 };
 
-export const createIntent = graphql<{}, {}, {}, {}>(CREATE_INTENT_QUERY, {
+export const createIntent = graphql<IntentEditorProps, {}, {}, {}>(CREATE_INTENT_QUERY, {
   name: "onCreateIntent",
-  options: ({ agentId }: IntentEditorProps) => ({
+  options: ({ agentId }) => ({
     update: (cache, mutationResult) => {
       const createdIntent = _get(mutationResult, ["data", "createIntent"]);
 

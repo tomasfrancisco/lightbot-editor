@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql } from "react-apollo";
-import { FormEnum } from "~/constants/FormEnum";
-import { KeywordEditorViewProps } from "~/modules/KeywordsView/views/KeywordEditorView";
+import { FormId } from "src/constants/FormId";
+import { KeywordEditorViewProps } from "src/modules/KeywordsView/views/KeywordEditorView";
 
 export const FETCH_KEYWORD_QUERY = gql`
-  query fetchKeywordValues($keywordId: String!) {
+  query fetchKeywordValues($keywordId: Int!) {
     dictionary(where: { id: $keywordId }) {
       values {
         id
@@ -15,8 +15,8 @@ export const FETCH_KEYWORD_QUERY = gql`
   }
 `;
 
-export const fetchKeywordValues = graphql(FETCH_KEYWORD_QUERY, {
-  options: ({ selectedKeyword }: KeywordEditorViewProps) => {
+export const fetchKeywordValues = graphql<KeywordEditorViewProps, {}, {}, {}>(FETCH_KEYWORD_QUERY, {
+  options: ({ selectedKeyword }) => {
     return {
       variables: {
         keywordId: selectedKeyword!.id,
@@ -36,7 +36,8 @@ export const fetchKeywordValues = graphql(FETCH_KEYWORD_QUERY, {
     if (!selectedKeyword.id) {
       return true;
     }
-    if (selectedKeyword.id === FormEnum.CREATING_ID) {
+    const creatingId: FormId = "-1";
+    if (selectedKeyword.id === creatingId) {
       return true;
     }
     return false;

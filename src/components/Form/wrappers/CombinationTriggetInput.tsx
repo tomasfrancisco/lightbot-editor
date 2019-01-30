@@ -1,11 +1,11 @@
 import { FormComponentProps } from "antd/lib/form";
-import { renderFormSelectGroupInput } from "~/components/Form/inputs/FormSelectGroupInput";
-import { CombinationTrigger } from "~/models";
+import { renderFormSelectGroupInput } from "src/components/Form/inputs/FormSelectGroupInput";
+import { CombinationTrigger } from "src/models";
 
 type RenderCombinationTriggerInputProps = FormComponentProps & {
   formIndex: string;
   item: CombinationTrigger;
-  searchResults: Array<{ key: string; value: string }>;
+  searchResults: Array<{ key: number; value: string }>;
 };
 
 export const renderCombinationTriggerInput = ({

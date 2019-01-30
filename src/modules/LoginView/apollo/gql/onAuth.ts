@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { LoginViewProps } from "~/modules/LoginView";
+import { LoginViewProps } from "src/modules/LoginView";
 
 export const ON_AUTH = gql`
   query onAuth {

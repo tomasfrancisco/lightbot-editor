@@ -1,15 +1,15 @@
 /**
  * @deprecated
- * @lightbot/types should provided the necessary typings for the data model
+ * ./types should provided the necessary typings for the data model
  */
 
-import { IntentOutputType } from "@lightbot/types";
 import { Trigger, TriggerActionData } from "~/models/Trigger.type";
+import { IntentOutputType } from "~/types";
 
 export type Intent = {
-  id: string;
+  id: number;
   name: string;
-  parentId?: string | null;
+  parentId?: number | null;
   isTopLevel: boolean;
   isFallback: boolean;
   isWelcome: boolean;
@@ -20,9 +20,9 @@ export type Intent = {
 
 export type IntentActionData = {
   agentId?: string;
-  id?: string;
+  id?: number;
   name?: string;
-  parentId?: string | null;
+  parentId?: number | null;
   isTopLevel?: boolean;
   outputs?: IntentOutputType[];
   triggers?: TriggerActionData[];

@@ -1,11 +1,11 @@
-import { IntentPlainOutputType } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
 import { renderFormTextInput } from "~/components/Form/inputs/FormTextInput";
 import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
+import { IntentPlainOutputType } from "~/types";
 
 type RenderPlainOutputInputProps = FormComponentProps & {
-  formIndex: string;
-  itemKey: string;
+  formIndex: IntentFormIndexType;
+  itemKey: number;
   item: IntentPlainOutputType;
 };
 

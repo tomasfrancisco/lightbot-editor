@@ -2,16 +2,16 @@ import { Icon, Input } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { ValidationRule } from "antd/lib/form/Form";
 import * as React from "react";
-import uuid from "uuid/v4";
 import { Button } from "~/components/Button";
 import { FormItem } from "~/components/Form";
+import { getUniqueNumberForSession } from "~/utils";
 
 const { TextArea } = Input;
 
 const BATCH_FIELD_ID = "batchField";
 
 export type BatchInput = {
-  id: string;
+  id: number;
   value: string;
 };
 
@@ -92,7 +92,7 @@ export class FormBatchInput extends React.Component<FormBatchInputProps, FormBat
           const cleanedKeywords = new Array<BatchInput>();
           const separatedLines = values.batchField.match(/[^\r\n]+/g);
           for (const line of separatedLines) {
-            cleanedKeywords.push({ id: uuid(), value: line.trim() });
+            cleanedKeywords.push({ id: getUniqueNumberForSession(), value: line.trim() });
           }
           form.resetFields([BATCH_FIELD_ID]);
 

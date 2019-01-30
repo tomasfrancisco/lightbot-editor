@@ -1,19 +1,19 @@
 import { Icon, Input } from "antd";
-import Form, { FormComponentProps, ValidationRule } from "antd/lib/form";
+import { FormComponentProps, ValidationRule } from "antd/lib/form";
 import * as React from "react";
 import { SketchPicker } from "react-color";
-import { ColorPickerBackgroundView, ColorPickerContainer } from "~/components/ColorPicker/layout";
-import { generateRgbaString, generateRgbString } from "~/components/ColorPicker/utils";
-import { FormItem } from "~/components/Form/components/FormItem";
+import { ColorPickerBackgroundView, ColorPickerContainer } from "src/components/ColorPicker/layout";
+import { generateRgbaString, generateRgbString } from "src/components/ColorPicker/utils";
+import { FormItem } from "src/components/Form/components/FormItem";
 import {
   closeButtonStyle,
   CloseContainer,
   ColorRow,
   ColorSelector,
   inputStyle,
-} from "~/components/Form/layout";
-import { colorValidator } from "~/components/Form/validators";
-import { ColorType } from "~/models";
+} from "src/components/Form/layout";
+import { colorValidator } from "src/components/Form/validators";
+import { ColorType } from "src/models";
 
 export type FormColorInputProps = FormComponentProps & {
   required?: boolean;

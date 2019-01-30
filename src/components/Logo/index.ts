@@ -1,1 +1,1 @@
-export * from "~/components/Logo/Logo";
+export * from "src/components/Logo/Logo";

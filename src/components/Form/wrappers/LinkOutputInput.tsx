@@ -1,15 +1,15 @@
-import { IntentLinkOutputType } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
-import { FormLink, renderFormLinkInput } from "~/components/Form/inputs/FormLinkInput";
+import { FormLink, renderFormLinkInput } from "src/components/Form/inputs/FormLinkInput";
 import {
   emptyStringValidator,
   urlValidator,
   whitespaceValidator,
 } from "~/components/Form/validators";
+import { IntentLinkOutputType } from "~/types";
 
 type RenderLinkOutputInputProps = FormComponentProps & {
   errorMessage?: string;
-  itemKey: string;
+  itemKey: number;
   formIndex: string;
   item: IntentLinkOutputType;
 };

@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, QueryResult } from "react-apollo";
-import { BatchDictionaryData, KeywordValue } from "~/models";
+import { BatchDictionaryData, KeywordValue } from "src/models";
 import {
   updateKeywordCache,
   updateSelectedKeywordCache,
-} from "~/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
+} from "src/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
 
 export const UPDATE_QUERY = gql`
   mutation BatchDictionary($updatedKeyword: BatchDictionaryData!) {

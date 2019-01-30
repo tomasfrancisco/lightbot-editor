@@ -1,4 +1,4 @@
-import styled, { css } from "react-emotion";
+import { css } from "react-emotion";
 
 export const sectionHeaderCenterStyle = css`
   align-items: center;

@@ -1,1 +1,1 @@
-export * from "~/modules/SettingsView/SettingsView";
+export * from "src/modules/SettingsView/SettingsView";

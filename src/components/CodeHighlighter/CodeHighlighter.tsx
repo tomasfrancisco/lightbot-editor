@@ -53,7 +53,7 @@ export class CodeHighlighter extends React.Component<CodeHighlighterProps> {
           <span>" </span>
           <Attribute>src</Attribute>
           <span>="</span>
-          <Value>{`https://widget.lightbot.io/lightbot.js`}</Value>
+          <Value>{`${process.env.REACT_APP_WIDGET_URL}/lightbot.js`}</Value>
           <span>"&gt;&lt;/</span>
           <Tag>script</Tag>
           <span>&gt;</span>

@@ -4,7 +4,7 @@ import { graphql, QueryResult } from "react-apollo";
 import {
   updateKeywordsList,
   updateSelectedKeywordCache,
-} from "~/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
+} from "src/modules/KeywordsView/apollo/gql/keywordsCacheUpdate";
 
 export type CreateDictionaryData = {
   name: string;
@@ -29,7 +29,7 @@ const MUTATION_QUERY = gql`
 
 export type CreateKeywordData = {
   createDictionary: {
-    id: string;
+    id: number;
     name: string;
   };
 };

@@ -1,1 +1,1 @@
-export * from "~/modules/DeployView/DeployView";
+export * from "src/modules/DeployView/DeployView";

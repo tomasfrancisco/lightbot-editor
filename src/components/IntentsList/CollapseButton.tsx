@@ -1,7 +1,7 @@
 import { Icon } from "antd";
 import * as React from "react";
 import { css } from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 type StyledIconProps = {
   isCollapsed: boolean;

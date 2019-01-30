@@ -1,4 +1,4 @@
-import { AgentData } from "~/models/AgentData.type";
+import { AgentData } from "src/models/AgentData.type";
 
 export const getColorInAgentData = (
   property: string,

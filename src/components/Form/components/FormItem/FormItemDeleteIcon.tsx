@@ -1,7 +1,7 @@
 import { Icon, Tooltip } from "antd";
 import * as React from "react";
 import styled from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 const StyledIcon = styled(Icon)`
   right: 0;

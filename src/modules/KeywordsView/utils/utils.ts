@@ -1,8 +1,8 @@
 import { ValidationRule } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import _get from "lodash.get";
-import { whitespaceValidator } from "~/components/Form/validators";
-import { FormEnum } from "~/constants/FormEnum";
+import { whitespaceValidator } from "src/components/Form/validators";
+import { FormId } from "src/constants/FormId";
 
 export const emptyFieldValidator: ValidationRule = {
   message: "Please insert some value",
@@ -48,7 +48,8 @@ export const singleWordValidator = (message: string): ValidationRule => {
  * Rule validation to check if there are any keyword repeated.
  * It will compare with current keyword keywords and batch list keywords
  * @param {KeywordValue[]} values List of keywords that are in Keyword
- * @return {ValidationRule} Validation object that contains the rules to not allow duplicate keywords
+ * @return {ValidationRule} Validation object that contains the rules to not allow duplicate
+ *   keywords
  */
 export const getDuplicateKeywordValidator = (
   form: WrappedFormUtils,
@@ -86,7 +87,8 @@ export const getDuplicateKeywordValidator = (
 };
 
 export const getExistingValues = (form: WrappedFormUtils): string[] => {
-  const existingKeys = _get(form.getFieldsValue(), FormEnum.KEYWORD_FORM, []);
+  const keywordFormKey: FormId = "keyword_form_keys";
+  const existingKeys = _get(form.getFieldsValue(), keywordFormKey, []);
   const existingValues = _get(form.getFieldsValue(), "values", {});
 
   return existingKeys.map(key => existingValues[key]);

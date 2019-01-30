@@ -2,11 +2,11 @@ import { Form } from "antd";
 import { FormItemProps as AntdFormItemProps } from "antd/lib/form/FormItem";
 import * as React from "react";
 import { css } from "react-emotion";
-import { FormItemContainer } from "~/components/Form/components/FormItem/FormItemContainer";
-import { FormItemDeleteIcon } from "~/components/Form/components/FormItem/FormItemDeleteIcon";
-import { FormItemIcon } from "~/components/Form/components/FormItem/FormItemIcon";
-import { FormRow } from "~/components/Form/layout";
-import { SubTitleLabel } from "~/components/Labels";
+import { FormItemContainer } from "src/components/Form/components/FormItem/FormItemContainer";
+import { FormItemDeleteIcon } from "src/components/Form/components/FormItem/FormItemDeleteIcon";
+import { FormItemIcon } from "src/components/Form/components/FormItem/FormItemIcon";
+import { FormRow } from "src/components/Form/layout";
+import { SubTitleLabel } from "src/components/Labels";
 
 const titleLabelStyle = css`
   width: 100%;

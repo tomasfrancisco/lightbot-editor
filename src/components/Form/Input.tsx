@@ -9,7 +9,7 @@ const inputStyle = css`
 `;
 
 export type InputProps = FormComponentProps & {
-  itemKey: string;
+  itemKey: number;
   value?: string;
   placeholder?: string;
   rules?: ValidationRule[];

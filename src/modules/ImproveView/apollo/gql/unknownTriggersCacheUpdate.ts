@@ -1,8 +1,8 @@
 import _get from "lodash.get";
 import _update from "lodash.update";
-import { Agent } from "~/models";
-import { FETCH_AGENTS_QUERY } from "~/modules/Dashboard/gql";
-import { FETCH_UNKNOWN_TRIGGERS_QUERY } from "~/modules/ImproveView/apollo/gql";
+import { Agent } from "src/models";
+import { FETCH_AGENTS_QUERY } from "src/modules/Dashboard/gql";
+import { FETCH_UNKNOWN_TRIGGERS_QUERY } from "src/modules/ImproveView/apollo/gql";
 
 export const deleteUnknownTriggerFromCache = (cache, selectedTriggers, agentId) => {
   const fetchUnknownTriggersQuery = {

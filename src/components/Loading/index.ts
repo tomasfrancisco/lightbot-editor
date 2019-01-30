@@ -1,1 +1,1 @@
-export * from "~/components/Loading/Loading";
+export * from "src/components/Loading/Loading";

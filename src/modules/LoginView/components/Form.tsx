@@ -1,7 +1,7 @@
 import { Form as AntdForm, Icon, Input } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import { Button } from "~/components/Button";
+import { Button } from "src/components/Button";
 
 export interface FormProps extends FormComponentProps {
   onSubmit: (token: string) => void;

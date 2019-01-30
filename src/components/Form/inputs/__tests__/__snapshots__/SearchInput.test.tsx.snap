@@ -4,11 +4,9 @@ exports[`components/Form/inputs/TitleInput renders 1`] = `
 <Styled(div)>
   <Search
     enterButton={false}
-    inputPrefixCls="ant-input"
     onChange={[Function]}
     onSearch={[Function]}
     placeholder="Search here"
-    prefixCls="ant-input-search"
   />
 </Styled(div)>
 `;

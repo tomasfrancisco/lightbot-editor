@@ -7,13 +7,13 @@ import {
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
-} from "~/components/Section";
-import { Intent, UnknownTrigger } from "~/models";
-import { deleteUnknownTrigger, fetchUnknownTriggers } from "~/modules/ImproveView/apollo/gql";
-import { ColumnItem, columns, generateDataSource } from "~/modules/ImproveView/utils";
-import { LightbotLayout } from "~/modules/LightbotLayout";
-import { withRouteParams } from "~/routing";
-import { flattenIntents } from "~/utils";
+} from "src/components/Section";
+import { Intent, UnknownTrigger } from "src/models";
+import { deleteUnknownTrigger, fetchUnknownTriggers } from "src/modules/ImproveView/apollo/gql";
+import { ColumnItem, columns, generateDataSource } from "src/modules/ImproveView/utils";
+import { LightbotLayout } from "src/modules/LightbotLayout";
+import { withRouteParams } from "src/routing";
+import { flattenIntents } from "src/utils";
 
 import { fetchIntents } from "../IntentsView/apollo/gql";
 import { DeleteUnknownTriggers, UnknownTriggerSave } from "./components";

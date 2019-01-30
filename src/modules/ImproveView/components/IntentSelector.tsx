@@ -1,8 +1,8 @@
 import { Row, Select } from "antd";
 import * as React from "react";
 import styled, { css } from "react-emotion";
-import { Button } from "~/components/Button";
-import { Intent } from "~/models";
+import { Button } from "src/components/Button";
+import { Intent } from "src/models";
 
 import { ColumnItem, CREATE_INTENT_ID, getUnknownTriggerIds } from "../utils";
 
@@ -21,11 +21,11 @@ const MainIntentOption = styled("div")`
 type IntentSelectorProps = {
   selectedUnknownTriggers?: ColumnItem[];
   intentsList?: Intent[];
-  onSaveClick: (selectedIntentId: string, selectedUnknownTriggerIds: string[]) => void;
+  onSaveClick: (selectedIntentId: number, selectedUnknownTriggerIds: number[]) => void;
 };
 
 type IntentSelectorState = {
-  selectedIntentId?: string;
+  selectedIntentId?: number;
 };
 
 export class IntentSelector extends React.Component<IntentSelectorProps, IntentSelectorState> {

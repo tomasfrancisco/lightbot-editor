@@ -3,10 +3,10 @@ import gql from "graphql-tag";
 import _get from "lodash.get";
 import _update from "lodash.update";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent, IntentActionData } from "~/models";
-import { FETCH_INTENT_QUERY } from "~/modules/IntentEditor/apollo/gql/fetchIntent";
-import { getIntentProps } from "~/modules/IntentEditor/apollo/gql/intentProps";
-import { IntentEditorProps } from "~/modules/IntentEditor/IntentEditor";
+import { Intent, IntentActionData } from "src/models";
+import { FETCH_INTENT_QUERY } from "src/modules/IntentEditor/apollo/gql/fetchIntent";
+import { getIntentProps } from "src/modules/IntentEditor/apollo/gql/intentProps";
+import { IntentEditorProps } from "src/modules/IntentEditor/IntentEditor";
 
 export const UPDATE_INTENT_QUERY = gql`
   mutation UpdateIntent($intent: UpdateIntent!) {
@@ -59,9 +59,9 @@ export const updateIntentInCache = (agentId: string, cache: DataProxy, updatedIn
   }
 };
 
-export const updateIntent = graphql<{}, {}, {}, {}>(UPDATE_INTENT_QUERY, {
+export const updateIntent = graphql<IntentEditorProps, {}, {}, {}>(UPDATE_INTENT_QUERY, {
   name: "onUpdateIntent",
-  options: ({ agentId }: IntentEditorProps) => ({
+  options: ({ agentId }) => ({
     update: (cache, mutationResult) => {
       const updatedIntent = _get(mutationResult, ["data", "updateIntent"]);
 

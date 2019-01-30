@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Agent } from "~/models";
+import { Agent } from "src/models";
 
 import { DashboardViewProps } from "../DashboardView";
 

@@ -1,1 +1,1 @@
-export * from "~/modules/WidgetView/WidgetView";
+export * from "src/modules/WidgetView/WidgetView";

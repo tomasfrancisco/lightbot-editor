@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { Keyword } from "~/models";
+import { Keyword } from "src/models";
 
 export const resolvers = {
   Mutation: {

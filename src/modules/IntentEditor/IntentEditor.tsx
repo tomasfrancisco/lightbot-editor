@@ -1,11 +1,9 @@
-import { IntentOutputType } from "@lightbot/types";
 import { message } from "antd";
 import _get from "lodash.get";
 import pathToRegexp from "path-to-regexp";
 import * as React from "react";
 import { compose } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import uuid from "uuid/v4";
 import { IntentDeleteActionEnum } from "~/components/DeleteButton";
 import { IntentForm } from "~/components/IntentForm";
 import { FormValues } from "~/components/IntentForm/FormValuesType";
@@ -21,15 +19,17 @@ import {
 import { deleteIntent, DeleteIntentFunction } from "~/modules/IntentEditor/apollo/gql/deleteIntent";
 import { transformToTriggersActionData } from "~/modules/IntentEditor/utils/transformers";
 import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
+import { IntentOutputType } from "~/types";
+import { getUniqueNumberForSession } from "~/utils";
 
 export type IntentEditorProps = RouteComponentProps & {
   intents?: Intent[];
   isCreating: boolean;
   agentId: string;
-  intentId: string;
+  intentId: number;
   intent?: Intent;
   loading?: boolean;
-  dictionaries?: Dictionary[];
+  dictionaries: Dictionary[];
   onUpdateIntent?: UpdateIntentFunction;
   onCreateIntent?: CreateIntentFunction;
   onDeleteIntent?: DeleteIntentFunction;
@@ -105,7 +105,7 @@ class IntentEditorDisconnected extends React.Component<IntentEditorProps, Intent
 
     if (isCreating) {
       const newIntent: Intent = {
-        id: uuid(),
+        id: getUniqueNumberForSession(),
         isFallback: false,
         isTopLevel: true,
         isWelcome: false,
@@ -194,7 +194,7 @@ class IntentEditorDisconnected extends React.Component<IntentEditorProps, Intent
           onDeleteIntent({
             variables: {
               intentId,
-              withChildren: action === IntentDeleteActionEnum.ALL_INTENTS,
+              withChildren: action === "ALL_INTENTS",
             },
           }),
         )

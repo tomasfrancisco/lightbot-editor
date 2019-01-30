@@ -1,14 +1,5 @@
-import {
-  IntentJumpsOutputType,
-  IntentLinkOutputType,
-  IntentOutputType,
-  IntentOutputTypeEnum,
-  IntentPlainOutputType,
-} from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import { css } from "react-emotion";
-import uuid from "uuid/v4";
 import { FormGroup, FormItem } from "~/components/Form";
 import { renderLinkOutputInput, renderPlainOutputInput } from "~/components/Form/wrappers";
 import { renderButtonsGroupOutputInput } from "~/components/Form/wrappers/ButtonOutputInput";
@@ -16,7 +7,14 @@ import { IntentOutputDisplayType } from "~/components/IntentForm/form-groups/Int
 import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
 import { OutputAddButtonGroup } from "~/components/IntentForm/OutputAddButtonGroup";
 import { Intent } from "~/models";
-import { reactNestableDumbIssueFixer } from "~/utils";
+import {
+  IntentJumpsOutputType,
+  IntentLinkOutputType,
+  IntentOutputType,
+  IntentOutputTypeEnum,
+  IntentPlainOutputType,
+} from "~/types";
+import { getUniqueNumberForSession, reactNestableDumbIssueFixer } from "~/utils";
 
 type OutputItemsType = {
   components: React.ReactNode[];
@@ -42,7 +40,7 @@ export class IntentOutputsFormGroup extends React.Component<
     super(props);
 
     this.state = {
-      outputs: props.outputs.map(output => ({ id: uuid(), ...output })),
+      outputs: props.outputs.map(output => ({ id: getUniqueNumberForSession(), ...output })),
     };
   }
 
@@ -85,7 +83,7 @@ export class IntentOutputsFormGroup extends React.Component<
               >
                 {renderPlainOutputInput({
                   form,
-                  formIndex: FormIndexEnum.OUTPUTS,
+                  formIndex: "intent_outputs",
                   itemKey: item.id,
                   item: item as IntentPlainOutputType,
                 })}
@@ -103,7 +101,7 @@ export class IntentOutputsFormGroup extends React.Component<
               >
                 {renderLinkOutputInput({
                   form,
-                  formIndex: FormIndexEnum.OUTPUTS,
+                  formIndex: "intent_outputs",
                   itemKey: item.id,
                   item: item as IntentLinkOutputType,
                 })}
@@ -121,7 +119,7 @@ export class IntentOutputsFormGroup extends React.Component<
               >
                 {renderButtonsGroupOutputInput({
                   form,
-                  formIndex: FormIndexEnum.OUTPUTS,
+                  formIndex: "intent_outputs",
                   itemKey: item.id,
                   item: item as IntentJumpsOutputType,
                   intents,
@@ -139,7 +137,7 @@ export class IntentOutputsFormGroup extends React.Component<
   }
 
   private getNewOutputItem(type: IntentOutputTypeEnum): IntentOutputDisplayType {
-    const id = uuid();
+    const id = getUniqueNumberForSession();
     switch (type) {
       case IntentOutputTypeEnum.JUMPS:
         return {
@@ -210,7 +208,8 @@ export class IntentOutputsFormGroup extends React.Component<
 
   private getOutputsState(form): IntentOutputDisplayType {
     const values = form.getFieldValue("values");
-    const formOutputs: IntentOutputDisplayType = values[FormIndexEnum.OUTPUTS];
+    const formIndex: IntentFormIndexType = "intent_outputs";
+    const formOutputs: IntentOutputDisplayType = values[formIndex];
 
     return formOutputs;
   }

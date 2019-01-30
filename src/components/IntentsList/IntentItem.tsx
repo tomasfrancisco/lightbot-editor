@@ -2,9 +2,9 @@ import { Icon, Tag } from "antd";
 import * as React from "react";
 import styled, { cx } from "react-emotion";
 import { Link } from "react-router-dom";
-import theme from "~/config/theme.js";
-import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
-import { Intent } from "~/models";
+import theme from "src/config/theme.json";
+import { ElementIdsType } from "src/constants/ElementIdsType";
+import { Intent } from "src/models";
 
 const Wrapper = styled("div")`
   padding-left: 20px;
@@ -74,10 +74,11 @@ export type IntentItemProps = {
 export class IntentItem extends React.Component<IntentItemProps> {
   public render() {
     const { intent, onClick, collapseIcon, index, to } = this.props;
+    const welcomeIntentId: ElementIdsType = "welcome-intent";
     return (
       <Link to={to}>
         <Wrapper
-          id={intent.isWelcome ? ElementIdsEnum.WELCOME_INTENT : undefined}
+          id={intent.isWelcome ? welcomeIntentId : undefined}
           className={cx(
             index % 2 === 0 ? "list-item-even" : "list-item-odd",
             intent.parentId ? "list-item-child" : "list-item-parent",

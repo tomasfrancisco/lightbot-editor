@@ -1,4 +1,4 @@
-export * from "~/modules/ImproveView/apollo/gql/fetchUnknownTriggers";
+export * from "src/modules/ImproveView/apollo/gql/fetchUnknownTriggers";
 export * from "./getSelectedUnknownIntentId";
 export * from "./onSelectUnknownIntentId";
 export * from "./deleteUnknownTrigger";

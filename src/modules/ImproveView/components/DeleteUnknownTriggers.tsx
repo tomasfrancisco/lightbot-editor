@@ -1,11 +1,10 @@
 import * as React from "react";
 import { compose } from "react-apollo";
-import { DeleteButton, mainDeleteAction } from "~/components/DeleteButton";
+import { DeleteButton, mainDeleteAction } from "src/components/DeleteButton";
 import {
   deleteUnknownTrigger,
   DeleteUnknownTriggerFunction,
 } from "~/modules/ImproveView/apollo/gql";
-import { withRouteParams } from "~/routing";
 
 import { ColumnItem, getUnknownTriggerIds } from "../utils";
 

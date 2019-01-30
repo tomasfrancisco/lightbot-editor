@@ -1,10 +1,9 @@
 import { message } from "antd";
-import _isEqual from "lodash.isequal";
 import * as React from "react";
 import { compose } from "react-apollo";
-import { Loading } from "~/components/Loading";
-import { FormEnum } from "~/constants/FormEnum";
-import { BatchDictionaryData, Keyword, KeywordValue } from "~/models";
+import { Loading } from "src/components/Loading";
+import { FormId } from "src/constants/FormId";
+import { BatchDictionaryData, Keyword, KeywordValue } from "src/models";
 import {
   createKeyword,
   CreateKeywordFunction,
@@ -13,7 +12,7 @@ import {
   fetchKeywordValues,
   updateKeyword,
   UpdateKeywordFunction,
-} from "~/modules/KeywordsView/apollo/gql";
+} from "src/modules/KeywordsView/apollo/gql";
 import { KeywordEditorForm } from "./KeywordEditorForm";
 
 export type KeywordEditorViewProps = {
@@ -65,7 +64,7 @@ class KeywordEditorViewDisconnected extends React.Component<
         <KeywordEditorForm
           key={selectedKeyword.id + "-" + values.length}
           selectedKeyword={selectedKeyword}
-          values={values}
+          values={values || []}
           onDataSave={this.onDataSave}
           onDelete={this.onDelete}
           isTouched={hasDataChanged}
@@ -99,8 +98,9 @@ class KeywordEditorViewDisconnected extends React.Component<
 
   private onDataSave = (data: BatchDictionaryData) => {
     const { selectedKeyword } = this.props;
+    const creatingId: FormId = "-1";
 
-    if (selectedKeyword.id !== FormEnum.CREATING_ID) {
+    if (selectedKeyword.id !== parseInt(FormEnum.CREATING_ID, 10)) {
       this.updateKeyword(data);
     } else {
       this.createKeyword(data);
@@ -112,7 +112,7 @@ class KeywordEditorViewDisconnected extends React.Component<
       .loading("Creating Keyword", 1)
       .promise.then(() => {
         return this.props.onCreateKeyword({
-          variables: { keyword: { name: data.name } },
+          variables: { keyword: { name: data.name! } },
         });
       })
       .then(keywordCreated => {

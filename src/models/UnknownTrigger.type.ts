@@ -1,10 +1,10 @@
 /**
  * @deprecated
- * @lightbot/types should provided the necessary typings for the data model
+ * ./types should provided the necessary typings for the data model
  */
 
 export type UnknownTrigger = {
-  id: string;
+  id: number;
   value: string;
   createdAt: number;
 };

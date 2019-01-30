@@ -47,3 +47,23 @@ run_manual_editor_deploy:
   stage: deploy
   extends: .run_editor_deploy_template
   when: manual
+
+# Docker build
+run_docker_build:
+  stage: deploy
+  image: docker
+  services:
+    - docker:dind
+  only:
+    - staging
+  variables:
+    REACT_APP_API_URL: $PROD_REACT_APP_API_URL
+    REACT_APP_WIDGET_URL: $PROD_REACT_APP_WIDGET_URL
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+  script:
+    - printenv | grep -i "react_app_" >> .env.production
+    - docker build -t ${CI_REGISTRY}/lightbase/lightbot-editor:latest -t ${CI_REGISTRY}/lightbase/lightbot-editor:$CI_COMMIT_SHA .
+    - docker push ${CI_REGISTRY}/lightbase/lightbot-editor:latest
+    - docker push ${CI_REGISTRY}/lightbase/lightbot-editor:$CI_COMMIT_SHA
+

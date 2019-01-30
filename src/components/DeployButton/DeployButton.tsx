@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
-import { Button } from "~/components/Button";
-import theme from "~/config/theme.js";
+import { Button } from "src/components/Button";
+import theme from "src/config/theme.json";
 
 const Wrapper = styled("div")`
   width: 100%;

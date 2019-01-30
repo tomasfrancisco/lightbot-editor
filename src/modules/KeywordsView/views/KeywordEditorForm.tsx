@@ -2,8 +2,7 @@ import { Form as AntdForm, Icon, message } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
-import styled, { css } from "react-emotion";
-import uuid from "uuid/v4";
+import { css } from "react-emotion";
 import { Button } from "~/components/Button";
 import { DeleteButton, mainDeleteAction } from "~/components/DeleteButton";
 import {
@@ -13,24 +12,25 @@ import {
   FormItem,
   SearchInput,
   TitleInput,
-} from "~/components/Form";
-import { InputProps, renderInput } from "~/components/Form/Input";
+} from "src/components/Form";
+import { InputProps, renderInput } from "src/components/Form/Input";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
-} from "~/components/Section";
-import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
-import { FormEnum } from "~/constants/FormEnum";
-import { BatchDictionaryData, Keyword, KeywordValue } from "~/models";
-import { getDictionaryObjectToUpdate } from "~/modules/KeywordsView/handlers";
+} from "src/components/Section";
+import { ElementIdsType } from "src/constants/ElementIdsType";
+import { FormId } from "src/constants/FormId";
+import { BatchDictionaryData, Keyword, KeywordValue } from "src/models";
+import { getDictionaryObjectToUpdate } from "src/modules/KeywordsView/handlers";
 import {
   getBatchValidationRules,
   getDuplicateKeywordValidator,
   getNotSysEntityValidator,
   singleWordValidator,
 } from "~/modules/KeywordsView/utils";
+import { getUniqueNumberForSession } from "~/utils";
 
 const KEYWORD_NAME_FIELD = "keywordName";
 
@@ -49,7 +49,7 @@ export type KeywordEditorFormProps = FormComponentProps & {
   selectedKeyword: Keyword;
   isTouched: boolean;
   onDataSave: (data: BatchDictionaryData) => void;
-  onDelete: (id: string) => void;
+  onDelete: (id: number) => void;
   onTouch: () => void;
 };
 
@@ -72,9 +72,10 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
 
   public render() {
     const { selectedKeyword, form, isTouched } = this.props;
-
+    const creatingId: FormId = "-1";
+    const formId: ElementIdsType = "keyword-editor";
     return (
-      <Form id={ElementIdsEnum.KEYWORD_EDITOR} layout="vertical">
+      <Form id={formId} layout="vertical">
         <Section>
           <SectionHeader alignment={"left"}>
             <SectionHeaderNavContainer>
@@ -94,7 +95,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
               <AntdForm.Item className={headerOptionButtonsSpacingStyle}>
                 <DeleteButton
                   mainAction={mainDeleteAction}
-                  disabled={selectedKeyword.id === FormEnum.CREATING_ID}
+                  disabled={selectedKeyword.id === parseInt(FormEnum.CREATING_ID, 10)}
                   onConfirm={this.onConfirmDelete}
                 />
               </AntdForm.Item>
@@ -137,7 +138,8 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
 
   private initForm() {
     const { form } = this.props;
-    form.getFieldDecorator(FormEnum.KEYWORD_FORM);
+    const fieldId: FormId = "keyword_form_keys";
+    form.getFieldDecorator(fieldId);
   }
 
   private renderItems = () => {
@@ -186,7 +188,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
     const keywordValuesFromBatch: BatchInput[] = [];
     for (const newValue of newValues) {
       keywordValuesFromBatch.push({
-        id: newValue.id,
+        id: getUniqueNumberForSession(),
         value: newValue.value,
       });
     }
@@ -201,13 +203,13 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
 
     this.setState({
       keywordValues: keywordValues.concat({
-        id: uuid(),
+        id: getUniqueNumberForSession(),
         value: "",
       }),
     });
   };
 
-  private getOnRemove = (keyId: string) => () => {
+  private getOnRemove = (keyId: number) => () => {
     const { keywordValues } = this.state;
 
     this.setState({

@@ -5,8 +5,8 @@ import * as React from "react";
 import { compose } from "react-apollo";
 import { css } from "react-emotion";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Agent } from "~/models";
-import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
+import { Agent } from "src/models";
+import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
 
 import { fetchAgents } from "../Dashboard/gql/fetchAgents";
 import { renderMenuItem } from "./AppMenuItem";

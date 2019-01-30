@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
-import { Keyword } from "~/models";
+import { Keyword } from "src/models";
 
 export const ON_SELECT_KEYWORD_MUTATION = gql`
   mutation onSelectKeyword($keyword: Keyword!) {

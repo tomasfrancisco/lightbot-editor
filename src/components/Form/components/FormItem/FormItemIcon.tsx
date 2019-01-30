@@ -2,7 +2,7 @@ import { Icon } from "antd";
 import { IconProps } from "antd/lib/icon";
 import * as React from "react";
 import styled from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 type FormItemIconProps = Partial<IconProps> & {
   hidden?: boolean;

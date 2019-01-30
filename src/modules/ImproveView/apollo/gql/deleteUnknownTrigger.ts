@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 import { graphql, QueryResult } from "react-apollo";
-import { UnknownTrigger } from "~/models";
-import { deleteUnknownTriggerFromCache } from "~/modules/ImproveView/apollo/gql/unknownTriggersCacheUpdate";
-import { DeleteUnknownTriggersProps } from "~/modules/ImproveView/components";
+import { UnknownTrigger } from "src/models";
+import { deleteUnknownTriggerFromCache } from "src/modules/ImproveView/apollo/gql/unknownTriggersCacheUpdate";
+import { DeleteUnknownTriggersProps } from "src/modules/ImproveView/components";
 import { getUnknownTriggerIds } from "../../utils";
 
 export type DeleteUnknownTriggers = {
-  unknownTriggerIds: string[];
+  unknownTriggerIds: number[];
   agentId: string;
 };
 
@@ -28,11 +28,14 @@ export type DeleteUnknownTriggerFunction = (
   props: { variables: { triggersToDelete: DeleteUnknownTriggers } },
 ) => Promise<DeleteUnknownTriggerResult>;
 
-export const deleteUnknownTrigger = graphql<{}, {}, {}, {}>(DELETE_UNKNOWN_TRIGGER_QUERY, {
-  name: "onDeleteUnknownTrigger",
-  options: ({ selectedTriggers, agentId }: DeleteUnknownTriggersProps) => ({
-    update: cache => {
-      deleteUnknownTriggerFromCache(cache, getUnknownTriggerIds(selectedTriggers), agentId);
-    },
-  }),
-});
+export const deleteUnknownTrigger = graphql<DeleteUnknownTriggersProps, {}, {}, {}>(
+  DELETE_UNKNOWN_TRIGGER_QUERY,
+  {
+    name: "onDeleteUnknownTrigger",
+    options: ({ selectedTriggers, agentId }) => ({
+      update: cache => {
+        deleteUnknownTriggerFromCache(cache, getUnknownTriggerIds(selectedTriggers), agentId);
+      },
+    }),
+  },
+);

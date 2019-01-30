@@ -1,4 +1,4 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 import * as React from "react";
 import { compose } from "react-apollo";
 import { Route, RouteComponentProps, RouteProps, withRouter } from "react-router-dom";

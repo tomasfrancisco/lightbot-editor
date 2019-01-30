@@ -10,7 +10,7 @@ import {
   titleInputStyle,
   TitleStyledEmptyIcon,
   TitleStyledIcon,
-} from "~/components/Form/layout";
+} from "src/components/Form/layout";
 
 type TitleInputProps = {
   placeholder?: string;

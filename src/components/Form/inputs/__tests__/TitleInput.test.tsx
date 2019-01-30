@@ -2,7 +2,6 @@ import { Form as AntdForm } from "antd";
 import { shallow } from "enzyme";
 import * as React from "react";
 import { TitleInput } from "~/components/Form/inputs";
-import { ColorType } from "~/models";
 
 describe("components/Form/inputs/TitleInput", () => {
   test("renders", () => {

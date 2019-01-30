@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent } from "~/models";
-import { IntentEditorProps } from "~/modules/IntentEditor";
-import { getIntentProps } from "~/modules/IntentEditor/apollo/gql/intentProps";
+import { Intent } from "src/models";
+import { IntentEditorProps } from "src/modules/IntentEditor";
+import { getIntentProps } from "src/modules/IntentEditor/apollo/gql/intentProps";
 
 export const FETCH_INTENT_QUERY = gql`
-  query fetchIntent($intentId: String!, $agentId: String!) {
+  query fetchIntent($intentId: Int!, $agentId: String!) {
     intents(where: { id: $intentId, agentId: $agentId }) {
       ${getIntentProps(false)}
     }

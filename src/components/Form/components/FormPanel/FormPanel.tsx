@@ -1,7 +1,7 @@
 import { Collapse } from "antd";
 import { rgba } from "polished";
 import styled from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 export const FormPanel = styled(Collapse.Panel)`
   background-color: transparent;

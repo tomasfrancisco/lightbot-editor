@@ -1,10 +1,10 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 import * as React from "react";
 import { compose } from "react-apollo";
 import Joyride, { Props as JoyrideProps } from "react-joyride";
 import { ACTIONS, EVENTS } from "react-joyride/es/constants";
-import { KeywordValue } from "~/models";
-import { fetchKeywordValues, getSelectedKeyword } from "~/modules/KeywordsView/apollo/gql";
+import { KeywordValue } from "src/models";
+import { fetchKeywordValues, getSelectedKeyword } from "src/modules/KeywordsView/apollo/gql";
 
 import { defaultProps } from "./joyrideConfig";
 
@@ -27,7 +27,9 @@ export class KeywordsBoardingDisconnected extends React.Component<
 
     this.state = {
       skipped:
-        StorageInstance.getItem(StorageConstantsEnum.KEYWORDS_BOARDING_SKIP) === "true" || false,
+        // Disabled by request
+        // StorageInstance.getItem(StorageConstantsEnum.WELCOME_BOARDING_SKIP) === "true" || false,
+        true,
       joyrideProps: defaultProps,
     };
   }

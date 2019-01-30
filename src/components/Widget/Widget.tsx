@@ -13,7 +13,7 @@ export class Widget extends React.Component<WidgetProps> {
     this.script = document.createElement("script");
     this.script.id = "lightbot-widget";
     this.script.setAttribute("data-agent-id", props.agentId);
-    this.script.src = "https://widget.lightbot.io/lightbot.js";
+    this.script.src = `${process.env.REACT_APP_WIDGET_URL}/lightbot.js`;
     this.script.async = true;
   }
 
@@ -43,6 +43,8 @@ export const removeWidget = (isToReplace: boolean, script?: HTMLScriptElement) =
   }
 };
 
-export const getWidgetScript = (agentID: string) => {
-  return `<script id="lightbot-widget" data-agent-id=${agentID} src="https://widget.lightbot.io/lightbot.js"></script>`;
+export const getWidgetScript = (agentId: string) => {
+  return `<script id="lightbot-widget" data-agent-id=${agentId} src="${
+    process.env.REACT_APP_WIDGET_URL
+  }/lightbot.js"></script>`;
 };

@@ -1,9 +1,9 @@
 /**
  * @deprecated
- * @lightbot/types should provided the necessary typings for the data model
+ * ./types should provided the necessary typings for the data model
  */
 
-import { ActionType } from "~/models/enums";
+import { ActionType } from "~/types";
 
 export enum TriggerTypeEnum {
   PLAIN = "PLAIN",
@@ -11,7 +11,7 @@ export enum TriggerTypeEnum {
 }
 
 interface ITrigger {
-  id: string;
+  id: number;
   type: TriggerTypeEnum;
 }
 
@@ -26,7 +26,7 @@ export interface CombinationTrigger extends ITrigger {
 export type Trigger = PlainTrigger | CombinationTrigger;
 
 export type TriggerActionData = {
-  id?: string;
+  id?: number;
   type?: TriggerTypeEnum;
   value?: string[] | [string];
   actionType?: ActionType;

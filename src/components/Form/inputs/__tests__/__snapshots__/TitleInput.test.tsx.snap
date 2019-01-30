@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Form/inputs/TitleInput renders 1`] = `
-<Component
+<TitleInput
   form={
     Object {
       "getFieldDecorator": [Function],

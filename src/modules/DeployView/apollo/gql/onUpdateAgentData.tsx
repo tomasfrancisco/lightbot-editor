@@ -2,13 +2,13 @@ import gql from "graphql-tag";
 import _get from "lodash.get";
 import _update from "lodash.update";
 import { graphql, QueryResult } from "react-apollo";
-import { AgentData } from "~/models/AgentData.type";
-import { DeployViewProps } from "~/modules/DeployView";
-import { FETCH_AGENT_DATA_QUERY } from "~/modules/DeployView/apollo/gql/fetchAgentData";
+import { AgentData } from "src/models/AgentData.type";
+import { DeployViewProps } from "src/modules/DeployView";
+import { FETCH_AGENT_DATA_QUERY } from "src/modules/DeployView/apollo/gql/fetchAgentData";
 
 const UPDATE_WIDGET_DATA = gql`
   mutation UpdateWidgetData(
-    $agentId: ID!
+    $agentId: String!
     $widgetInputPlaceholder: String!
     $widgetTeaser: String!
     $widgetHotspotIcon: String!
@@ -49,9 +49,9 @@ export type UpdateWidgetDataFunction = (
   },
 ) => Promise<UpdateWidgetDataResult>;
 
-export const updateWidgetData = graphql<{}, {}, {}, {}>(UPDATE_WIDGET_DATA, {
+export const updateWidgetData = graphql<DeployViewProps, {}, {}, {}>(UPDATE_WIDGET_DATA, {
   name: "onUpdateWidgetData",
-  options: ({ agentId }: DeployViewProps) => ({
+  options: ({ agentId }) => ({
     update: (cache, data) => {
       updateWidgetDataCache(cache, agentId, data);
     },

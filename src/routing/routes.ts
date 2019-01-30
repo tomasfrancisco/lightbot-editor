@@ -1,14 +1,14 @@
 import { RouteProps } from "react-router-dom";
-import { DashboardView } from "~/modules/Dashboard";
-import { DeployView } from "~/modules/DeployView";
-import { HomeView } from "~/modules/HomeView";
-import { ImproveView } from "~/modules/ImproveView/ImproveView";
-import { IntentsView } from "~/modules/IntentsView";
-import { KeywordsView } from "~/modules/KeywordsView";
-import { LoginView } from "~/modules/LoginView";
-import { LogoutView } from "~/modules/LogoutView";
-import { SettingsView } from "~/modules/SettingsView";
-import { TrapView } from "~/modules/TrapView";
+import { DashboardView } from "src/modules/Dashboard";
+import { DeployView } from "src/modules/DeployView";
+import { HomeView } from "src/modules/HomeView";
+import { ImproveView } from "src/modules/ImproveView/ImproveView";
+import { IntentsView } from "src/modules/IntentsView";
+import { KeywordsView } from "src/modules/KeywordsView";
+import { LoginView } from "src/modules/LoginView";
+import { LogoutView } from "src/modules/LogoutView";
+import { SettingsView } from "src/modules/SettingsView";
+import { TrapView } from "src/modules/TrapView";
 import { RoutesKeysEnum } from "./routeKeys.enum";
 
 export type LightbotRouteProps = {

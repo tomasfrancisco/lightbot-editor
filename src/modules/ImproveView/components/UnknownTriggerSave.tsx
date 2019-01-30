@@ -2,23 +2,18 @@ import { message } from "antd";
 import * as React from "react";
 import { compose } from "react-apollo";
 import styled from "react-emotion";
-import { Loading } from "~/components/Loading";
-import { Intent } from "~/models";
+import { Loading } from "src/components/Loading";
+import { Intent } from "src/models";
 import {
   CreateIntentWithUnknownTriggerFunction,
   createIntentWithUnknownTriggers,
   moveUnknownTriggersToIntent,
   OnMoveUnknownTriggersFunction,
-} from "~/modules/ImproveView/apollo/gql";
-import { IntentSelector } from "~/modules/ImproveView/components/IntentSelector";
-import { withRouteParams } from "~/routing";
+} from "src/modules/ImproveView/apollo/gql";
+import { IntentSelector } from "src/modules/ImproveView/components/IntentSelector";
+import { withRouteParams } from "src/routing";
 
-import {
-  ColumnItem,
-  CREATE_INTENT_ID,
-  CreateIntent,
-  CreateIntentUnknownTriggerDataInput,
-} from "../utils";
+import { ColumnItem, CREATE_INTENT_ID, CreateIntent } from "../utils";
 import { CreateIntentModal } from "./CreateIntentModal";
 
 const Row = styled("div")`
@@ -91,9 +86,7 @@ class UnknownTriggerSaveDisconnected extends React.Component<
   private onCreateIntent = (createIntentData: CreateIntent) => {
     const { agentId, onCreateIntentWithUnknownTriggers } = this.props;
 
-    const triggers: CreateIntentUnknownTriggerDataInput[] = createIntentData.triggers.map(
-      trigger => ({ id: trigger.id!, value: trigger.value![0] }),
-    );
+    const triggers = createIntentData.triggers.map(trigger => trigger.id!);
 
     message
       .loading(`Creating ${createIntentData.intentName}`)

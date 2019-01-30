@@ -1,9 +1,9 @@
 import { Input, Row } from "antd";
-import Form, { FormComponentProps, ValidationRule } from "antd/lib/form";
+import { FormComponentProps, ValidationRule } from "antd/lib/form";
 import * as React from "react";
 import Img from "react-image";
-import { FormItem } from "~/components/Form/components/FormItem";
-import { formInputImageStyle, ImageRow, InputImageContainer } from "~/components/Form/layout";
+import { FormItem } from "src/components/Form/components/FormItem";
+import { formInputImageStyle, ImageRow, InputImageContainer } from "src/components/Form/layout";
 
 export type FormImageInputProps = FormComponentProps & {
   required?: boolean;

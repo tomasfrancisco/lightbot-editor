@@ -1,12 +1,12 @@
 import { FormComponentProps } from "antd/lib/form";
-import _get from "lodash.get";
 import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
 import { PlainTrigger } from "~/models";
 
 import { renderFormTextTagInput } from "../inputs";
+import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";
 
 type RenderPlainTriggerInputProps = FormComponentProps & {
-  formIndex: string;
+  formIndex: IntentFormIndexType;
   item: PlainTrigger;
   validTags: string[];
 };

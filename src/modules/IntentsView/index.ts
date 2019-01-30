@@ -1,1 +1,1 @@
-export * from "~/modules/IntentsView/IntentsView";
+export * from "src/modules/IntentsView/IntentsView";

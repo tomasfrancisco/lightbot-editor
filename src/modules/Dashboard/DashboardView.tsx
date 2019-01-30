@@ -2,9 +2,9 @@ import pathToRegexp from "path-to-regexp";
 import * as React from "react";
 import { compose } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Loading } from "~/components/Loading";
-import { Agent } from "~/models";
-import { RoutesKeysEnum, Routing } from "~/routing";
+import { Loading } from "src/components/Loading";
+import { Agent } from "src/models";
+import { RoutesKeysEnum, Routing } from "src/routing";
 
 import { fetchAgents } from "./gql/fetchAgents";
 

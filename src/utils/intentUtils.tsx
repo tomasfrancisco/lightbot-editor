@@ -1,4 +1,4 @@
-import { Intent } from "~/models";
+import { Intent } from "src/models";
 
 export const flattenIntents = (intents?: Intent[]): Intent[] => {
   const result: Intent[] = [];

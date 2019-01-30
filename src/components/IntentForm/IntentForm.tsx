@@ -3,29 +3,29 @@ import { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
 import { css } from "react-emotion";
-import { Button } from "~/components/Button";
+import { Button } from "src/components/Button";
 import {
   DeleteAction,
-  DeleteActionEnum,
+  DeleteActionType,
   DeleteButton,
-  IntentDeleteActionEnum,
-} from "~/components/DeleteButton";
-import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "~/components/Form";
+  IntentDeleteActionType,
+} from "src/components/DeleteButton";
+import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "src/components/Form";
 import {
   IntentOutputsFormGroup,
   IntentTriggersFormGroup,
-} from "~/components/IntentForm/form-groups";
-import { FormValues } from "~/components/IntentForm/FormValuesType";
+} from "src/components/IntentForm/form-groups";
+import { FormValues } from "src/components/IntentForm/FormValuesType";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
-} from "~/components/Section";
-import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
-import { FormEnum } from "~/constants/FormEnum";
-import { Dictionary, Intent } from "~/models";
-import { flattenIntents } from "~/utils";
+} from "src/components/Section";
+import { ElementIdsType } from "src/constants/ElementIdsType";
+import { FormId } from "src/constants/FormId";
+import { Dictionary, Intent } from "src/models";
+import { flattenIntents } from "src/utils";
 
 const topSpaceSectionContentStyle = css`
   padding-top: 20px;
@@ -56,19 +56,19 @@ enum FormIndexEnum {
 
 const defaultDeleteAction: DeleteAction = {
   confirmationMessage: "Are you sure?",
-  key: IntentDeleteActionEnum.ONLY_INTENT,
+  key: "ONLY_INTENT",
 };
 
 const deleteActions: DeleteAction[] = [
   {
     confirmationMessage:
       "You're deleting this intent. All follow-up intents are going to be moved to the next top parent. Are you sure?",
-    key: IntentDeleteActionEnum.ONLY_INTENT,
+    key: "ONLY_INTENT",
     optionTitle: "Only this intent (default)",
   },
   {
     confirmationMessage: "You're deleting this intent and it's follow-up intents. Are you sure?",
-    key: IntentDeleteActionEnum.ALL_INTENTS,
+    key: "ALL_INTENTS",
     optionTitle: "This intent and its follow-up intents",
   },
 ];
@@ -78,13 +78,13 @@ type IntentFormProps = FormComponentProps & {
   intent: Intent;
   dictionaries: Dictionary[];
   isTouched: boolean;
-  onDelete(intentId: string, action: DeleteActionEnum): void;
+  onDelete(intentId: number, action: DeleteActionType): void;
   onSubmit(formValues: FormValues): void;
   onTouch(): void;
 };
 
 export class IntentFormDisconnected extends React.Component<IntentFormProps> {
-  private formKey = FormEnum.INTENT_FORM;
+  private formKey: FormId = "intent_form_keys";
 
   constructor(props) {
     super(props);
@@ -94,10 +94,12 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
 
   public render() {
     const { intent, form, dictionaries, intents, isTouched } = this.props;
-
+    const formId: ElementIdsType = "intent-editor";
+    const formPanelTriggersId: ElementIdsType = "intent-editor-triggers";
+    const formPanelOutputsId: ElementIdsType = "intent-editor-outputs";
     return (
       <Form
-        id={ElementIdsEnum.INTENT_EDITOR}
+        id={formId}
         className={formStyle}
         layout="vertical"
         autoComplete="off"
@@ -134,7 +136,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
               defaultActiveKey={[FormIndexEnum.TRIGGERS, FormIndexEnum.OUTPUTS]}
             >
               <FormPanel
-                {...{ id: ElementIdsEnum.INTENT_EDITOR_TRIGGERS }}
+                id={formPanelTriggersId}
                 key={FormIndexEnum.TRIGGERS}
                 header={<FormPanelHeader>User says</FormPanelHeader>}
               >
@@ -147,7 +149,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
                 />
               </FormPanel>
               <FormPanel
-                {...{ id: ElementIdsEnum.INTENT_EDITOR_OUTPUTS }}
+                id={formPanelOutputsId}
                 key={FormIndexEnum.OUTPUTS}
                 header={<FormPanelHeader>Bot says</FormPanelHeader>}
               >

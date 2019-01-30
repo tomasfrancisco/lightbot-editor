@@ -1,6 +1,5 @@
-export type AgentData = {
-  widgetInputPlaceholder: string;
-  widgetTeaser: string;
-  widgetHotspotIcon: string;
+import { AgentData as TypesAgentData } from "~/types";
+
+export type AgentData = TypesAgentData & {
   widgetThemeData: string | {};
 };

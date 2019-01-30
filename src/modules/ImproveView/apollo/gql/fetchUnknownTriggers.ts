@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, QueryResult } from "react-apollo";
-import { UnknownTrigger } from "~/models/UnknownTrigger.type";
-import { ImproveViewProps } from "~/modules/ImproveView/ImproveView";
+import { UnknownTrigger } from "src/models/UnknownTrigger.type";
+import { ImproveViewProps } from "src/modules/ImproveView/ImproveView";
 
 export const FETCH_UNKNOWN_TRIGGERS_QUERY = gql`
-  query fetchUnknownTriggers($agentId: ID!) {
+  query fetchUnknownTriggers($agentId: String!) {
     findAgent(input: { agentId: $agentId }) {
       unknownTriggers {
         value

@@ -1,11 +1,11 @@
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import * as React from "react";
-import { FormColorInput, FormPanel, FormPanelHeader } from "~/components/Form";
-import theme from "~/config/theme.js";
-import { FormEnum } from "~/constants/FormEnum";
-import { LayoutConfigurationFormEnum } from "~/constants/LayoutConfigurationEnum";
-import { ColorType } from "~/models";
-import { AgentData } from "~/models/AgentData.type";
+import { FormColorInput, FormPanel, FormPanelHeader } from "src/components/Form";
+import theme from "src/config/theme.json";
+import { FormId } from "src/constants/FormId";
+import { LayoutConfigurationFormEnum } from "src/constants/LayoutConfigurationEnum";
+import { ColorType } from "src/models";
+import { AgentData } from "src/models/AgentData.type";
 
 import { getColorInAgentData } from "../utils";
 
@@ -22,11 +22,12 @@ export const renderHeaderViewFormPanel = ({
   agentData,
   onItemKeySelect,
 }: RenderHeaderViewFormPanel) => {
+  const formKey: FormId = "deploy_header_group";
   return (
     <FormPanel
       // @ts-ignore
       id={LayoutConfigurationFormEnum.CLOSE_CONFIGURATION_ID}
-      key={FormEnum.DEPLOY_HEADER_GROUP}
+      key={formKey}
       header={<FormPanelHeader>Header view</FormPanelHeader>}
     >
       <FormColorInput

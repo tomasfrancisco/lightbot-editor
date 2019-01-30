@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent, IntentExpression } from "~/models";
+import { Intent, IntentExpression } from "src/models";
 
 import { intentsProps } from "./intentsProps";
 

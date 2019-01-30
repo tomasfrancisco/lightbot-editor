@@ -1,4 +1,4 @@
-import { FormGroupItem } from "~/components/Form";
+import { FormGroupItem } from "src/components/Form";
 
 // This method it's fixing the problem with maxDepth. It just supports 2 in order to work.
 // It gonna get all item from nestable and put all elements in the same level.

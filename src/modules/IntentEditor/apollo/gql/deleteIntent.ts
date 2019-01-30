@@ -3,13 +3,13 @@ import _get from "lodash.get";
 import _remove from "lodash.remove";
 import _update from "lodash.update";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Intent } from "~/models";
-import { getIntentProps } from "~/modules/IntentEditor/apollo/gql/intentProps";
-import { IntentEditorProps } from "~/modules/IntentEditor/IntentEditor";
-import { FETCH_INTENTS_QUERY } from "~/modules/IntentsView/apollo/gql";
+import { Intent } from "src/models";
+import { getIntentProps } from "src/modules/IntentEditor/apollo/gql/intentProps";
+import { IntentEditorProps } from "src/modules/IntentEditor/IntentEditor";
+import { FETCH_INTENTS_QUERY } from "src/modules/IntentsView/apollo/gql";
 
 export const DELETE_INTENT_QUERY = gql`
-  mutation DeleteIntent($intentId: String!, $withChildren: Boolean!) {
+  mutation DeleteIntent($intentId: Int!, $withChildren: Boolean!) {
     deleteIntent(input: { id: $intentId, withChildren: $withChildren }) {
       ${getIntentProps(false)}
     }
@@ -56,9 +56,9 @@ const updateIntents = ({ cache, intentId, agentId }) => {
   }
 };
 
-export const deleteIntent = graphql<{}, {}, {}, {}>(DELETE_INTENT_QUERY, {
+export const deleteIntent = graphql<IntentEditorProps, {}, {}, {}>(DELETE_INTENT_QUERY, {
   name: "onDeleteIntent",
-  options: ({ intentId, agentId }: IntentEditorProps) => ({
+  options: ({ intentId, agentId }) => ({
     update: cache => {
       updateIntents({
         cache,

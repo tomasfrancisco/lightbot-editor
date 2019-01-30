@@ -1,19 +1,18 @@
 import { List as AntdList } from "antd";
 import * as React from "react";
-import styled, { css } from "react-emotion";
 import { ElementClassesEnum } from "~/constants/ElementClassesEnum";
 
 import { ListItem } from "./ListItem";
 
 export type ListItemData = {
-  id: string;
+  id: number;
   title: string;
 };
 
 export type ListProps = {
-  selectedListItemId?: string;
+  selectedListItemId?: number;
   items?: ListItemData[];
-  onChangeItemSelection?: (itemId: string) => void;
+  onChangeItemSelection?: (itemId: number) => void;
 };
 
 export class List extends React.Component<ListProps> {
@@ -25,12 +24,12 @@ export class List extends React.Component<ListProps> {
 
   private renderItem = (item: ListItemData, index: number) => {
     const { selectedListItemId } = this.props;
-
+    const className: ElementClassesName = "keyword";
     return (
       <ListItem
         isSelectedItem={selectedListItemId === item.id}
         index={index}
-        className={ElementClassesEnum.KEYWORD}
+        className={className}
         item={item}
         onClick={this.onItemListClick(item)}
       >

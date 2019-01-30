@@ -1,5 +1,6 @@
 import _isEqual from "lodash.isequal";
-import { ActionType, Trigger, TriggerActionData } from "~/models";
+import { Trigger, TriggerActionData } from "~/models";
+import { ActionType } from "~/types";
 
 export const transformToTriggersActionData = (
   isCreatingIntent: boolean,
@@ -9,11 +10,11 @@ export const transformToTriggersActionData = (
   const modifications = originalItems.reduce<TriggerActionData[]>((result, item) => {
     if (formValues[item.id]) {
       // original id exists in form
-
       if (!_isEqual(formValues[item.id], item)) {
         // in case it was updated
+        const actionType: ActionType = "UPDATE";
         result.push({
-          actionType: ActionType.UPDATE,
+          actionType,
           id: item.id,
           value: formValues[item.id].value,
         });
@@ -22,8 +23,9 @@ export const transformToTriggersActionData = (
       delete formValues[item.id];
     } else {
       // original id doesn't exist in form
+      const actionType: ActionType = "DELETE";
       result.push({
-        actionType: ActionType.DELETE,
+        actionType,
         id: item.id,
       });
     }
@@ -32,8 +34,9 @@ export const transformToTriggersActionData = (
   }, []);
 
   // formValues have now only the not identified ids
+  const actionType: ActionType = "CREATE";
   const creations = Object.values(formValues).map<TriggerActionData>((trigger: Trigger) => ({
-    actionType: !isCreatingIntent ? ActionType.CREATE : undefined,
+    actionType: !isCreatingIntent ? actionType : undefined,
     type: trigger.type,
     value: trigger.value,
   }));

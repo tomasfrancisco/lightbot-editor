@@ -1,18 +1,7 @@
-/**
- * @deprecated
- * @lightbot/types should provided the necessary typings for the data model
- */
+import { BatchDictionaryData as TypesBatch, DictionaryValueData } from "~/types";
 
-import { ActionType } from "~/models/enums";
-
-export type BatchDictionaryData = {
-  id: string;
-  name: string;
+export type BatchDictionaryData = TypesBatch & {
   values: DictionaryValueData[];
 };
 
-export type DictionaryValueData = {
-  actionType: ActionType;
-  id?: string;
-  value?: string;
-};
+export { DictionaryValueData };

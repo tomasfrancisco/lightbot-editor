@@ -1,1 +1,1 @@
-export * from "~/modules/HandOffView/HandOffView";
+export * from "src/modules/HandOffView/HandOffView";

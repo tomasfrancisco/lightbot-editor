@@ -1,33 +1,33 @@
 import { Col, message, Row } from "antd";
 import { ApolloClient } from "apollo-boost";
 import _get from "lodash.get";
-import pathToRegexp from "path-to-regexp";
+import pathToRegexp, { PathFunction } from "path-to-regexp";
 import * as React from "react";
 import { ApolloConsumer, compose } from "react-apollo";
 import { css } from "react-emotion";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Button } from "~/components/Button";
-import { SearchInput } from "~/components/Form/inputs";
-import { IntentsList } from "~/components/IntentsList";
-import { Loading } from "~/components/Loading";
+import { Button } from "src/components/Button";
+import { SearchInput } from "src/components/Form/inputs";
+import { IntentsList } from "src/components/IntentsList";
+import { Loading } from "src/components/Loading";
 import {
   Section,
   SectionContent,
   SectionHeader,
   SectionHeaderNavContainer,
-} from "~/components/Section";
-import { ElementIdsEnum } from "~/constants/ElementIdsEnum";
-import { Dictionary, Intent } from "~/models";
-import { IntentEditor } from "~/modules/IntentEditor";
+} from "src/components/Section";
+import { ElementIdsEnum } from "src/constants/ElementIdsEnum";
+import { Dictionary, Intent } from "src/models";
+import { IntentEditor } from "src/modules/IntentEditor";
 import {
   fetchDictionaries,
   fetchIntents,
   FIND_INTENTS_BY_EXPRESSION_QUERY,
   OnUpdateFollowUpIntentFunction,
   updateFollowUpIntent,
-} from "~/modules/IntentsView/apollo/gql";
-import { WelcomeBoarding } from "~/modules/OnBoarding";
-import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
+} from "src/modules/IntentsView/apollo/gql";
+import { WelcomeBoarding } from "src/modules/OnBoarding";
+import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
 
 import { LightbotLayout } from "../LightbotLayout";
 
@@ -40,9 +40,9 @@ const noMarginsSectionContentStyle = css`
 export type IntentsViewProps = RouteComponentProps & {
   intentsLoading?: boolean;
   intents: Intent[];
-  intentId?: string;
+  intentId?: number;
   agentId: string;
-  dictionaries?: Dictionary[];
+  dictionaries: Dictionary[];
   onUpdateFollowUpIntent: OnUpdateFollowUpIntentFunction;
 };
 
@@ -74,17 +74,18 @@ export class IntentsViewDisconnected extends React.Component<IntentsViewProps, I
       return <Loading />;
     }
 
-    const toPath = ({ ...params }) =>
+    const toPath: PathFunction = ({ ...params }) =>
       pathToRegexp.compile(Routing.routes[RoutesKeysEnum.INTENTS].routeProps.path as string)({
         agentId,
         ...params,
       });
 
+    const intentListId: ElementIdsType = "intent-list";
     return (
       <LightbotLayout>
         <Row>
           {intents && <WelcomeBoarding />}
-          <Col id={ElementIdsEnum.INTENT_LIST} span={10}>
+          <Col id={intentListId} span={10}>
             <Section>
               <SectionHeader>
                 <SectionHeaderNavContainer>

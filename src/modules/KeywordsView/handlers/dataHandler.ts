@@ -1,11 +1,6 @@
 import _isEqual from "lodash.isequal";
-import {
-  ActionType,
-  BatchDictionaryData,
-  DictionaryValueData,
-  Keyword,
-  KeywordValue,
-} from "~/models";
+import { BatchDictionaryData, DictionaryValueData, Keyword, KeywordValue } from "~/models";
+import { ActionType } from "~/types";
 
 export const getDictionaryObjectToUpdate = (
   selectedKeyword: Keyword,
@@ -33,9 +28,9 @@ const transformToDictionaryValueData = (
 
         if (!_isEqual(newValue, item.value)) {
           // in case it was updated
-
+          const actionType: ActionType = "UPDATE";
           result.push({
-            actionType: ActionType.UPDATE,
+            actionType,
             id: item.id,
             value: newValue,
           });
@@ -43,9 +38,11 @@ const transformToDictionaryValueData = (
 
         delete formValues[item.id];
       } else {
+        const actionType: ActionType = "DELETE";
         result.push({
-          actionType: ActionType.DELETE,
+          actionType,
           id: item.id,
+          value: null,
         });
       }
 
@@ -55,9 +52,11 @@ const transformToDictionaryValueData = (
   );
 
   // formValues have now only the not identified ids
+  const actionType: ActionType = "CREATE";
   const creations: DictionaryValueData[] = Object.values(formValues).map<DictionaryValueData>(
     value => ({
-      actionType: ActionType.CREATE,
+      actionType,
+      id: null,
       value,
     }),
   );

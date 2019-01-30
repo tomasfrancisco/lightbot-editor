@@ -1,5 +1,3 @@
-import "./nestable.css";
-
 import { notification } from "antd";
 import _get from "lodash.get";
 import { PathFunction } from "path-to-regexp";
@@ -8,14 +6,15 @@ import Nestable from "react-nestable";
 import { CollapseButton } from "~/components/IntentsList/CollapseButton";
 import { IntentItem } from "~/components/IntentsList/IntentItem";
 import { Intent } from "~/models";
+import "./nestable.css";
 
 import { getPathById } from "./utils/getPathById";
 
 export type IntentListProps = {
   toPath: PathFunction;
   intents: Intent[];
-  selectedIntentId?: string;
-  onIntentClick?(intentId: string): void;
+  selectedIntentId?: number;
+  onIntentClick?(intentId: number): void;
   onChange(intent: Intent): void;
 };
 

@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, QueryResult } from "react-apollo";
-import { AgentData } from "~/models/AgentData.type";
-import { DeployViewProps } from "~/modules/DeployView";
+import { AgentData } from "src/models/AgentData.type";
+import { DeployViewProps } from "src/modules/DeployView";
 
 export const FETCH_AGENT_DATA_QUERY = gql`
-  query fetchAgentData($agentId: ID!) {
+  query fetchAgentData($agentId: String!) {
     findAgent(input: { agentId: $agentId }) {
       data {
         widgetInputPlaceholder

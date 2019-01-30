@@ -1,4 +1,4 @@
-import { TriggerActionData } from "~/models";
+import { TriggerActionData } from "src/models";
 
 export type ColumnData = {
   title: string;
@@ -7,7 +7,7 @@ export type ColumnData = {
 
 export type ColumnItem = {
   createdAt: string;
-  key: string;
+  key: number;
   value: string;
 };
 
@@ -18,11 +18,11 @@ export type CreateIntent = {
 
 export type CreateIntentWithUnknownTriggers = {
   agentId: string;
-  unknownTriggers: CreateIntentUnknownTriggerDataInput[];
+  unknownTriggers: number[];
   intentName: string;
 };
 
 export type CreateIntentUnknownTriggerDataInput = {
-  id: string;
+  id: number;
   value: string;
 };

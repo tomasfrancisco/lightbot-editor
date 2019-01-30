@@ -1,0 +1,16 @@
+schema: ./node_modules/lightbot-ssot/schema.graphql
+overwrite: true
+generates:
+  ./src/types/types.ts:
+    plugins:
+      - add: '// THIS FILE IS GENERATED'
+      - add: '/* tslint:disable */'
+      - add: ''
+      - add: ''
+      - typescript-common
+      - typescript-client
+      - typescript-server
+    config:
+      avoidOptionals: true
+      noNamespaces: true
+      enumsAsTypes: true

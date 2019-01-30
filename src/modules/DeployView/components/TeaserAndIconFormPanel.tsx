@@ -8,12 +8,12 @@ import {
   FormPanelHeader,
   renderFormTextAreaInput,
   renderFormTextInput,
-} from "~/components/Form";
-import theme from "~/config/theme.js";
-import { FormEnum } from "~/constants/FormEnum";
-import { LayoutConfigurationFormEnum } from "~/constants/LayoutConfigurationEnum";
-import { ColorType } from "~/models";
-import { AgentData } from "~/models/AgentData.type";
+} from "src/components/Form";
+import theme from "src/config/theme.json";
+import { FormId } from "src/constants/FormId";
+import { LayoutConfigurationFormEnum } from "src/constants/LayoutConfigurationEnum";
+import { ColorType } from "src/models";
+import { AgentData } from "src/models/AgentData.type";
 
 import { getColorInAgentData } from "../utils";
 
@@ -30,11 +30,12 @@ export const renderTeaserAndIconFormPanel = ({
   onItemKeySelect,
   itemKeyOpened,
 }: RenderTeaserAndIconFormPanelProps) => {
+  const formKey: FormId = "deploy_teaser_icon_group";
   return (
     <FormPanel
       // @ts-ignore
       id={LayoutConfigurationFormEnum.TEASER_CONFIGURATION_ID}
-      key={FormEnum.DEPLOY_TEASER_ICON_GROUP}
+      key={formKey}
       header={<FormPanelHeader>Teaser & Icon</FormPanelHeader>}
     >
       <FormItem title="Teaser">
@@ -59,7 +60,7 @@ export const renderTeaserAndIconFormPanel = ({
         title="Hotspot icon"
         form={form}
         itemKey={LayoutConfigurationFormEnum.HOTSPOT_ICON_CONFIGURATION_ID}
-        initialValue={agentData ? agentData.widgetHotspotIcon : ""}
+        initialValue={agentData && agentData.widgetHotspotIcon ? agentData.widgetHotspotIcon : ""}
         placeholder="Use Default"
       />
       <FormColorInput

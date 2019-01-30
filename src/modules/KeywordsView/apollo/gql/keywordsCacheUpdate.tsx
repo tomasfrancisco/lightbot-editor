@@ -5,7 +5,7 @@ import {
   FETCH_KEYWORD_QUERY,
   FETCH_KEYWORDS_QUERY,
   GET_SELECTED_KEYWORD_QUERY,
-} from "~/modules/KeywordsView/apollo/gql";
+} from "src/modules/KeywordsView/apollo/gql";
 
 export const updateKeywordsList = (cache, updatedKeyword) => {
   const fetchKeywordsQuery = {

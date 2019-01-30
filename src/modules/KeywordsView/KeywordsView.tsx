@@ -1,17 +1,17 @@
 import { Col, Row } from "antd";
 import * as React from "react";
 import { compose } from "react-apollo";
-import { Loading } from "~/components/Loading";
-import { FormEnum } from "~/constants/FormEnum";
-import { Keyword } from "~/models";
+import { Loading } from "src/components/Loading";
+import { FormId } from "src/constants/FormId";
+import { Keyword } from "src/models";
 import {
   fetchKeywords,
   getSelectedKeyword,
   onSelectKeyword,
   OnSelectKeywordFunction,
-} from "~/modules/KeywordsView/apollo/gql";
-import { KeywordEditorView, KeywordsSelectorView } from "~/modules/KeywordsView/views";
-import { KeywordsBoarding } from "~/modules/OnBoarding/KeywordsBoarding";
+} from "src/modules/KeywordsView/apollo/gql";
+import { KeywordEditorView, KeywordsSelectorView } from "src/modules/KeywordsView/views";
+import { KeywordsBoarding } from "src/modules/OnBoarding/KeywordsBoarding";
 
 import { LightbotLayout } from "../LightbotLayout";
 
@@ -60,8 +60,10 @@ class KeywordsViewDisconnected extends React.Component<KeywordsViewProps> {
   };
 
   public onAddKeyword = () => {
+    const creatingId: FormId = "-1";
+
     const keyword: Keyword = {
-      id: FormEnum.CREATING_ID,
+      id: parseInt(FormEnum.CREATING_ID, 10),
       name: "",
     };
     this.props.onSelectKeyword({ variables: { keyword } });

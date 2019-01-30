@@ -1,11 +1,11 @@
-import { StorageConstantsEnum, StorageInstance } from "@lightbot/browser-storage";
+import { StorageConstantsEnum, StorageInstance } from "lightbot-ssot/lib";
 import * as React from "react";
 import { compose } from "react-apollo";
 import Joyride, { Props as JoyrideProps } from "react-joyride";
 import { ACTIONS, EVENTS } from "react-joyride/es/constants";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Intent } from "~/models";
-import { fetchIntent } from "~/modules/IntentEditor/apollo/gql";
+import { Intent } from "src/models";
+import { fetchIntent } from "src/modules/IntentEditor/apollo/gql";
 
 import { defaultProps } from "./joyrideConfig";
 
@@ -28,7 +28,9 @@ export class WelcomeBoardingDisconnected extends React.Component<
 
     this.state = {
       skipped:
-        StorageInstance.getItem(StorageConstantsEnum.WELCOME_BOARDING_SKIP) === "true" || false,
+        // Disabled by request
+        // StorageInstance.getItem(StorageConstantsEnum.WELCOME_BOARDING_SKIP) === "true" || false,
+        true,
       joyrideProps: defaultProps,
     };
   }

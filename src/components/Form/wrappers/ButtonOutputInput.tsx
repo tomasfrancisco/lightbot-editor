@@ -1,15 +1,15 @@
-import { IntentJumpsOutputType } from "@lightbot/types";
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import { FormButton } from "~/components/Form/inputs/FormButtonInput";
 import { FormButtonsGroupButtons } from "~/components/Form/inputs/FormButtonsGroupButton";
 import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
 import { Intent } from "~/models";
+import { IntentJumpsOutputType } from "~/types";
 
 type RenderButtonsGroupOutputInputProps = FormComponentProps & {
   errorMessage?: string;
   formIndex: string;
-  itemKey: string;
+  itemKey: number;
   item: IntentJumpsOutputType;
   intents?: Intent[];
 };
@@ -58,8 +58,7 @@ export const renderButtonsGroupOutputInput = ({
                 .map(button => {
                   const isLabelValid =
                     !whitespaceValidator(button.label) && !emptyStringValidator(button.label);
-                  const isButtonValueValue =
-                    !whitespaceValidator(button.intentId) && !emptyStringValidator(button.intentId);
+                  const isButtonValueValue = button.intentId > -1;
 
                   return isLabelValid && isButtonValueValue;
                 })
