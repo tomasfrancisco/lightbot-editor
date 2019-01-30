@@ -1,7 +1,7 @@
 import { onError } from "apollo-link-error";
-import { RoutesKeysEnum, Routing } from "~/routing";
-import { browserHistory } from "~/routing/browserHistory";
-import { ErrorCode } from "~/types";
+import { RoutesKeysEnum, Routing } from "src/routing";
+import { browserHistory } from "src/routing/browserHistory";
+import { ErrorCode } from "src/types";
 
 export const logoutLink = onError(({ graphQLErrors, forward, operation }) => {
   if (graphQLErrors) {

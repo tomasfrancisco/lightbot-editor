@@ -80,7 +80,7 @@ class KeywordEditorViewDisconnected extends React.Component<
     });
   };
 
-  private onDelete = (id: string) => {
+  private onDelete = (id: number) => {
     message
       .loading("Deleting Keyword", 1)
       .promise.then(() =>
@@ -100,7 +100,7 @@ class KeywordEditorViewDisconnected extends React.Component<
     const { selectedKeyword } = this.props;
     const creatingId: FormId = "-1";
 
-    if (selectedKeyword.id !== parseInt(FormEnum.CREATING_ID, 10)) {
+    if (selectedKeyword.id !== parseInt(creatingId, 10)) {
       this.updateKeyword(data);
     } else {
       this.createKeyword(data);

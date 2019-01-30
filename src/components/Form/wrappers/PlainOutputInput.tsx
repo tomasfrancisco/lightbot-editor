@@ -1,7 +1,8 @@
 import { FormComponentProps } from "antd/lib/form";
-import { renderFormTextInput } from "~/components/Form/inputs/FormTextInput";
-import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
-import { IntentPlainOutputType } from "~/types";
+import { renderFormTextInput } from "src/components/Form/inputs/FormTextInput";
+import { emptyStringValidator, whitespaceValidator } from "src/components/Form/validators";
+import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";
+import { IntentPlainOutputType } from "src/types";
 
 type RenderPlainOutputInputProps = FormComponentProps & {
   formIndex: IntentFormIndexType;

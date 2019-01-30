@@ -61,7 +61,7 @@ export class FormButtonInput extends React.Component<FormButtonInputProps> {
 
     return intents.map(intent => {
       return (
-        <Select.Option value={intent.id} key={intent.id}>
+        <Select.Option value={intent.id} key={"selectIntent--" + intent.id}>
           {intent.name}
         </Select.Option>
       );

@@ -1,10 +1,10 @@
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import { FormButton } from "~/components/Form/inputs/FormButtonInput";
-import { FormButtonsGroupButtons } from "~/components/Form/inputs/FormButtonsGroupButton";
-import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
-import { Intent } from "~/models";
-import { IntentJumpsOutputType } from "~/types";
+import { FormButton } from "src/components/Form/inputs/FormButtonInput";
+import { FormButtonsGroupButtons } from "src/components/Form/inputs/FormButtonsGroupButton";
+import { emptyStringValidator, whitespaceValidator } from "src/components/Form/validators";
+import { Intent } from "src/models";
+import { IntentJumpsOutputType } from "src/types";
 
 type RenderButtonsGroupOutputInputProps = FormComponentProps & {
   errorMessage?: string;

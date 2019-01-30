@@ -4,8 +4,8 @@ import {
   emptyStringValidator,
   urlValidator,
   whitespaceValidator,
-} from "~/components/Form/validators";
-import { IntentLinkOutputType } from "~/types";
+} from "src/components/Form/validators";
+import { IntentLinkOutputType } from "src/types";
 
 type RenderLinkOutputInputProps = FormComponentProps & {
   errorMessage?: string;

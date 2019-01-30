@@ -1,6 +1,5 @@
-import { IntentTypeEnum } from "~/components/IntentForm/IntentTypeFormField";
-import { Trigger } from "~/models";
-import { IntentOutputType } from "~/types";
+import { Trigger } from "src/models";
+import { IntentOutputType } from "src/types";
 
 export type IntentTypeEnum = "DEFAULT" | "FALLBACK" | "WELCOME";
 

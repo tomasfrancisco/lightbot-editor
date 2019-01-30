@@ -1,11 +1,12 @@
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import { FormGroup, FormItem } from "~/components/Form";
-import { renderCombinationTriggerInput, renderPlainTriggerInput } from "~/components/Form/wrappers";
-import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
-import { TriggerAddButtonGroup } from "~/components/IntentForm/TriggerAddButtonGroup";
-import { CombinationTrigger, Dictionary, PlainTrigger, Trigger, TriggerTypeEnum } from "~/models";
-import { getUniqueNumberForSession } from "~/utils";
+import { FormGroup, FormItem } from "src/components/Form";
+import { renderCombinationTriggerInput, renderPlainTriggerInput } from "src/components/Form/wrappers";
+import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";
+import { TriggerAddButtonGroup } from "src/components/IntentForm/TriggerAddButtonGroup";
+import { CombinationTrigger, PlainTrigger, Trigger, TriggerTypeEnum } from "src/models";
+import { Dictionary } from "src/types";
+import { getUniqueNumberForSession } from "src/utils";
 
 type TriggerItemsType = {
   components: React.ReactNode[];

@@ -97,7 +97,7 @@ class FormSelectGroupInput extends React.Component<
     const { searchResults } = this.props;
 
     return searchResults.map(searchResult => (
-      <Select.Option key={searchResult.key} value={searchResult.key}>
+      <Select.Option key={"formSearchResults--" + searchResult.key} value={searchResult.key}>
         {searchResult.value}
       </Select.Option>
     ));

@@ -1,6 +1,6 @@
 import _isEqual from "lodash.isequal";
-import { Trigger, TriggerActionData } from "~/models";
-import { ActionType } from "~/types";
+import { Trigger, TriggerActionData } from "src/models";
+import { ActionType } from "src/types";
 
 export const transformToTriggersActionData = (
   isCreatingIntent: boolean,

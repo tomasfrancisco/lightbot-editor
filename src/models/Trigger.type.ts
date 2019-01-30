@@ -3,7 +3,7 @@
  * ./types should provided the necessary typings for the data model
  */
 
-import { ActionType } from "~/types";
+import { ActionType } from "src/types";
 
 export enum TriggerTypeEnum {
   PLAIN = "PLAIN",

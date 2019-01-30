@@ -16,8 +16,8 @@ import {
   SectionHeader,
   SectionHeaderNavContainer,
 } from "src/components/Section";
-import { ElementIdsEnum } from "src/constants/ElementIdsEnum";
-import { Dictionary, Intent } from "src/models";
+import { ElementIdsType } from "src/constants/ElementIdsType";
+import { Intent } from "src/models";
 import { IntentEditor } from "src/modules/IntentEditor";
 import {
   fetchDictionaries,
@@ -28,6 +28,7 @@ import {
 } from "src/modules/IntentsView/apollo/gql";
 import { WelcomeBoarding } from "src/modules/OnBoarding";
 import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
+import { Dictionary } from "src/types";
 
 import { LightbotLayout } from "../LightbotLayout";
 

@@ -3,8 +3,8 @@ import { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
 import { css } from "react-emotion";
-import { Button } from "~/components/Button";
-import { DeleteButton, mainDeleteAction } from "~/components/DeleteButton";
+import { Button } from "src/components/Button";
+import { DeleteButton, mainDeleteAction } from "src/components/DeleteButton";
 import {
   BatchInput,
   Form,
@@ -29,8 +29,8 @@ import {
   getDuplicateKeywordValidator,
   getNotSysEntityValidator,
   singleWordValidator,
-} from "~/modules/KeywordsView/utils";
-import { getUniqueNumberForSession } from "~/utils";
+} from "src/modules/KeywordsView/utils";
+import { getUniqueNumberForSession } from "src/utils";
 
 const KEYWORD_NAME_FIELD = "keywordName";
 
@@ -95,7 +95,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
               <AntdForm.Item className={headerOptionButtonsSpacingStyle}>
                 <DeleteButton
                   mainAction={mainDeleteAction}
-                  disabled={selectedKeyword.id === parseInt(FormEnum.CREATING_ID, 10)}
+                  disabled={selectedKeyword.id === parseInt(creatingId, 10)}
                   onConfirm={this.onConfirmDelete}
                 />
               </AntdForm.Item>

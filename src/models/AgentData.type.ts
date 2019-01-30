@@ -1,4 +1,4 @@
-import { AgentData as TypesAgentData } from "~/types";
+import { AgentData as TypesAgentData } from "src/types";
 
 export type AgentData = TypesAgentData & {
   widgetThemeData: string | {};

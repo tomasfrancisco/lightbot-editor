@@ -4,7 +4,7 @@ import { DeleteButton, mainDeleteAction } from "src/components/DeleteButton";
 import {
   deleteUnknownTrigger,
   DeleteUnknownTriggerFunction,
-} from "~/modules/ImproveView/apollo/gql";
+} from "src/modules/ImproveView/apollo/gql";
 
 import { ColumnItem, getUnknownTriggerIds } from "../utils";
 

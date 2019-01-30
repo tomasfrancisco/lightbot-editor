@@ -4,23 +4,23 @@ import pathToRegexp from "path-to-regexp";
 import * as React from "react";
 import { compose } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { IntentDeleteActionEnum } from "~/components/DeleteButton";
-import { IntentForm } from "~/components/IntentForm";
-import { FormValues } from "~/components/IntentForm/FormValuesType";
-import { Loading } from "~/components/Loading";
-import { Dictionary, Intent, IntentActionData, TriggerActionData } from "~/models";
+import { IntentDeleteActionType } from "src/components/DeleteButton";
+import { IntentForm } from "src/components/IntentForm";
+import { FormValues } from "src/components/IntentForm/FormValuesType";
+import { Loading } from "src/components/Loading";
+import { Intent, IntentActionData, TriggerActionData } from "src/models";
 import {
   createIntent,
   CreateIntentFunction,
   fetchIntent,
   updateIntent,
   UpdateIntentFunction,
-} from "~/modules/IntentEditor/apollo/gql";
-import { deleteIntent, DeleteIntentFunction } from "~/modules/IntentEditor/apollo/gql/deleteIntent";
-import { transformToTriggersActionData } from "~/modules/IntentEditor/utils/transformers";
-import { RoutesKeysEnum, Routing, withRouteParams } from "~/routing";
-import { IntentOutputType } from "~/types";
-import { getUniqueNumberForSession } from "~/utils";
+} from "src/modules/IntentEditor/apollo/gql";
+import { deleteIntent, DeleteIntentFunction } from "src/modules/IntentEditor/apollo/gql/deleteIntent";
+import { transformToTriggersActionData } from "src/modules/IntentEditor/utils/transformers";
+import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
+import { Dictionary, IntentOutputType } from "src/types";
+import { getUniqueNumberForSession } from "src/utils";
 
 export type IntentEditorProps = RouteComponentProps & {
   intents?: Intent[];
@@ -184,7 +184,7 @@ class IntentEditorDisconnected extends React.Component<IntentEditorProps, Intent
     }
   };
 
-  private onIntentDelete = (intentId: string, action: IntentDeleteActionEnum) => {
+  private onIntentDelete = (intentId: number, action: IntentDeleteActionType) => {
     const { onDeleteIntent, history, agentId } = this.props;
 
     if (onDeleteIntent) {

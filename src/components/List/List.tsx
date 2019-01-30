@@ -1,6 +1,6 @@
 import { List as AntdList } from "antd";
 import * as React from "react";
-import { ElementClassesEnum } from "~/constants/ElementClassesEnum";
+import { ElementClassesName } from "src/constants/ElementClassesName";
 
 import { ListItem } from "./ListItem";
 

@@ -1,20 +1,20 @@
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
-import { FormGroup, FormItem } from "~/components/Form";
-import { renderLinkOutputInput, renderPlainOutputInput } from "~/components/Form/wrappers";
-import { renderButtonsGroupOutputInput } from "~/components/Form/wrappers/ButtonOutputInput";
-import { IntentOutputDisplayType } from "~/components/IntentForm/form-groups/IntentOutputsFormGroup/types/IntentOutputsDisplay.type";
-import { FormIndexEnum } from "~/components/IntentForm/FormIndex.enum";
-import { OutputAddButtonGroup } from "~/components/IntentForm/OutputAddButtonGroup";
-import { Intent } from "~/models";
+import { FormGroup, FormItem } from "src/components/Form";
+import { renderLinkOutputInput, renderPlainOutputInput } from "src/components/Form/wrappers";
+import { renderButtonsGroupOutputInput } from "src/components/Form/wrappers/ButtonOutputInput";
+import { IntentOutputDisplayType } from "src/components/IntentForm/form-groups/IntentOutputsFormGroup/types/IntentOutputsDisplay.type";
+import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";
+import { OutputAddButtonGroup } from "src/components/IntentForm/OutputAddButtonGroup";
+import { Intent } from "src/models";
 import {
   IntentJumpsOutputType,
   IntentLinkOutputType,
   IntentOutputType,
   IntentOutputTypeEnum,
   IntentPlainOutputType,
-} from "~/types";
-import { getUniqueNumberForSession, reactNestableDumbIssueFixer } from "~/utils";
+} from "src/types";
+import { getUniqueNumberForSession, reactNestableDumbIssueFixer } from "src/utils";
 
 type OutputItemsType = {
   components: React.ReactNode[];

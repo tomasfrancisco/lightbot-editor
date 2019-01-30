@@ -3,7 +3,7 @@ import { ButtonProps as AntdButtonProps } from "antd/lib/button";
 import { rgba } from "polished";
 import * as React from "react";
 import { css } from "react-emotion";
-import theme from "~/config/theme.js";
+import theme from "src/config/theme.json";
 
 export type ButtonColorTypes = "primary" | "success" | "info" | "secondary";
 

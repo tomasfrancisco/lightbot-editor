@@ -3,9 +3,9 @@ import Form, { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
 import styled, { css } from "react-emotion";
-import { TitleInput } from "~/components/Form";
-import theme from "~/config/theme.js";
-import { TriggerActionData } from "~/models";
+import { TitleInput } from "src/components/Form";
+import theme from "src/config/theme.json";
+import { TriggerActionData } from "src/models";
 
 import { ColumnItem, CreateIntent, NEW_INTENT_KEY_NAME } from "../utils";
 

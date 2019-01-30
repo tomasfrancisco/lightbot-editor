@@ -1,7 +1,7 @@
 import { Form as AntdForm } from "antd";
 import { shallow } from "enzyme";
 import * as React from "react";
-import { TitleInput } from "~/components/Form/inputs";
+import { TitleInput } from "src/components/Form/inputs";
 
 describe("components/Form/inputs/TitleInput", () => {
   test("renders", () => {

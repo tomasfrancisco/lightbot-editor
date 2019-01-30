@@ -8,7 +8,6 @@ import {
   DeleteAction,
   DeleteActionType,
   DeleteButton,
-  IntentDeleteActionType,
 } from "src/components/DeleteButton";
 import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "src/components/Form";
 import {
@@ -24,7 +23,8 @@ import {
 } from "src/components/Section";
 import { ElementIdsType } from "src/constants/ElementIdsType";
 import { FormId } from "src/constants/FormId";
-import { Dictionary, Intent } from "src/models";
+import { Intent } from "src/models";
+import { Dictionary } from "src/types";
 import { flattenIntents } from "src/utils";
 
 const topSpaceSectionContentStyle = css`

@@ -3,9 +3,9 @@ import _get from "lodash.get";
 import { PathFunction } from "path-to-regexp";
 import * as React from "react";
 import Nestable from "react-nestable";
-import { CollapseButton } from "~/components/IntentsList/CollapseButton";
-import { IntentItem } from "~/components/IntentsList/IntentItem";
-import { Intent } from "~/models";
+import { CollapseButton } from "src/components/IntentsList/CollapseButton";
+import { IntentItem } from "src/components/IntentsList/IntentItem";
+import { Intent } from "src/models";
 import "./nestable.css";
 
 import { getPathById } from "./utils/getPathById";

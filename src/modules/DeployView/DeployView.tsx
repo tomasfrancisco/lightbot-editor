@@ -4,9 +4,9 @@ import ApolloClient from "apollo-client";
 import * as React from "react";
 import { ApolloConsumer, compose } from "react-apollo";
 import uuid from "uuid/v4";
-import { CodeHighlighter, CodeHighlighterButton } from "~/components/CodeHighlighter";
-import { DeployButton } from "~/components/DeployButton";
-import { Loading } from "~/components/Loading";
+import { CodeHighlighter, CodeHighlighterButton } from "src/components/CodeHighlighter";
+import { DeployButton } from "src/components/DeployButton";
+import { Loading } from "src/components/Loading";
 import {
   SectionCard,
   sectionContentFitableStyle,

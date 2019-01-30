@@ -3,8 +3,8 @@
  * ./types should provided the necessary typings for the data model
  */
 
-import { Trigger, TriggerActionData } from "~/models/Trigger.type";
-import { IntentOutputType } from "~/types";
+import { Trigger, TriggerActionData } from "src/models/Trigger.type";
+import { IntentOutputType } from "src/types";
 
 export type Intent = {
   id: number;

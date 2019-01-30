@@ -93,7 +93,7 @@ export class IntentSelector extends React.Component<IntentSelectorProps, IntentS
     if (intentsList) {
       return intentsList!.map(intent => {
         return (
-          <Option value={intent.id} key={intent.id}>
+          <Option value={intent.id} key={"selectIntent--" + intent.id}>
             {intent.name}
           </Option>
         );

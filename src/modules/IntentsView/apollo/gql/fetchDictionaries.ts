@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import _get from "lodash.get";
 import { graphql, Query, QueryResult } from "react-apollo";
-import { Dictionary } from "src/models";
+import { Dictionary } from "src/types";
 
 export const FETCH_DICTIONARIES_QUERY = gql`
   query fetchDictionaries {

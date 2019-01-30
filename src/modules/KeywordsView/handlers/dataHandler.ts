@@ -1,6 +1,6 @@
 import _isEqual from "lodash.isequal";
-import { BatchDictionaryData, DictionaryValueData, Keyword, KeywordValue } from "~/models";
-import { ActionType } from "~/types";
+import { BatchDictionaryData, Keyword, KeywordValue } from "src/models";
+import { ActionType, DictionaryValueData } from "src/types";
 
 export const getDictionaryObjectToUpdate = (
   selectedKeyword: Keyword,

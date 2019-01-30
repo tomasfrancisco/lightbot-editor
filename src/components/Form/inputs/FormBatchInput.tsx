@@ -2,9 +2,9 @@ import { Icon, Input } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { ValidationRule } from "antd/lib/form/Form";
 import * as React from "react";
-import { Button } from "~/components/Button";
-import { FormItem } from "~/components/Form";
-import { getUniqueNumberForSession } from "~/utils";
+import { Button } from "src/components/Button";
+import { FormItem } from "src/components/Form";
+import { getUniqueNumberForSession } from "src/utils";
 
 const { TextArea } = Input;
 

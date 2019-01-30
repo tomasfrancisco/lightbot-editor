@@ -1,6 +1,6 @@
 import { FormComponentProps } from "antd/lib/form";
-import { emptyStringValidator, whitespaceValidator } from "~/components/Form/validators";
-import { PlainTrigger } from "~/models";
+import { emptyStringValidator, whitespaceValidator } from "src/components/Form/validators";
+import { PlainTrigger } from "src/models";
 
 import { renderFormTextTagInput } from "../inputs";
 import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";

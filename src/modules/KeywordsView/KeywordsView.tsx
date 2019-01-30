@@ -63,7 +63,7 @@ class KeywordsViewDisconnected extends React.Component<KeywordsViewProps> {
     const creatingId: FormId = "-1";
 
     const keyword: Keyword = {
-      id: parseInt(FormEnum.CREATING_ID, 10),
+      id: parseInt(creatingId, 10),
       name: "",
     };
     this.props.onSelectKeyword({ variables: { keyword } });

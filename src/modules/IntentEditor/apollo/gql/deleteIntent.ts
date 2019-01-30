@@ -28,7 +28,7 @@ export enum ActionType {}
 
 export type DeleteIntentFunction = (
   props: {
-    variables: { intentId: string; withChildren: boolean };
+    variables: { intentId: number; withChildren: boolean };
   },
 ) => void;
 

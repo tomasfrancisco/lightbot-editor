@@ -8,7 +8,7 @@ import {
 import { KeywordEditorViewProps } from "src/modules/KeywordsView/views";
 
 export type DeleteDictionaryData = {
-  id: string;
+  id: number;
 };
 
 const DELETE_KEYWORD_QUERY = gql`
