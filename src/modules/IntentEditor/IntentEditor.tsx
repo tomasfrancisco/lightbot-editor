@@ -16,7 +16,10 @@ import {
   updateIntent,
   UpdateIntentFunction,
 } from "src/modules/IntentEditor/apollo/gql";
-import { deleteIntent, DeleteIntentFunction } from "src/modules/IntentEditor/apollo/gql/deleteIntent";
+import {
+  deleteIntent,
+  DeleteIntentFunction,
+} from "src/modules/IntentEditor/apollo/gql/deleteIntent";
 import { transformToTriggersActionData } from "src/modules/IntentEditor/utils/transformers";
 import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
 import { Dictionary, IntentOutputType } from "src/types";

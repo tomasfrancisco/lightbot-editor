@@ -4,11 +4,7 @@ import _get from "lodash.get";
 import * as React from "react";
 import { css } from "react-emotion";
 import { Button } from "src/components/Button";
-import {
-  DeleteAction,
-  DeleteActionType,
-  DeleteButton,
-} from "src/components/DeleteButton";
+import { DeleteAction, DeleteActionType, DeleteButton } from "src/components/DeleteButton";
 import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "src/components/Form";
 import {
   IntentOutputsFormGroup,

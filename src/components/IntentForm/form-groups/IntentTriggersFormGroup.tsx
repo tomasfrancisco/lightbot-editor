@@ -1,7 +1,10 @@
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import { FormGroup, FormItem } from "src/components/Form";
-import { renderCombinationTriggerInput, renderPlainTriggerInput } from "src/components/Form/wrappers";
+import {
+  renderCombinationTriggerInput,
+  renderPlainTriggerInput,
+} from "src/components/Form/wrappers";
 import { IntentFormIndexType } from "src/components/IntentForm/IntentFormIndex.enum";
 import { TriggerAddButtonGroup } from "src/components/IntentForm/TriggerAddButtonGroup";
 import { CombinationTrigger, PlainTrigger, Trigger, TriggerTypeEnum } from "src/models";
