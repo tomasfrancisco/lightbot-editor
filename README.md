@@ -1,6 +1,6 @@
 # Lightbot Editor
 
-[![Build Status](https://travis-ci.com/lightbasenl/lightbot-editor.svg?branch=master)](https://travis-ci.com/lightbasenl/lightbot-editor)
+[![Build Status](https://api.cirrus-ci.com/github/lightbasenl/lightbot-editor.svg)](https://cirrus-ci.com/github/lightbasenl/lightbot-editor)
 
 ## About
 
