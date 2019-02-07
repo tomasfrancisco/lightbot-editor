@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 export const AppLayout = styled(Layout)`
   min-height: 100vh;

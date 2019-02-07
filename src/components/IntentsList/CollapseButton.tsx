@@ -1,6 +1,6 @@
 import { Icon } from "antd";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import theme from "src/config/theme.json";
 
 type StyledIconProps = {
@@ -18,5 +18,5 @@ export type CollapseButtonProps = {
 };
 
 export const CollapseButton = ({ isCollapsed }: CollapseButtonProps) => (
-  <Icon type="caret-right" className={iconStyle({ isCollapsed })} />
+  <Icon type="caret-right" css={iconStyle({ isCollapsed })} />
 );

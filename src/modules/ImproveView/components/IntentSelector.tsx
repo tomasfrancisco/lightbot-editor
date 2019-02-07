@@ -1,6 +1,7 @@
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 import { Row, Select } from "antd";
 import * as React from "react";
-import styled, { css } from "react-emotion";
 import { Button } from "src/components/Button";
 import { Intent } from "src/models";
 
@@ -46,7 +47,7 @@ export class IntentSelector extends React.Component<IntentSelectorProps, IntentS
           defaultValue={selectedIntentId}
           onChange={this.onChangeIntentSelector}
           allowClear={true}
-          className={selectStyle}
+          css={selectStyle}
           disabled={this.isSelectDisabled}
         >
           <Option value={CREATE_INTENT_ID} key={CREATE_INTENT_ID}>

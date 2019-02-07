@@ -68,7 +68,7 @@ export class FormColorInput extends React.Component<FormColorInputProps, FormCol
                 validateTrigger: ["onChange", "onBlur"],
               })(
                 <Input
-                  className={inputStyle}
+                  css={inputStyle}
                   placeholder={placeholder}
                   onChange={this.onInputFieldChange}
                 />,
@@ -93,7 +93,7 @@ export class FormColorInput extends React.Component<FormColorInputProps, FormCol
       return (
         <ColorPickerBackgroundView onClick={this.onBackgroundClick}>
           <CloseContainer>
-            <Icon type="close" className={closeButtonStyle} />
+            <Icon type="close" css={closeButtonStyle} />
           </CloseContainer>
           <ColorPickerContainer onClick={this.onSketchClick}>
             <SketchPicker

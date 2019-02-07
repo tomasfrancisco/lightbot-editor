@@ -2,10 +2,10 @@ import { Button as AntdButton } from "antd";
 import { ButtonProps as AntdButtonProps } from "antd/lib/button";
 import { rgba } from "polished";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import theme from "src/config/theme.json";
 
-export type ButtonColorTypes = "primary" | "success" | "info" | "secondary";
+export type ButtonColorTypes = "default" | "primary" | "success" | "info" | "secondary";
 
 const getThemeColor = (type: ButtonColorTypes, prop?: string) =>
   theme[`${type}-${prop ? `${prop}-` : ""}color`];
@@ -39,5 +39,5 @@ type ButtonProps = AntdButtonProps & {
 };
 
 export const Button = ({ level, ...props }: ButtonProps) => (
-  <AntdButton {...props} className={getButtonStyle({ level })} />
+  <AntdButton {...props} css={getButtonStyle({ level })} />
 );

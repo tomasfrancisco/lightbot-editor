@@ -1,4 +1,4 @@
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 
 export const sectionWithRigthMargin = css`
   margin-right: 16px;

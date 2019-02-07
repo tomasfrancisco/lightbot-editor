@@ -1,7 +1,6 @@
 import { Input } from "antd";
 import { FormComponentProps, ValidationRule } from "antd/lib/form/Form";
 import * as React from "react";
-import { cx } from "react-emotion";
 import {
   emptyIconHeaderStyle,
   RowTitle,
@@ -11,6 +10,7 @@ import {
   TitleStyledEmptyIcon,
   TitleStyledIcon,
 } from "src/components/Form/layout";
+import { InterpolationWithTheme } from "@emotion/core";
 
 type TitleInputProps = {
   placeholder?: string;
@@ -36,14 +36,12 @@ class FormTitleInput extends React.Component<TitleInputProps, TitleInputState> {
     const { value, placeholder, className } = this.props;
     return (
       <Input
-        className={cx(
+        css={[
           titleInputStyle,
           titleInputHeaderStyle,
-          {
-            [titleErrorStyle]: !this.isTitleValid(),
-          },
+          !this.isTitleValid() && titleErrorStyle,
           className,
-        )}
+        ]}
         size="large"
         prefix={<TitleStyledIcon type="edit" />}
         suffix={this.renderSuffix()}
@@ -60,7 +58,7 @@ class FormTitleInput extends React.Component<TitleInputProps, TitleInputState> {
     if (this.isTitleValid()) {
       return null;
     }
-    return <TitleStyledEmptyIcon className={emptyIconHeaderStyle} type="close-circle" />;
+    return <TitleStyledEmptyIcon css={emptyIconHeaderStyle} type="close-circle" />;
   }
 
   private isTitleValid = () => {
@@ -93,7 +91,7 @@ type RenderTitleInputProps = FormComponentProps & {
   value: string;
   rules?: ValidationRule[];
   fieldDecoratorName?: string;
-  rowClassName?: string;
+  rowCss?: InterpolationWithTheme<any>;
 };
 
 const renderIntentTitleInput = ({
@@ -122,5 +120,5 @@ const renderIntentTitleInput = ({
   })(<FormTitleInput placeholder={placeholder} onChange={onChange} />);
 
 export const TitleInput = (props: RenderTitleInputProps) => (
-  <RowTitle className={props.rowClassName}>{renderIntentTitleInput(props)}</RowTitle>
+  <RowTitle css={props.rowCss}>{renderIntentTitleInput(props)}</RowTitle>
 );

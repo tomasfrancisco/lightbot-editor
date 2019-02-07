@@ -1,7 +1,7 @@
 import { Row } from "antd";
 import { RowProps } from "antd/lib/row";
 import * as React from "react";
-import { css, cx } from "react-emotion";
+import { css } from "@emotion/core";
 
 const rowStyle = css`
   display: flex;
@@ -9,7 +9,7 @@ const rowStyle = css`
 `;
 
 export const FormRow = ({ className, ...props }: RowProps) => (
-  <Row className={cx(rowStyle, className)} {...props}>
+  <Row css={[rowStyle, className]} {...props}>
     {props.children}
   </Row>
 );

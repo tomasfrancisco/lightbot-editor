@@ -1,7 +1,7 @@
 import { Layout } from "antd";
 import * as React from "react";
 import { compose } from "react-apollo";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AppLayout, AppLayoutContent } from "src/components/AppLayout";
 import { Footer } from "src/components/Footer";
@@ -10,7 +10,7 @@ import { ElementIdsType } from "src/constants/ElementIdsType";
 import { Agent } from "src/models";
 import { AppMenu } from "src/modules/AppMenu";
 
-import { AppSider } from "./components";
+import { AppSider, LogoWrapper } from "./components";
 
 const imgStyle = css`
   width: 12px;
@@ -52,14 +52,16 @@ export class LightbotLayoutDisconnected extends React.Component<
           onCollapse={this.onCollapse}
           trigger={null}
         >
-          <Logo isMobile={this.state.collapsed} isDarkBackground={true} />
+          <LogoWrapper isMobile={this.state.collapsed}>
+            <Logo isMobile={this.state.collapsed} isDarkBackground={true} />
+          </LogoWrapper>
           <AppMenu />
         </AppSider>
         <Layout style={{ minHeight: "calc(100vh - 64px)" }}>
           <AppLayoutContent>{children || "Welcome to Lightbot!"}</AppLayoutContent>
           <Footer>
             © {year} • Lightbot is a registered trademark of{" "}
-            <img className={imgStyle} src="/logo-icon-full.svg" /> Lightbase B.V. • Version -
+            <img css={imgStyle} src="/logo-icon-full.svg" /> Lightbase B.V. • Version -
             {" " + process.env.REACT_APP_VERSION}
           </Footer>
         </Layout>

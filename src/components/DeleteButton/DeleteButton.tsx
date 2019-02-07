@@ -1,8 +1,9 @@
 import { Button as AntdButton, Dropdown, Icon, Menu, Popconfirm } from "antd";
 import * as React from "react";
-import styled, { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { DeleteActionType } from "src/components/DeleteButton";
 import theme from "src/config/theme.json";
+import styled from "@emotion/styled";
 
 const WarningIcon = styled(Icon)`
   color: ${theme["error-color"]} !important;
@@ -91,7 +92,7 @@ export class DeleteButton extends React.Component<DeleteButtonProps, DeleteButto
   private renderWithoutDropDown = () => {
     const { disabled } = this.props;
     return (
-      <AntdButton disabled={disabled} onClick={this.onDefaultClick} className={deleteButtonStyle}>
+      <AntdButton disabled={disabled} onClick={this.onDefaultClick} css={deleteButtonStyle}>
         <Icon type="delete" />
         Delete
       </AntdButton>
@@ -106,7 +107,7 @@ export class DeleteButton extends React.Component<DeleteButtonProps, DeleteButto
         overlay={this.renderMenu()}
         disabled={disabled}
         onClick={this.onDefaultClick}
-        className={deleteDropdownButtonStyle}
+        css={deleteDropdownButtonStyle}
       >
         <Icon type="delete" />
         Delete

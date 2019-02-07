@@ -1,4 +1,5 @@
-import styled, { css } from "react-emotion";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 
 export const ImageRow = styled("div")`
   width: 100%;

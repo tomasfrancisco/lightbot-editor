@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Form/inputs/TitleInput renders 1`] = `
-<Styled(div)>
+<ForwardRef(render)>
   <Search
     enterButton={false}
     onChange={[Function]}
     onSearch={[Function]}
     placeholder="Search here"
   />
-</Styled(div)>
+</ForwardRef(render)>
 `;

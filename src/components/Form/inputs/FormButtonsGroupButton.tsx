@@ -1,7 +1,7 @@
 import { Icon } from "antd";
 import _clone from "lodash.clone";
 import * as React from "react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { Button } from "src/components/Button";
 import { FormItem } from "src/components/Form/components";
 import { FormButton, FormButtonInput } from "src/components/Form/inputs/FormButtonInput";

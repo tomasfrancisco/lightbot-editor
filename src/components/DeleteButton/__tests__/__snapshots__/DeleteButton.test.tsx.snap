@@ -5,7 +5,7 @@ exports[`components/Button renders 1`] = `
   arrowPointAtCenter={true}
   cancelText="Cancel"
   icon={
-    <Styled(Icon)
+    <ForwardRef(render)
       type="warning"
     />
   }
@@ -21,7 +21,23 @@ exports[`components/Button renders 1`] = `
 >
   <Button
     block={false}
-    className="css-48x2js"
+    css={
+      Object {
+        "map": undefined,
+        "name": "48x2js",
+        "next": undefined,
+        "styles": "
+  color: #ed474f;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #ed474f;
+    border-color: #ed474f;
+  }
+",
+      }
+    }
     disabled={false}
     ghost={false}
     loading={false}

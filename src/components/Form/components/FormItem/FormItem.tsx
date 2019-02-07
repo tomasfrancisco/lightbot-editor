@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import { FormItemProps as AntdFormItemProps } from "antd/lib/form/FormItem";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { FormItemContainer } from "src/components/Form/components/FormItem/FormItemContainer";
 import { FormItemDeleteIcon } from "src/components/Form/components/FormItem/FormItemDeleteIcon";
 import { FormItemIcon } from "src/components/Form/components/FormItem/FormItemIcon";
@@ -39,11 +39,11 @@ export const FormItem = ({
   children,
   ...props
 }: FormItemProps) => (
-  <FormRow className={isInputHidden ? hiddenInputStyle : ""}>
+  <FormRow css={[isInputHidden && hiddenInputStyle]}>
     {sortHandler}
     {iconType && <FormItemIcon type={iconType} />}
     <FormItemContainer>
-      {title && <SubTitleLabel className={titleLabelStyle}>{title}</SubTitleLabel>}
+      {title && <SubTitleLabel css={titleLabelStyle}>{title}</SubTitleLabel>}
       <Form.Item {...props}>{children}</Form.Item>
     </FormItemContainer>
     <FormItemDeleteIcon onRemove={onRemove} tooltipTitle={removeTooltipTitle || "Remove"} />

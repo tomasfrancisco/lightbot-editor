@@ -1,8 +1,9 @@
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 import { List, Modal } from "antd";
 import Form, { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
-import styled, { css } from "react-emotion";
 import { TitleInput } from "src/components/Form";
 import theme from "src/config/theme.json";
 import { TriggerActionData } from "src/models";
@@ -62,7 +63,7 @@ class CreateIntentModalDisconnected extends React.Component<CreateIntentModalPro
             form={form}
             itemKey={NEW_INTENT_KEY_NAME}
             value={""}
-            rowClassName={noMarginTitleStyle}
+            rowCss={noMarginTitleStyle}
             placeholder={"New intent name"}
           />
           <ListWrapper>

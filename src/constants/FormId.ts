@@ -3,6 +3,12 @@ export type FormId =
   | "-1"
 
   // form unique identifiers
+  | "signup_form"
+  | "login_form"
+  | "login_email_form_field"
+  | "login_password_form_field"
+  | "change_password_form"
+  | "forgot_password_form"
   | "intent_form_keys"
   | "keyword_form_keys"
 

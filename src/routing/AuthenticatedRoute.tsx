@@ -5,6 +5,7 @@ import { Route, RouteComponentProps, RouteProps, withRouter } from "react-router
 
 import { RoutesKeysEnum } from "./routeKeys.enum";
 import { routes } from "./routes";
+import { authenticationHelper } from "src/utils/authenticationHelper";
 
 type AuthenticatedRouteProps = RouteProps & RouteComponentProps & {};
 
@@ -29,9 +30,7 @@ class AuthenticatedRouteDisconnected extends React.Component<AuthenticatedRouteP
 
   private tryRedirect(props: AuthenticatedRouteProps = this.props) {
     const { history } = props;
-    const isAuthenticated = !!StorageInstance.getItem(StorageConstantsEnum.EDITOR_TOKEN_ID);
-
-    if (!isAuthenticated) {
+    if (!authenticationHelper.isAuthenticated) {
       history.push(routes[RoutesKeysEnum.LOGIN].routeProps.path as string);
     }
   }

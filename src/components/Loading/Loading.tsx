@@ -1,6 +1,6 @@
 import { Icon, Spin } from "antd";
 import * as React from "react";
-import { css, cx } from "react-emotion";
+import { css } from "@emotion/core";
 
 const wrapperStyle = css`
   text-align: center;
@@ -24,7 +24,7 @@ type LoadingProps = {
 };
 
 export const Loading = ({ fullPage }: LoadingProps) => (
-  <div className={cx(wrapperStyle, { [fullPageStyle]: fullPage })}>
+  <div css={[wrapperStyle, fullPage && fullPageStyle]}>
     <Spin />
   </div>
 );

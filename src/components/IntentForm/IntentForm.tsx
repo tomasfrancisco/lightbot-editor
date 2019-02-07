@@ -2,7 +2,7 @@ import { Form, Icon } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { Button } from "src/components/Button";
 import { DeleteAction, DeleteActionType, DeleteButton } from "src/components/DeleteButton";
 import { FormCollapse, FormPanel, FormPanelHeader, TitleInput } from "src/components/Form";
@@ -96,21 +96,21 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
     return (
       <Form
         id={formId}
-        className={formStyle}
+        css={formStyle}
         layout="vertical"
         autoComplete="off"
         onSubmit={this.onSubmit}
       >
         <Section>
           <SectionHeader alignment="right">
-            <SectionHeaderNavContainer className={noBottomSpaceStyle}>
+            <SectionHeaderNavContainer css={noBottomSpaceStyle}>
               <TitleInput
                 itemKey={FormIndexEnum.NAME}
                 form={form}
                 value={_get(intent, "name", "")}
                 placeholder="Insert an intent title please"
               />
-              <Form.Item className={headerOptionButtonsSpacingStyle}>
+              <Form.Item css={headerOptionButtonsSpacingStyle}>
                 <DeleteButton
                   dropdownActions={deleteActions}
                   mainAction={defaultDeleteAction}
@@ -118,7 +118,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
                   disabled={this.isDeleteButtonDisabled}
                 />
               </Form.Item>
-              <Form.Item className={headerOptionButtonsSpacingStyle}>
+              <Form.Item css={headerOptionButtonsSpacingStyle}>
                 <Button htmlType="submit" disabled={!isTouched} level="primary">
                   <Icon type="save" />
                   Save
@@ -126,7 +126,7 @@ export class IntentFormDisconnected extends React.Component<IntentFormProps> {
               </Form.Item>
             </SectionHeaderNavContainer>
           </SectionHeader>
-          <SectionContent className={topSpaceSectionContentStyle}>
+          <SectionContent css={topSpaceSectionContentStyle}>
             <FormCollapse
               bordered={false}
               defaultActiveKey={[FormIndexEnum.TRIGGERS, FormIndexEnum.OUTPUTS]}

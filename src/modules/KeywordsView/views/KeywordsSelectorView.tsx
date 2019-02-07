@@ -1,5 +1,5 @@
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { Button } from "src/components/Button";
 import { SearchInput } from "src/components/Form/inputs";
 import { List, ListItemData } from "src/components/List";
@@ -53,16 +53,16 @@ export class KeywordsSelectorView extends React.Component<
     }
 
     return (
-      <Section className={sectionWithRigthMargin}>
+      <Section css={sectionWithRigthMargin}>
         <SectionHeader alignment="left">
-          <SectionHeaderNavContainer className={bottomSpace}>
+          <SectionHeaderNavContainer css={bottomSpace}>
             <Button icon="plus" type="primary" onClick={onAddKeyword}>
               Add Keyword
             </Button>
           </SectionHeaderNavContainer>
           <SearchInput onSearchResult={this.searchKeywordsList} />
         </SectionHeader>
-        <SectionContent className={noMarginsSectionContentStyle}>
+        <SectionContent css={noMarginsSectionContentStyle}>
           <List
             items={this.listItemsData}
             onChangeItemSelection={this.onKeywordSelectChange}

@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 export const Footer = styled(Layout.Footer)`
   display: flex;

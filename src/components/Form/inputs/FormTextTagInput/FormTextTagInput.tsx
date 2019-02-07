@@ -3,7 +3,7 @@ import { FormComponentProps } from "antd/lib/form";
 import { GetFieldDecoratorOptions } from "antd/lib/form/Form";
 import { CompositeDecorator, ContentState, DraftHandleValue, Editor, EditorState } from "draft-js";
 import * as React from "react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import "./FormTextTagInput.css";
 
 const StyledTag = styled(TagAntd)`

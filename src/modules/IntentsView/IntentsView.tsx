@@ -4,7 +4,7 @@ import _get from "lodash.get";
 import pathToRegexp, { PathFunction } from "path-to-regexp";
 import * as React from "react";
 import { ApolloConsumer, compose } from "react-apollo";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Button } from "src/components/Button";
 import { SearchInput } from "src/components/Form/inputs";
@@ -98,7 +98,7 @@ export class IntentsViewDisconnected extends React.Component<IntentsViewProps, I
                   {client => <SearchInput onSearchResult={this.searchIntentsList(client)} />}
                 </ApolloConsumer>
               </SectionHeader>
-              <SectionContent className={noMarginsSectionContentStyle}>
+              <SectionContent css={noMarginsSectionContentStyle}>
                 {isLoadingSearch ? (
                   <Loading />
                 ) : (

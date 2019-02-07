@@ -2,7 +2,7 @@ import { Form as AntdForm, Icon, message } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import _get from "lodash.get";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { Button } from "src/components/Button";
 import { DeleteButton, mainDeleteAction } from "src/components/DeleteButton";
 import {
@@ -92,14 +92,14 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
                   ),
                 ]}
               />
-              <AntdForm.Item className={headerOptionButtonsSpacingStyle}>
+              <AntdForm.Item css={headerOptionButtonsSpacingStyle}>
                 <DeleteButton
                   mainAction={mainDeleteAction}
                   disabled={selectedKeyword.id === parseInt(creatingId, 10)}
                   onConfirm={this.onConfirmDelete}
                 />
               </AntdForm.Item>
-              <AntdForm.Item className={headerOptionButtonsSpacingStyle}>
+              <AntdForm.Item css={headerOptionButtonsSpacingStyle}>
                 <Button
                   htmlType="submit"
                   disabled={!isTouched}
@@ -113,7 +113,7 @@ export class KeywordEditorFormDisconnected extends React.Component<KeywordEditor
             </SectionHeaderNavContainer>
             <SearchInput onSearchResult={this.onSearch} />
           </SectionHeader>
-          <SectionContent className={topSpaceSectionContentStyle}>
+          <SectionContent css={topSpaceSectionContentStyle}>
             {this.renderItems()}
             <FormItem>
               <Button onClick={this.onAdd} level="secondary" block={true}>

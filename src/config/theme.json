@@ -1,6 +1,9 @@
 {
   "font-family": "Assistant, sans-serif",
 
+  "default-color": "#fff",
+  "default-text-color": "rgb(117,117,117)",
+
   "primary-color": "#ff6d00",
   "primary-text-color": "#fff",
   "primary-border-color": "#c05302",

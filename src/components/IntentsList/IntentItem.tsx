@@ -1,10 +1,10 @@
 import { Icon, Tag } from "antd";
 import * as React from "react";
-import styled, { cx } from "react-emotion";
 import { Link } from "react-router-dom";
 import theme from "src/config/theme.json";
 import { ElementIdsType } from "src/constants/ElementIdsType";
 import { Intent } from "src/models";
+import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   padding-left: 20px;
@@ -79,23 +79,17 @@ export class IntentItem extends React.Component<IntentItemProps> {
       <Link to={to}>
         <Wrapper
           id={intent.isWelcome ? welcomeIntentId : undefined}
-          className={cx(
-            index % 2 === 0 ? "list-item-even" : "list-item-odd",
-            intent.parentId ? "list-item-child" : "list-item-parent",
-          )}
+          className={`
+            ${index % 2 === 0 ? "list-item-even" : "list-item-odd"}
+            ${intent.parentId ? "list-item-child" : "list-item-parent"}
+          `}
         >
           {collapseIcon}
           <StyledIcon
             type={!intent.children!.length ? (intent.isTopLevel ? "arrow-left" : "enter") : ""}
           />
           <div
-            className={cx(
-              "title",
-              {
-                ["is-top-level"]: intent.isTopLevel,
-              },
-              this.selectedClass,
-            )}
+            className={`title ${intent.isTopLevel && "is-top-level"} ${this.selectedClass}`}
             onClick={onClick}
           >
             {intent.name}

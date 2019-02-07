@@ -1,7 +1,7 @@
 import { Table as AntdTable } from "antd";
 import * as React from "react";
 import { compose } from "react-apollo";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import {
   Section,
   SectionContent,
@@ -65,8 +65,8 @@ export class ImproveViewDisconnected extends React.Component<ImproveViewProps, I
     return (
       <LightbotLayout>
         <Section>
-          <SectionHeader className={normalizeHeadingLineHeight}>
-            <SectionHeaderNavContainer className={noBottomSpacingNavHeaderStyle}>
+          <SectionHeader css={normalizeHeadingLineHeight}>
+            <SectionHeaderNavContainer css={noBottomSpacingNavHeaderStyle}>
               <DeleteUnknownTriggers
                 agentId={agentId}
                 selectedTriggers={selectedUnknownTriggerItems}
@@ -79,7 +79,7 @@ export class ImproveViewDisconnected extends React.Component<ImproveViewProps, I
               />
             </SectionHeaderNavContainer>
           </SectionHeader>
-          <SectionContent className={topMarginImproveTableStyle}>
+          <SectionContent css={topMarginImproveTableStyle}>
             <AntdTable
               columns={columns}
               loading={loading}

@@ -1,22 +1,30 @@
 import { RouteProps } from "react-router-dom";
+import {
+  ChangePasswordView,
+  LoginView,
+  LogoutView,
+  ResetPasswordView,
+  SignupView,
+  OAuthCallbackView,
+} from "src/modules/AuthViews";
 import { DashboardView } from "src/modules/Dashboard";
 import { DeployView } from "src/modules/DeployView";
 import { HomeView } from "src/modules/HomeView";
 import { ImproveView } from "src/modules/ImproveView/ImproveView";
 import { IntentsView } from "src/modules/IntentsView";
 import { KeywordsView } from "src/modules/KeywordsView";
-import { LoginView } from "src/modules/LoginView";
-import { LogoutView } from "src/modules/LogoutView";
 import { SettingsView } from "src/modules/SettingsView";
 import { TrapView } from "src/modules/TrapView";
+
 import { RoutesKeysEnum } from "./routeKeys.enum";
+import { VerifyView } from "src/modules/AuthViews/VerifyView";
 
 export type LightbotRouteProps = {
   protected: boolean;
   routeProps: RouteProps & {
     // Because React Router is dumb and has made path as a two type option
     // We don't care, we only use path as a string anyways.
-    path?: string;
+    path: string;
   };
 };
 
@@ -32,11 +40,19 @@ export const routes: LightbotRoutesProps = {
       component: HomeView,
     },
   },
+  [RoutesKeysEnum.SIGNUP]: {
+    protected: false,
+    routeProps: {
+      exact: true,
+      path: "/auth/signup",
+      component: SignupView,
+    },
+  },
   [RoutesKeysEnum.LOGIN]: {
     protected: false,
     routeProps: {
       exact: true,
-      path: "/login",
+      path: "/auth/login",
       component: LoginView,
     },
   },
@@ -44,11 +60,42 @@ export const routes: LightbotRoutesProps = {
     protected: false,
     routeProps: {
       exact: true,
-      path: "/logout",
+      path: "/auth/logout",
       component: LogoutView,
     },
   },
-
+  [RoutesKeysEnum.VERIFY_EMAIL]: {
+    protected: false,
+    routeProps: {
+      exact: true,
+      path: "/auth/verify",
+      component: VerifyView,
+    },
+  },
+  [RoutesKeysEnum.CHANGE_PASSWORD]: {
+    protected: false,
+    routeProps: {
+      exact: true,
+      path: "/auth/change-password",
+      component: ChangePasswordView,
+    },
+  },
+  [RoutesKeysEnum.RESET_PASSWORD]: {
+    protected: false,
+    routeProps: {
+      exact: true,
+      path: "/auth/reset-password",
+      component: ResetPasswordView,
+    },
+  },
+  [RoutesKeysEnum.OAUTH_CALLBACK]: {
+    protected: false,
+    routeProps: {
+      exact: true,
+      path: "/auth/callback",
+      component: OAuthCallbackView,
+    },
+  },
   // Authenticated routes
   [RoutesKeysEnum.DASHBOARD]: {
     protected: true,
@@ -120,6 +167,7 @@ export const routes: LightbotRoutesProps = {
   [RoutesKeysEnum.TRAP]: {
     protected: false,
     routeProps: {
+      path: "/404",
       component: TrapView,
     },
   },

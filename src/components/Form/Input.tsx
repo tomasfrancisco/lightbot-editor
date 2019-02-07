@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import { FormComponentProps, ValidationRule } from "antd/lib/form";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 
 const inputStyle = css`
   width: calc(100% - 25px);
@@ -33,4 +33,4 @@ export const renderInput = ({ itemKey, form, value, placeholder, rules = [] }: I
     ],
     validateFirst: true,
     validateTrigger: ["onChange", "onBlur"],
-  })(<Input placeholder={placeholder} className={inputStyle} />);
+  })(<Input placeholder={placeholder} css={inputStyle} />);

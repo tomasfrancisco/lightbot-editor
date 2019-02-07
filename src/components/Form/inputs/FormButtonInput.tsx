@@ -1,5 +1,5 @@
 import { Input, Select } from "antd";
-import { css } from "emotion";
+import { css } from "@emotion/core";
 import _clone from "lodash.clone";
 import * as React from "react";
 import { FormCol, FormRow } from "src/components/Form/layout";
@@ -44,7 +44,7 @@ export class FormButtonInput extends React.Component<FormButtonInputProps> {
             defaultValue={value.intentId !== -1 ? value.intentId : undefined}
             onChange={this.onChangeIntentSelector("intentId")}
             allowClear={false}
-            className={selectStyle}
+            css={selectStyle}
           >
             {this.renderSelectOptions}
           </Select>

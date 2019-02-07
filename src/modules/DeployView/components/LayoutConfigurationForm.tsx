@@ -2,7 +2,7 @@ import { Form } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import * as React from "react";
-import { css, cx } from "react-emotion";
+import { css } from "@emotion/core";
 import { Button } from "src/components/Button";
 import { FormCollapse } from "src/components/Form/components";
 import { TitleLabel } from "src/components/Labels";
@@ -76,22 +76,22 @@ class LayoutConfigurationFormDisconnected extends React.Component<
       "deploy_general_group",
     ];
     return (
-      <Form id={LayoutConfigurationFormEnum.FORM_ID} layout="vertical" className={formStyle}>
-        <SectionHeader className={sectionHeaderCenterStyle}>
-          <SectionHeaderNavContainer className={noBottomSpace}>
-            <TitleLabel className={smallerLineHeight}>Layout Configuration</TitleLabel>
+      <Form id={LayoutConfigurationFormEnum.FORM_ID} layout="vertical" css={formStyle}>
+        <SectionHeader css={sectionHeaderCenterStyle}>
+          <SectionHeaderNavContainer css={noBottomSpace}>
+            <TitleLabel css={smallerLineHeight}>Layout Configuration</TitleLabel>
             <Button icon="plus" type="primary" disabled={!hasDataChanged} onClick={this.onDataSave}>
               Save
             </Button>
           </SectionHeaderNavContainer>
         </SectionHeader>
-        <SectionContent className={topSpaceSectionContentStyle}>
+        <SectionContent css={topSpaceSectionContentStyle}>
           <FormCollapse
-            className={cx(
+            css={[
               formCollapseTopMarginStyle,
               topSpaceFormContentStyle,
               bottomSpaceFormContentStyle,
-            )}
+            ]}
             bordered={false}
             defaultActiveKey={defaultActiveKeys}
           >

@@ -1,6 +1,6 @@
 import { Badge, Icon, Menu } from "antd";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { Link } from "react-router-dom";
 
 const badgeStyle = css`
@@ -20,7 +20,7 @@ export const renderMenuItem = ({ itemKey, icon, label, badgeCount, to }: AppMenu
     <Link to={to || "#"}>
       <Icon type={icon} />
       <span>{label}</span>
-      <Badge count={badgeCount} showZero={false} className={badgeStyle} />
+      <Badge count={badgeCount} showZero={false} css={badgeStyle} />
     </Link>
   </Menu.Item>
 );

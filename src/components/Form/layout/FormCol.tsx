@@ -1,7 +1,7 @@
 import { Col } from "antd";
 import { ColProps } from "antd/lib/col";
 import * as React from "react";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 
 const colStyle = css`
   float: none;
@@ -21,7 +21,7 @@ const colStyle = css`
 `;
 
 export const FormCol = (props: ColProps) => (
-  <Col className={colStyle} {...props}>
+  <Col css={colStyle} {...props}>
     {props.children}
   </Col>
 );

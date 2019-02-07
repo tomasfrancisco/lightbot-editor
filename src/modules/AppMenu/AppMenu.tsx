@@ -3,7 +3,7 @@ import _get from "lodash.get";
 import pathToRegexp from "path-to-regexp";
 import * as React from "react";
 import { compose } from "react-apollo";
-import { css } from "react-emotion";
+import { css } from "@emotion/core";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Agent } from "src/models";
 import { RoutesKeysEnum, Routing, withRouteParams } from "src/routing";
@@ -46,7 +46,7 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
 
     return (
       <Menu
-        className={menuStyle}
+        css={menuStyle}
         defaultSelectedKeys={[RoutesKeysEnum.INTENTS]}
         selectedKeys={selectedKeys}
         mode="inline"
@@ -70,7 +70,7 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
               agentId,
             }),
           })}
-          {renderMenuItem({
+          {/* {renderMenuItem({
             itemKey: RoutesKeysEnum.SETTINGS,
             label: "Settings",
             icon: "setting",
@@ -78,7 +78,7 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
               .path as string)({
               agentId,
             }),
-          })}
+          })} */}
         </Menu.SubMenu>
         <Menu.SubMenu key={SubMenuEnum.AGENT} title={this.renderAgentSubMenuTitle}>
           {renderMenuItem({
@@ -128,12 +128,12 @@ class AppMenuDisconnected extends React.Component<AppMenuProps> {
 
     return (
       <React.Fragment>
-        <span className={agentTitleStyle}>
+        <span css={agentTitleStyle}>
           <Icon type="solution" />
           <span>Agent</span>
         </span>
         <span onClick={this.preventPropagation}>
-          <Select value={agentId} className={agentSelectorStyle} onChange={this.onAgentSelect}>
+          <Select value={agentId} css={agentSelectorStyle} onChange={this.onAgentSelect}>
             {this.renderAgentsOptions()}
           </Select>
         </span>

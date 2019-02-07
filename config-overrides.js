@@ -1,6 +1,7 @@
-const { override, fixBabelImports, addLessLoader } = require("customize-cra");
+const { override, fixBabelImports, addBabelPresets, addLessLoader } = require("customize-cra");
 
 module.exports = override(
+  addBabelPresets("@emotion/babel-preset-css-prop"),
   fixBabelImports("import", {
     libraryName: "antd",
     libraryDirectory: "es",

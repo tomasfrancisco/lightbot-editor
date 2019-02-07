@@ -1,7 +1,7 @@
 import { Icon } from "antd";
 import _get from "lodash.get";
 import * as React from "react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import Nestable from "react-nestable";
 
 export type FormGroupItem = { component: any; data: any; children?: any };

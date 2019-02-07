@@ -1,7 +1,7 @@
 import { message } from "antd";
 import * as React from "react";
 import { compose } from "react-apollo";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { Loading } from "src/components/Loading";
 import { Intent } from "src/models";
 import {

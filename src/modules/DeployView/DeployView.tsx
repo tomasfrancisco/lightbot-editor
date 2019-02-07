@@ -64,10 +64,8 @@ class DeployViewDisconnected extends React.Component<DeployViewProps, DeployView
       <LightbotLayout>
         <Row>
           <Col span={10}>
-            <SectionGrid className={sectionWithRigthMargin}>
-              <SectionCard
-                className={[sectionContentFitableStyle, sectionWithColumnFlexDirection].join(" ")}
-              >
+            <SectionGrid css={sectionWithRigthMargin}>
+              <SectionCard css={[sectionContentFitableStyle, sectionWithColumnFlexDirection]}>
                 <ApolloConsumer>
                   {client => (
                     <DeployButton onClick={this.getOnDeployClick(client)} loading={deployLoading} />
@@ -80,7 +78,7 @@ class DeployViewDisconnected extends React.Component<DeployViewProps, DeployView
                 </CodeHighlighter>
               </SectionCard>
               <SectionGridHorizontalSeparator />
-              <SectionCard className={[sectionFillFreeSpaceStyle].join(" ")}>
+              <SectionCard css={[sectionFillFreeSpaceStyle]}>
                 <LayoutConfigurationForm
                   agentData={agentData}
                   onSaveForm={this.onSaveForm}
