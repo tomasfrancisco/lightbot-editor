@@ -16,15 +16,6 @@ stages:
     paths:
       - ./build
 
-.run_editor_deploy_template:
-  image: python:latest
-  dependencies:
-    - run_build
-  script:
-    - pip install awscli
-    - aws s3 sync ./build/ s3://app.lightbot.io --delete --debug
-    - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_EDITOR_INSTANCE_ID} --paths "/*"
-
 # Smart jobs
 run_build:
   stage: test
@@ -32,20 +23,9 @@ run_build:
   only:
     - master
 
-run_editor_deploy:
-  stage: deploy
-  extends: .run_editor_deploy_template
-  only:
-    - master
-
 # Manual jobs
 run_manual_build:
   extends: .run_build_template
-  when: manual
-
-run_manual_editor_deploy:
-  stage: deploy
-  extends: .run_editor_deploy_template
   when: manual
 
 # Docker build
@@ -55,7 +35,7 @@ run_docker_build:
   services:
     - docker:dind
   only:
-    - staging
+    - master
   variables:
     REACT_APP_API_URL: $PROD_REACT_APP_API_URL
     REACT_APP_WIDGET_URL: $PROD_REACT_APP_WIDGET_URL
