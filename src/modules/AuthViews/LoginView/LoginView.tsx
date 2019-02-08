@@ -58,7 +58,10 @@ class LoginViewDisconnected extends React.Component<LoginViewProps, LoginViewSta
       message.error(
         <>
           The provided email and password combination were not found on our database.
-          <a css={formActionLinkStyle} href="/forgot-password">
+          <a
+            css={formActionLinkStyle}
+            href={Routing.routes[RoutesKeysEnum.RESET_PASSWORD].routeProps.path}
+          >
             Forgot your password?
           </a>
         </>,

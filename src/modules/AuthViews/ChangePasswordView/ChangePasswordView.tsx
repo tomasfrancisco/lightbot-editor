@@ -68,6 +68,10 @@ class ChangePasswordViewDisconnected extends React.Component<
     }
 
     this.isSubmitting = false;
+
+    this.props.history.replace({
+      pathname: Routing.routes[RoutesKeysEnum.LOGIN].routeProps.path,
+    });
   };
 
   private set isSubmitting(isSubmitting: boolean) {
