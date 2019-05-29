@@ -3,6 +3,7 @@ variables:
 
 stages:
   - test
+  - build
   - deploy
 
 # Templates
@@ -30,7 +31,7 @@ run_manual_build:
 
 # Docker build
 run_docker_build:
-  stage: deploy
+  stage: build
   image: docker
   services:
     - docker:dind
@@ -47,3 +48,7 @@ run_docker_build:
     - docker push ${CI_REGISTRY}/lightbase/lightbot-editor:latest
     - docker push ${CI_REGISTRY}/lightbase/lightbot-editor:$CI_COMMIT_SHA
 
+run_deploy:
+  stage: deploy
+  script:
+    - curl -X POST -F token=${TOKEN} -F ref=master -F "variables[DEPLOY]=lightbot" https://gitlab.com/api/v4/projects/12436284/trigger/pipeline
